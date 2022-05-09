@@ -2,6 +2,7 @@ package com.projecttypea.typea.ws;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 
 import com.projecttypea.typea.bean.DonéesPro;
@@ -24,9 +25,13 @@ public class DonéesProWS {
     @Autowired
     DonéesProService donéesProService;
 
-    @PutMapping("/updatedonnes/{id}")
-    public int updateCadre(@PathVariable Long id, @RequestBody DonéesPro donnePro) {
-        return donéesProService.updateDonesPro(id, donnePro);
+    @PutMapping("/user/updatedonnes/{id}")
+    public int updateCadre(@PathVariable Long id, @RequestBody DonéesPro donnePro, HttpSession session) {
+        if (session != null) {
+            return donéesProService.updateDonesPro(id, donnePro);
+        } else {
+            return -2;
+        }
     }
 
     @Transactional
@@ -40,9 +45,13 @@ public class DonéesProWS {
         return donéesProService.findAll();
     }
 
-    @PostMapping("/adddonéespro")
-    public int addDonesPro(@RequestBody DonéesPro donne) {
-        return donéesProService.addDonesPro(donne);
+    @PostMapping("/user/adddonéespro")
+    public int addDonesPro(@RequestBody DonéesPro donne, HttpSession session) {
+        if (session != null) {
+            return donéesProService.addDonesPro(donne);
+        } else {
+            return -2;
+        }
     }
 
 }

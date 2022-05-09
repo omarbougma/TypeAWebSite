@@ -2,6 +2,7 @@ package com.projecttypea.typea.ws;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 
 import com.projecttypea.typea.bean.MissionStage;
@@ -23,25 +24,33 @@ public class MissionStageWS {
     @Autowired
     MissionStageService missionStageService;
 
+    public List<MissionStage> findAllById(Iterable<Long> ids) {
+        return missionStageService.findAllById(ids);
+    }
+
     @Transactional
     @DeleteMapping("/deletemission/{id}")
     public void deleteById(Long id) {
         missionStageService.deleteById(id);
     }
 
-    @PutMapping("/updatemission/{id}")
+    @PutMapping("/user/updatemission/{id}")
     public int updateMissionStage(Long id, MissionStage missionStage) {
         return missionStageService.updateMissionStage(id, missionStage);
     }
 
-    @GetMapping("/missions")
+    @GetMapping("/admin/missions")
     public List<MissionStage> findAll() {
         return missionStageService.findAll();
     }
 
-    @PostMapping("/addmission")
-    public int addMissionStage(@RequestBody MissionStage mission) {
-        return missionStageService.addMissionStage(mission);
+    @PostMapping("/user/addmission")
+    public int addMissionStage(@RequestBody MissionStage mission, HttpSession session) {
+        if (session != null) {
+            return missionStageService.addMissionStage(mission);
+        } else {
+            return -2;
+        }
     }
 
 }

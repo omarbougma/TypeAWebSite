@@ -37,7 +37,7 @@ public class UserWS {
         return userService.updateUser(id, user);
     }
 
-    @GetMapping("/allusers/email/{email}")
+    @GetMapping("/email/{email}")
     public User findByEmail(@PathVariable String email) {
         return userService.findByEmail(email);
     }
@@ -52,7 +52,7 @@ public class UserWS {
      */
 
     @GetMapping("/admin/Users")
-    public List<User> findAll(HttpSession session) {
+    public List<User> findAll() {
         return userService.findAll();
     }
 

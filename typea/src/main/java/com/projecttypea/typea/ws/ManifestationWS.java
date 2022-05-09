@@ -2,6 +2,7 @@ package com.projecttypea.typea.ws;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 
 import com.projecttypea.typea.bean.Manifestation;
@@ -24,7 +25,7 @@ public class ManifestationWS {
     @Autowired
     ManifestationService manifestationService;
 
-    @PutMapping("/updatemanif/{id}")
+    @PutMapping("/user/updatemanif/{id}")
     public int updateManifestation(@PathVariable Long id, @RequestBody Manifestation manifestation) {
         return manifestationService.updateManifestation(id, manifestation);
     }
@@ -35,14 +36,18 @@ public class ManifestationWS {
         manifestationService.deleteById(id);
     }
 
-    @GetMapping("/manifestations")
+    @GetMapping("/admin/manifestations")
     public List<Manifestation> findAll() {
         return manifestationService.findAll();
     }
 
-    @PostMapping("/addmanifestation")
-    public int addManifestation(@RequestBody Manifestation manifestation) {
-        return manifestationService.addManifestation(manifestation);
+    @PostMapping("/user/addmanifestation")
+    public int addManifestation(@RequestBody Manifestation manifestation, HttpSession session) {
+        if (session != null) {
+            return manifestationService.addManifestation(manifestation);
+        } else {
+            return -2;
+        }
     }
 
 }

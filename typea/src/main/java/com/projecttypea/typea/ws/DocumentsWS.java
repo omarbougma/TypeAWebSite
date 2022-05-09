@@ -25,7 +25,7 @@ public class DocumentsWS {
     DocumentsService documentsService;
 
     @Transactional
-    @DeleteMapping("/deletedocument/{id}")
+    @DeleteMapping("/user/deletedocument/{id}")
     public void deleteById(@PathVariable Long id) {
         documentsService.deleteById(id);
     }
@@ -35,7 +35,7 @@ public class DocumentsWS {
         return documentsService.findAll();
     }
 
-    @PostMapping("/add_document")
+    @PostMapping("/user/add_document")
     public Documents storeDocument(@RequestParam("file") MultipartFile document) throws IOException {
         return documentsService.storeDocument(document);
     }

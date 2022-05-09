@@ -13,6 +13,10 @@ public class MissionStageService {
     @Autowired
     MissionStageDao missionStageDao;
 
+    public List<MissionStage> findAllById(Iterable<Long> ids) {
+        return missionStageDao.findAllById(ids);
+    }
+
     public void deleteById(Long id) {
         missionStageDao.deleteById(id);
     }
