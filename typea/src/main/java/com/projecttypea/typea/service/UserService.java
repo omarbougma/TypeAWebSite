@@ -7,11 +7,16 @@ import com.projecttypea.typea.dao.UserDao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @Service
 public class UserService {
     @Autowired
     UserDao userDao;
+
+    public User findByEmailAndPassword(String email, String password) {
+        return userDao.findByEmailAndPassword(email, password);
+    }
 
     public User findByEmail(String email) {
         return userDao.findByEmail(email);
@@ -34,6 +39,16 @@ public class UserService {
         }
     }
 
+    public int loginUser(@RequestBody User user) {
+        String mail = user.getEmail();
+        String pass = user.getPassword();
+        if (userDao.findByEmailAndPassword(mail, pass) == null) {
+            return -1;
+        } else {
+            return 1;
+        }
+    }
+
     public int updateUser(Long id, User user) {
         User currentUser = userDao.getById(id);
         if (currentUser == null) {
@@ -48,4 +63,5 @@ public class UserService {
             return 1;
         }
     }
+
 }

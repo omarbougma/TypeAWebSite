@@ -12,8 +12,11 @@ import javax.persistence.OneToMany;
 //import javax.persistence.OneToOne;
 import javax.persistence.OneToOne;
 
+import com.projecttypea.typea.security.UserRoles;
+
 @Entity
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -22,6 +25,8 @@ public class User {
     private String email;
     private String password;
     private String telephone;
+
+    private UserRoles userRole;
 
     @OneToOne(mappedBy = "user")
     private DonéesPro Donne;
@@ -102,6 +107,14 @@ public class User {
 
     public void setMissionStage(List<MissionStage> missionStage) {
         this.missionStage = missionStage;
+    }
+
+    public UserRoles getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(UserRoles userRole) {
+        this.userRole = userRole;
     }
 
     public User() {

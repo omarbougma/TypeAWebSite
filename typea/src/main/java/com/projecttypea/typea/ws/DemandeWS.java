@@ -16,12 +16,12 @@ public class DemandeWS {
     @Autowired
     DemandeService demandeService;
 
-    @GetMapping("/{toEmail}/{body}/{subject}")
+    @GetMapping("/admin/{toEmail}/{body}/{subject}")
     public void sendSimpleMail(@PathVariable String toEmail, @PathVariable String body, @PathVariable String subject) {
         demandeService.sendSimpleMail(toEmail, body, subject);
     }
 
-    @GetMapping("/demandeslist")
+    @GetMapping("/admin/demandeslist")
     public Demande findAll() {
         return demandeService.findAll();
     }

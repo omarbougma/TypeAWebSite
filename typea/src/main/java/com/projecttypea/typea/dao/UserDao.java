@@ -10,4 +10,6 @@ public interface UserDao extends JpaRepository<User, Long> {
     User findByEmail(String email);
 
     int deleteByEmail(String email);
+
+    User findByEmailAndPassword(String email, String password);
 }

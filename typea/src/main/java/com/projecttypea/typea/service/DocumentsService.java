@@ -1,12 +1,13 @@
 package com.projecttypea.typea.service;
 
+import java.io.IOException;
 import java.util.List;
-
 import com.projecttypea.typea.bean.Documents;
 import com.projecttypea.typea.dao.DocumentsDao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class DocumentsService {
@@ -21,14 +22,10 @@ public class DocumentsService {
         return documentsDao.findAll();
     }
 
-    public Documents storeDocument(Documents document) {
-        return documentsDao.save(document);
+    public Documents storeDocument(MultipartFile document) throws IOException {
+        String documentName = document.getOriginalFilename();
+        Documents documents = new Documents(documentName, document.getContentType(), document.getBytes());
+        return documentsDao.save(documents);
     }
 
-    public void updateDocuments(Long id, Documents document) {
-        Documents currentDocument = documentsDao.getById(id);
-        currentDocument.setData(document.getData());
-        currentDocument.setName(document.getName());
-        documentsDao.save(currentDocument);
-    }
 }

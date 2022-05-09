@@ -13,6 +13,7 @@ public class Documents {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
+    private String type;
     @Lob
     private byte[] data;
 
@@ -48,4 +49,20 @@ public class Documents {
 
     public Documents() {
     }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public Documents(String name, String type, byte[] data) {
+        super();
+        this.name = name;
+        this.type = type;
+        this.data = data;
+    }
+
 }
