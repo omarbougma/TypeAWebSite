@@ -27,11 +27,7 @@ public class DonéesProWS {
 
     @PutMapping("/user/updatedonnes/{id}")
     public int updateCadre(@PathVariable Long id, @RequestBody DonéesPro donnePro, HttpSession session) {
-        if (session != null) {
-            return donéesProService.updateDonesPro(id, donnePro);
-        } else {
-            return -2;
-        }
+        return donéesProService.updateDonesPro(id, donnePro);
     }
 
     @Transactional

@@ -1,5 +1,8 @@
 package com.projecttypea.typea.security.config;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.projecttypea.typea.security.UserRoles;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +16,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 //import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @EnableWebSecurity
-public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
+public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter implements WebMvcConfigurer {
 
     private PasswordEncoder passwordEncoder;
 
@@ -50,6 +55,14 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
         return new InMemoryUserDetailsManager(
                 admin);
+    }
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        List<String> patterns = new ArrayList<String>();
+        patterns.add("/userapi/user/**");
+        patterns.add("/userapi/admin/**");
+        registry.addInterceptor(new Interceptor()).addPathPatterns(patterns);
     }
 
 }

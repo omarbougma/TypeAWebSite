@@ -46,11 +46,7 @@ public class MissionStageWS {
 
     @PostMapping("/user/addmission")
     public int addMissionStage(@RequestBody MissionStage mission, HttpSession session) {
-        if (session != null) {
-            return missionStageService.addMissionStage(mission);
-        } else {
-            return -2;
-        }
+        return missionStageService.addMissionStage(mission);
     }
 
 }
