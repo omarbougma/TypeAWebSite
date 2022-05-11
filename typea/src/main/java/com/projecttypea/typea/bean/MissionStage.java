@@ -13,6 +13,10 @@ import javax.persistence.OneToMany;
 //import javax.persistence.OneToMany;
 //import javax.persistence.OneToOne;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotEmpty;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import org.springframework.beans.factory.annotation.Value;
 
@@ -21,19 +25,38 @@ public class MissionStage {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
+    @NotEmpty(message = "Objetmission peut pas etre vide")
     private String objetMission;
+
+    @NotEmpty(message = "Objetmission peut pas etre vide")
     private String pays;
+
+    @NotEmpty(message = "Objetmission peut pas etre vide")
     private String ville;
+
+    @NotEmpty(message = "Objetmission peut pas etre vide")
     private Calendar dateDebut;
+
+    @NotEmpty(message = "Objetmission peut pas etre vide")
     private Calendar dateFin;
+
+    @NotEmpty(message = "Objetmission peut pas etre vide")
     private Calendar dateDepart;
+
+    @NotEmpty(message = "Objetmission peut pas etre vide")
     private Calendar dateRetour;
+
+    @NotEmpty(message = "Objetmission peut pas etre vide")
     private Calendar dateCreation;
+
+    @NotEmpty(message = "Objetmission peut pas etre vide")
     private String state;
 
     @Value("MissionStage")
     private String demandeType;
 
+    @JsonBackReference(value = "missionStage")
     @ManyToOne
     private User user;
 
@@ -43,6 +66,7 @@ public class MissionStage {
     @OneToOne(mappedBy = "missionstage")
     private Cadre cadre;
 
+    @JsonManagedReference(value = "Sdocuments")
     @OneToMany(mappedBy = "missionstage")
     private List<Documents> documents;
 

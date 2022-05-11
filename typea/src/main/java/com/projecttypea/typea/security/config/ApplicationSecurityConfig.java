@@ -38,8 +38,9 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter impl
                 // .and()
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/userapi/**").permitAll()
-                .antMatchers("/documentsapi/**").permitAll()
+                .antMatchers("/admin/**").permitAll()
+                .antMatchers("/user/**").permitAll()
+                .antMatchers("/allusers/**").permitAll()
                 .anyRequest()
                 .authenticated();
     }
@@ -57,12 +58,14 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter impl
                 admin);
     }
 
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        List<String> patterns = new ArrayList<String>();
-        patterns.add("/userapi/user/**");
-        patterns.add("/userapi/admin/**");
-        registry.addInterceptor(new Interceptor()).addPathPatterns(patterns);
-    }
+    /*
+     * @Override
+     * public void addInterceptors(InterceptorRegistry registry) {
+     * List<String> patterns = new ArrayList<String>();
+     * patterns.add("/userapi/user/**");
+     * patterns.add("/userapi/admin/**");
+     * registry.addInterceptor(new Interceptor()).addPathPatterns(patterns);
+     * }
+     */
 
 }

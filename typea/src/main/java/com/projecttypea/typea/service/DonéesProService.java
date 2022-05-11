@@ -2,8 +2,12 @@ package com.projecttypea.typea.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import com.projecttypea.typea.bean.DonéesPro;
+import com.projecttypea.typea.bean.User;
 import com.projecttypea.typea.dao.DonéesProDao;
+import com.projecttypea.typea.dao.UserDao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,16 +16,21 @@ import org.springframework.stereotype.Service;
 public class DonéesProService {
 
     @Autowired
+    UserDao userDao;
+
+    @Autowired
     DonéesProDao donéesProDao;
 
     public List<DonéesPro> findAll() {
         return donéesProDao.findAll();
     }
 
-    public int addDonesPro(DonéesPro donne) {
-        if (donéesProDao.findById(donne.getId()) != null) {
+    public int addDonesPro(DonéesPro donne, HttpSession session) {
+        User currentUser = userDao.findByEmail((String) session.getAttribute("session"));
+        if (currentUser.getDonne() != null) {
             return -1;
         } else {
+            donne.setUser(currentUser);
             donéesProDao.save(donne);
             return 1;
         }

@@ -7,6 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class Documents {
     @Id
@@ -17,9 +19,11 @@ public class Documents {
     @Lob
     private byte[] data;
 
+    @JsonBackReference(value = "Mdocuments")
     @ManyToOne
     private Manifestation manifestation;
 
+    @JsonBackReference(value = "Sdocuments")
     @ManyToOne
     private MissionStage missionstage;
 

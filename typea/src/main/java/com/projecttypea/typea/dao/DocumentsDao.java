@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface DocumentsDao extends JpaRepository<Documents, Long> {
 
+    Documents findByName(String name);
 }

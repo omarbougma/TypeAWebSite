@@ -28,4 +28,10 @@ public class DocumentsService {
         return documentsDao.save(documents);
     }
 
+    public byte[] retrieve(String docName) {
+        Documents doc = documentsDao.findByName(docName);
+        byte[] docBytes = doc.getData();
+        return docBytes;
+    }
+
 }

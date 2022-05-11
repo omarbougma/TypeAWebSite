@@ -1,6 +1,7 @@
 package com.projecttypea.typea.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.projecttypea.typea.bean.Manifestation;
 import com.projecttypea.typea.dao.ManifestationDao;
@@ -13,6 +14,10 @@ public class ManifestationService {
 
     @Autowired
     ManifestationDao manifestationDao;
+
+    public Optional<Manifestation> findById(Long id) {
+        return manifestationDao.findById(id);
+    }
 
     public List<Manifestation> findAll() {
         return manifestationDao.findAll();

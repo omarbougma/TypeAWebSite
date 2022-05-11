@@ -11,7 +11,11 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 //import javax.persistence.OneToOne;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.projecttypea.typea.security.UserRoles;
 
 @Entity
@@ -20,29 +24,44 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
+    @NotEmpty(message = "Nom peut pas etre vide")
     private String nom;
+
+    @NotEmpty(message = "Prenom peut pas etre vide")
     private String prenom;
+
+    @NotEmpty(message = "Email peut pas etre vide")
+    @Email
     private String email;
+
+    @NotEmpty(message = "Mot de passe peut pas etre vide")
+    @Size(min = 8, message = "Mot de passe doit contenir au moin 8 caracteres")
     private String password;
+
+    @NotEmpty(message = "Telephone peut pas etre vide")
     private String telephone;
 
     private UserRoles userRole;
 
+    @JsonManagedReference(value = "donne")
     @OneToOne(mappedBy = "user")
-    private DonéesPro Donne;
+    private DonéesPro donne;
 
+    @JsonManagedReference(value = "manifeStation")
     @OneToMany(mappedBy = "user")
     private List<Manifestation> manifEstation;
 
+    @JsonManagedReference(value = "missionStage")
     @OneToMany(mappedBy = "user")
     private List<MissionStage> missionStage;
 
     public DonéesPro getDonne() {
-        return Donne;
+        return donne;
     }
 
     public void setDonne(DonéesPro donne) {
-        Donne = donne;
+        donne = this.donne;
     }
 
     public long getId() {

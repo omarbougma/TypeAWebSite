@@ -4,18 +4,22 @@ import java.util.List;
 
 import com.projecttypea.typea.bean.User;
 import com.projecttypea.typea.dao.UserDao;
+import com.projecttypea.typea.security.UserRoles;
+import com.projecttypea.typea.security.config.PasswordConfig;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 @Service
 public class UserService {
     @Autowired
     UserDao userDao;
 
-    public User findByEmailAndPassword(String email, String password) {
-        return userDao.findByEmailAndPassword(email, password);
+    @Autowired
+    PasswordConfig encoder;
+
+    public User findByNom(String name) {
+        return userDao.findByNom(name);
     }
 
     public User findByEmail(String email) {
@@ -34,16 +38,22 @@ public class UserService {
         if (userDao.findByEmail(utilisateur.getEmail()) != null) {
             return -1;
         } else {
+            utilisateur.setPassword(encoder.passwordEncoder().encode(utilisateur.getPassword()));
+            utilisateur.setUserRole(UserRoles.USER);
             userDao.save(utilisateur);
             return 1;
         }
     }
 
-    public int loginUser(@RequestBody User user) {
+    public int loginUser(User user) {
         String mail = user.getEmail();
         String pass = user.getPassword();
-        if (userDao.findByEmailAndPassword(mail, pass) == null) {
+        User dbUser = findByEmail(mail);
+        Boolean isUser = encoder.passwordEncoder().matches(pass, dbUser.getPassword());
+        if (mail == "" || pass == "") {
             return -1;
+        } else if (dbUser == null || !isUser) {
+            return -2;
         } else {
             return 1;
         }

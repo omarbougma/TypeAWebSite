@@ -1,6 +1,7 @@
 package com.projecttypea.typea.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.projecttypea.typea.bean.MissionStage;
 import com.projecttypea.typea.dao.MissionStageDao;
@@ -13,8 +14,8 @@ public class MissionStageService {
     @Autowired
     MissionStageDao missionStageDao;
 
-    public List<MissionStage> findAllById(Iterable<Long> ids) {
-        return missionStageDao.findAllById(ids);
+    public Optional<MissionStage> findById(Long id) {
+        return missionStageDao.findById(id);
     }
 
     public void deleteById(Long id) {

@@ -4,18 +4,33 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotEmpty;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class DonéesPro {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
+    @NotEmpty(message = "Niveau peut pas etre vide")
     private String niveau;
+
+    @NotEmpty(message = "Grade peut pas etre vide")
     private String grade;
+
+    @NotEmpty(message = "CED peut pas etre vide")
     private String ced;
+
+    @NotEmpty(message = "Etablissement peut pas etre vide")
     private String etablissement;
+
+    @NotEmpty(message = "Entite de recherche peut pas etre vide")
     private String entiteRecherche;
+
     private String respoEntite;
 
     @OneToOne
@@ -24,6 +39,8 @@ public class DonéesPro {
     @OneToOne
     private MissionStage missionStage;
 
+    @JsonBackReference(value = "donne")
+    @JoinColumn(name = "user_id")
     @OneToOne
     private User user;
 
@@ -85,4 +102,13 @@ public class DonéesPro {
 
     public DonéesPro() {
     }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
 }

@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 public interface UserDao extends JpaRepository<User, Long> {
     User findByEmail(String email);
 
+    User findByNom(String nom);
+
     int deleteByEmail(String email);
 
     User findByEmailAndPassword(String email, String password);

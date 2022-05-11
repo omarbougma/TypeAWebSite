@@ -11,6 +11,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import org.springframework.beans.factory.annotation.Value;
 
 @Entity
@@ -33,12 +36,14 @@ public class Manifestation {
     @Value("Manifestation")
     private String demandeType;
 
+    @JsonBackReference(value = "manifeStation")
     @ManyToOne
     private User user;
 
     @OneToOne(mappedBy = "manifestation")
     private Soutien soutien;
 
+    @JsonManagedReference(value = "Mdocuments")
     @OneToMany(mappedBy = "manifestation")
     private List<Documents> documents;
 
