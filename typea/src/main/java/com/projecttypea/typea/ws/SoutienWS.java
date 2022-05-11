@@ -3,6 +3,7 @@ package com.projecttypea.typea.ws;
 import java.util.List;
 
 import javax.transaction.Transactional;
+import javax.validation.Valid;
 
 import com.projecttypea.typea.bean.Soutien;
 import com.projecttypea.typea.service.SoutienService;
@@ -23,12 +24,12 @@ public class SoutienWS {
     SoutienService soutienService;
 
     @PostMapping("/user/addsoutienmission/{missionId}")
-    public int addSoutienMission(@PathVariable Long missionId, @RequestBody Soutien soutien) {
+    public int addSoutienMission(@Valid @PathVariable Long missionId, @RequestBody Soutien soutien) {
         return soutienService.addSoutienMission(missionId, soutien);
     }
 
     @PostMapping("/user/addsoutienmanif/{manifId}")
-    public int addSoutienManifestation(@PathVariable Long manifId, @RequestBody Soutien soutien) {
+    public int addSoutienManifestation(@Valid @PathVariable Long manifId, @RequestBody Soutien soutien) {
         return soutienService.addSoutienManifestation(manifId, soutien);
     }
 

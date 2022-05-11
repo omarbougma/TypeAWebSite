@@ -3,6 +3,7 @@ package com.projecttypea.typea.ws;
 import java.util.List;
 
 import javax.transaction.Transactional;
+import javax.validation.Valid;
 
 import com.projecttypea.typea.bean.Cadre;
 import com.projecttypea.typea.service.CadreService;
@@ -39,7 +40,7 @@ public class CadreWS {
     }
 
     @PostMapping("/addcadre/{missionId}")
-    public int addMissionStage(@PathVariable Long missionId, @RequestBody Cadre cadre) {
+    public int addMissionStage(@Valid @PathVariable Long missionId, @RequestBody Cadre cadre) {
         return cadreService.addCadreMission(missionId, cadre);
     }
 }

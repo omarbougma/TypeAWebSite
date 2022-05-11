@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
+import javax.validation.Valid;
 
 import com.projecttypea.typea.bean.Manifestation;
 import com.projecttypea.typea.service.ManifestationService;
@@ -42,7 +43,7 @@ public class ManifestationWS {
     }
 
     @PostMapping("/user/addmanifestation")
-    public int addManifestation(@RequestBody Manifestation manifestation, HttpSession session) {
+    public int addManifestation(@Valid @RequestBody Manifestation manifestation, HttpSession session) {
         return manifestationService.addManifestation(manifestation, session);
     }
 

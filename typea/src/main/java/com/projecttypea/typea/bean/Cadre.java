@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -13,9 +14,16 @@ public class Cadre {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
+    @NotEmpty(message = "Titre de cadre peut pas etre vide")
     private String titreCadre;
+
+    @NotEmpty(message = "Titre de cadre peut pas etre vide")
     private String titreprojet;
+
+    @NotEmpty(message = "responsable marocain du projet peut pas etre vide")
     private String respoMarDuProjet;
+
     private String partenaireEtranger;
 
     @JsonBackReference("cadre")

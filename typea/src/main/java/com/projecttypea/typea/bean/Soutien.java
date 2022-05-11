@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -13,12 +14,24 @@ public class Soutien {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
     private Boolean isBenfTypeA;
+
+    @NotEmpty(message = "Montant peut pas etre vide")
     private float montant;
+
     private boolean nature;
+
+    @NotEmpty(message = "Montant titre transport peut pas etre vide")
     private float mTitreTransport;
+
+    @NotEmpty(message = "Montant frais inscription peut pas etre vide")
     private float mFraisInscription;
+
+    @NotEmpty(message = "Montant hebergement peut pas etre vide")
     private float mHebergement;
+
+    @NotEmpty(message = "Montant autre peut pas etre vide")
     private float mAutre;
 
     @JsonBackReference("soutien")

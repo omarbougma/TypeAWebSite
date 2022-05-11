@@ -2,6 +2,8 @@ package com.projecttypea.typea.service;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
+
 import com.projecttypea.typea.bean.Documents;
 import com.projecttypea.typea.bean.Manifestation;
 import com.projecttypea.typea.bean.MissionStage;
@@ -43,7 +45,9 @@ public class DocumentsService {
         Documents documents = new Documents(documentName, document.getContentType(), document.getBytes());
         MissionStage curreMissionStage = missionStageDao.getById(missionId);
         documents.setMissionstage(curreMissionStage);
+        documents.setStoredName(UUID.randomUUID());
         documentsDao.save(documents);
+
         return 1;
     }
 

@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
+import javax.validation.Valid;
 
 import com.projecttypea.typea.bean.MissionStage;
 import com.projecttypea.typea.service.MissionStageService;
@@ -47,7 +48,7 @@ public class MissionStageWS {
     }
 
     @PostMapping("/user/addmission")
-    public int addMissionStage(@RequestBody MissionStage mission, HttpSession session) {
+    public int addMissionStage(@Valid @RequestBody MissionStage mission, HttpSession session) {
         return missionStageService.addMissionStage(mission, session);
     }
 

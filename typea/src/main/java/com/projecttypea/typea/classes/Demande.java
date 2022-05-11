@@ -1,6 +1,9 @@
-package com.projecttypea.typea.bean;
+package com.projecttypea.typea.classes;
 
 import java.util.List;
+
+import com.projecttypea.typea.bean.Manifestation;
+import com.projecttypea.typea.bean.MissionStage;
 
 public class Demande {
 

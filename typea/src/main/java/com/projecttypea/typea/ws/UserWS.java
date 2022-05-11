@@ -49,15 +49,6 @@ public class UserWS {
         return userService.findByEmail(email);
     }
 
-    /*
-     * @Transactional
-     * 
-     * @DeleteMapping("/deletebymail/{email}")
-     * public int deleteByEmail(@PathVariable String email) {
-     * return userService.deleteByEmail(email);
-     * }
-     */
-
     @GetMapping("/admin/Users")
     public List<User> findAll() {
         return userService.findAll();
