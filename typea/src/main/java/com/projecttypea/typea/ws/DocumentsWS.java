@@ -25,6 +25,18 @@ public class DocumentsWS {
     @Autowired
     DocumentsService documentsService;
 
+    @PostMapping("/user/add_document/manifestation/{manifId}")
+    public int storeDocumentManifestation(@PathVariable Long manifId, @RequestParam("file") MultipartFile document)
+            throws IOException {
+        return documentsService.storeDocumentManifestation(manifId, document);
+    }
+
+    @PostMapping("/user/add_document/missionstage/{missionId}")
+    public int storeDocumentMission(@PathVariable Long missionId, @RequestParam("file") MultipartFile document)
+            throws IOException {
+        return documentsService.storeDocumentMission(missionId, document);
+    }
+
     @GetMapping("/admin/retrievedoc/{docName}")
     public ResponseEntity<byte[]> retrieve(@PathVariable String docName) {
         HttpHeaders headers = new HttpHeaders();

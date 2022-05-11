@@ -29,6 +29,7 @@ public class User {
     private String nom;
 
     @NotEmpty(message = "Prenom peut pas etre vide")
+
     private String prenom;
 
     @NotEmpty(message = "Email peut pas etre vide")

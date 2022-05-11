@@ -69,4 +69,20 @@ public class Documents {
         this.data = data;
     }
 
+    public Manifestation getManifestation() {
+        return manifestation;
+    }
+
+    public void setManifestation(Manifestation manifestation) {
+        this.manifestation = manifestation;
+    }
+
+    public MissionStage getMissionstage() {
+        return missionstage;
+    }
+
+    public void setMissionstage(MissionStage missionstage) {
+        this.missionstage = missionstage;
+    }
+
 }

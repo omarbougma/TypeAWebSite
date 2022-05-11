@@ -3,8 +3,12 @@ package com.projecttypea.typea.service;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.http.HttpSession;
+
 import com.projecttypea.typea.bean.MissionStage;
+import com.projecttypea.typea.bean.User;
 import com.projecttypea.typea.dao.MissionStageDao;
+import com.projecttypea.typea.dao.UserDao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +17,9 @@ import org.springframework.stereotype.Service;
 public class MissionStageService {
     @Autowired
     MissionStageDao missionStageDao;
+
+    @Autowired
+    UserDao userDao;
 
     public Optional<MissionStage> findById(Long id) {
         return missionStageDao.findById(id);
@@ -26,13 +33,11 @@ public class MissionStageService {
         return missionStageDao.findAll();
     }
 
-    public int addMissionStage(MissionStage mission) {
-        if (missionStageDao.findById(mission.getId()) != null) {
-            return -1;
-        } else {
-            missionStageDao.save(mission);
-            return 1;
-        }
+    public int addMissionStage(MissionStage mission, HttpSession session) {
+        User currentUser = userDao.findByEmail((String) session.getAttribute("session"));
+        mission.setUser(currentUser);
+        missionStageDao.save(mission);
+        return 1;
     }
 
     public int updateMissionStage(Long id, MissionStage missionStage) {
@@ -41,7 +46,6 @@ public class MissionStageService {
             return -1;
         } else {
             currentMouStage.setCadre(missionStage.getCadre());
-            currentMouStage.setDateCreation(missionStage.getDateCreation());
             currentMouStage.setDateDebut(missionStage.getDateDebut());
             currentMouStage.setDateDepart(missionStage.getDateDepart());
             currentMouStage.setDateFin(missionStage.getDateFin());

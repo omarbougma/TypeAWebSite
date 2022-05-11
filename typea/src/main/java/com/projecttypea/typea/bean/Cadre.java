@@ -6,6 +6,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class Cadre {
     @Id
@@ -16,6 +18,7 @@ public class Cadre {
     private String respoMarDuProjet;
     private String partenaireEtranger;
 
+    @JsonBackReference("cadre")
     @OneToOne
     private MissionStage missionstage;
 
@@ -57,6 +60,14 @@ public class Cadre {
 
     public void setPartenaireEtranger(String partenaireEtranger) {
         this.partenaireEtranger = partenaireEtranger;
+    }
+
+    public MissionStage getMissionstage() {
+        return missionstage;
+    }
+
+    public void setMissionstage(MissionStage missionstage) {
+        this.missionstage = missionstage;
     }
 
     public Cadre() {

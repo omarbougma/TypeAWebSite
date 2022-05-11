@@ -1,6 +1,6 @@
 package com.projecttypea.typea.bean;
 
-import java.util.Calendar;
+import java.time.LocalDate;
 import java.util.List;
 
 //import javax.persistence.CascadeType;
@@ -17,8 +17,10 @@ import javax.validation.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.projecttypea.typea.security.DemandesState;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class MissionStage {
@@ -29,29 +31,25 @@ public class MissionStage {
     @NotEmpty(message = "Objetmission peut pas etre vide")
     private String objetMission;
 
-    @NotEmpty(message = "Objetmission peut pas etre vide")
+    @NotEmpty(message = "pays peut pas etre vide")
     private String pays;
 
-    @NotEmpty(message = "Objetmission peut pas etre vide")
+    @NotEmpty(message = "ville peut pas etre vide")
     private String ville;
 
-    @NotEmpty(message = "Objetmission peut pas etre vide")
-    private Calendar dateDebut;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate dateDebut;
 
-    @NotEmpty(message = "Objetmission peut pas etre vide")
-    private Calendar dateFin;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate dateFin;
 
-    @NotEmpty(message = "Objetmission peut pas etre vide")
-    private Calendar dateDepart;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate dateDepart;
 
-    @NotEmpty(message = "Objetmission peut pas etre vide")
-    private Calendar dateRetour;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate dateRetour;
 
-    @NotEmpty(message = "Objetmission peut pas etre vide")
-    private Calendar dateCreation;
-
-    @NotEmpty(message = "Objetmission peut pas etre vide")
-    private String state;
+    private DemandesState state;
 
     @Value("MissionStage")
     private String demandeType;
@@ -60,9 +58,11 @@ public class MissionStage {
     @ManyToOne
     private User user;
 
+    @JsonManagedReference(value = "soutien")
     @OneToOne(mappedBy = "missionstage")
     private Soutien soutien;
 
+    @JsonManagedReference(value = "cadre")
     @OneToOne(mappedBy = "missionstage")
     private Cadre cadre;
 
@@ -102,35 +102,35 @@ public class MissionStage {
         this.ville = ville;
     }
 
-    public Calendar getDateDebut() {
+    public LocalDate getDateDebut() {
         return dateDebut;
     }
 
-    public void setDateDebut(Calendar dateDebut) {
+    public void setDateDebut(LocalDate dateDebut) {
         this.dateDebut = dateDebut;
     }
 
-    public Calendar getDateFin() {
+    public LocalDate getDateFin() {
         return dateFin;
     }
 
-    public void setDateFin(Calendar dateFin) {
+    public void setDateFin(LocalDate dateFin) {
         this.dateFin = dateFin;
     }
 
-    public Calendar getDateDepart() {
+    public LocalDate getDateDepart() {
         return dateDepart;
     }
 
-    public void setDateDepart(Calendar dateDepart) {
+    public void setDateDepart(LocalDate dateDepart) {
         this.dateDepart = dateDepart;
     }
 
-    public Calendar getDateRetour() {
+    public LocalDate getDateRetour() {
         return dateRetour;
     }
 
-    public void setDateRetour(Calendar dateRetour) {
+    public void setDateRetour(LocalDate dateRetour) {
         this.dateRetour = dateRetour;
     }
 
@@ -166,19 +166,11 @@ public class MissionStage {
         this.documents = documents;
     }
 
-    public Calendar getDateCreation() {
-        return dateCreation;
-    }
-
-    public void setDateCreation(Calendar dateCreation) {
-        this.dateCreation = dateCreation;
-    }
-
-    public String getState() {
+    public DemandesState getState() {
         return state;
     }
 
-    public void setState(String state) {
+    public void setState(DemandesState state) {
         this.state = state;
     }
 

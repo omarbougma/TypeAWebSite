@@ -1,6 +1,7 @@
 package com.projecttypea.typea.bean;
 
-import java.util.Calendar;
+import java.time.LocalDate;
+
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -10,28 +11,49 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.projecttypea.typea.security.DemandesState;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Manifestation {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    private Calendar dateCreation;
+
+    @NotEmpty(message = "Titre de manifestation peut pas etre vite ")
     private String titreManifestation;
+
+    @NotEmpty(message = "Titre de participation peut pas etre vite ")
     private String titreParticipation;
+
+    @NotEmpty(message = "Pays peut pas etre vite ")
     private String Pays;
+
+    @NotEmpty(message = "Ville peut pas etre vite ")
     private String Ville;
-    private Calendar dateDebut;
-    private Calendar dateFin;
-    private Calendar dateDepart;
-    private Calendar dateRetour;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate dateDebut;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate dateFin;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate dateDepart;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate dateRetour;
+
+    @NotEmpty(message = "Nature de participation peut pas etre vite ")
     private String natureParticiaton;
-    private String state;
+
+    private DemandesState state;
 
     @Value("Manifestation")
     private String demandeType;
@@ -40,6 +62,7 @@ public class Manifestation {
     @ManyToOne
     private User user;
 
+    @JsonManagedReference(value = "soutien")
     @OneToOne(mappedBy = "manifestation")
     private Soutien soutien;
 
@@ -61,14 +84,6 @@ public class Manifestation {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public Calendar getDateCreation() {
-        return dateCreation;
-    }
-
-    public void setDateCreation(Calendar dateCreation) {
-        this.dateCreation = dateCreation;
     }
 
     public String getTitreManifestation() {
@@ -95,35 +110,35 @@ public class Manifestation {
         Ville = ville;
     }
 
-    public Calendar getDateDebut() {
+    public LocalDate getDateDebut() {
         return dateDebut;
     }
 
-    public void setDateDebut(Calendar dateDebut) {
+    public void setDateDebut(LocalDate dateDebut) {
         this.dateDebut = dateDebut;
     }
 
-    public Calendar getDateFin() {
+    public LocalDate getDateFin() {
         return dateFin;
     }
 
-    public void setDateFin(Calendar dateFin) {
+    public void setDateFin(LocalDate dateFin) {
         this.dateFin = dateFin;
     }
 
-    public Calendar getDateDepart() {
+    public LocalDate getDateDepart() {
         return dateDepart;
     }
 
-    public void setDateDepart(Calendar dateDepart) {
+    public void setDateDepart(LocalDate dateDepart) {
         this.dateDepart = dateDepart;
     }
 
-    public Calendar getDateRetour() {
+    public LocalDate getDateRetour() {
         return dateRetour;
     }
 
-    public void setDateRetour(Calendar dateRetour) {
+    public void setDateRetour(LocalDate dateRetour) {
         this.dateRetour = dateRetour;
     }
 
@@ -159,11 +174,11 @@ public class Manifestation {
         this.documents = documents;
     }
 
-    public String getState() {
+    public DemandesState getState() {
         return state;
     }
 
-    public void setState(String state) {
+    public void setState(DemandesState state) {
         this.state = state;
     }
 

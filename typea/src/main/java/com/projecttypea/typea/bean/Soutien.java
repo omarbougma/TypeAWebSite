@@ -6,6 +6,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class Soutien {
     @Id
@@ -19,9 +21,11 @@ public class Soutien {
     private float mHebergement;
     private float mAutre;
 
+    @JsonBackReference("soutien")
     @OneToOne
     private Manifestation manifestation;
 
+    @JsonBackReference("soutien")
     @OneToOne
     private MissionStage missionstage;
 
@@ -87,6 +91,22 @@ public class Soutien {
 
     public void setmAutre(float mAutre) {
         this.mAutre = mAutre;
+    }
+
+    public Manifestation getManifestation() {
+        return manifestation;
+    }
+
+    public void setManifestation(Manifestation manifestation) {
+        this.manifestation = manifestation;
+    }
+
+    public MissionStage getMissionstage() {
+        return missionstage;
+    }
+
+    public void setMissionstage(MissionStage missionstage) {
+        this.missionstage = missionstage;
     }
 
     public Soutien() {

@@ -48,7 +48,7 @@ public class MissionStageWS {
 
     @PostMapping("/user/addmission")
     public int addMissionStage(@RequestBody MissionStage mission, HttpSession session) {
-        return missionStageService.addMissionStage(mission);
+        return missionStageService.addMissionStage(mission, session);
     }
 
 }

@@ -43,7 +43,7 @@ public class ManifestationWS {
 
     @PostMapping("/user/addmanifestation")
     public int addManifestation(@RequestBody Manifestation manifestation, HttpSession session) {
-        return manifestationService.addManifestation(manifestation);
+        return manifestationService.addManifestation(manifestation, session);
     }
 
 }

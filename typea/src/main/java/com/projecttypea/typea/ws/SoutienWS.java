@@ -22,14 +22,19 @@ public class SoutienWS {
     @Autowired
     SoutienService soutienService;
 
+    @PostMapping("/user/addsoutienmission/{missionId}")
+    public int addSoutienMission(@PathVariable Long missionId, @RequestBody Soutien soutien) {
+        return soutienService.addSoutienMission(missionId, soutien);
+    }
+
+    @PostMapping("/user/addsoutienmanif/{manifId}")
+    public int addSoutienManifestation(@PathVariable Long manifId, @RequestBody Soutien soutien) {
+        return soutienService.addSoutienManifestation(manifId, soutien);
+    }
+
     @GetMapping("/soutiens")
     public List<Soutien> findAll() {
         return soutienService.findAll();
-    }
-
-    @PostMapping("/addsoutien")
-    public int addUser(@RequestBody Soutien soutien) {
-        return soutienService.addUser(soutien);
     }
 
     @PutMapping("/updatesoutien/{id}")

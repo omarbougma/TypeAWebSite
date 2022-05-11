@@ -38,8 +38,8 @@ public class CadreWS {
         return cadreService.findAll();
     }
 
-    @PostMapping("/addcadre")
-    public int addMissionStage(@RequestBody Cadre cadre) {
-        return cadreService.addMissionStage(cadre);
+    @PostMapping("/addcadre/{missionId}")
+    public int addMissionStage(@PathVariable Long missionId, @RequestBody Cadre cadre) {
+        return cadreService.addCadreMission(missionId, cadre);
     }
 }

@@ -3,8 +3,12 @@ package com.projecttypea.typea.service;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.http.HttpSession;
+
 import com.projecttypea.typea.bean.Manifestation;
+import com.projecttypea.typea.bean.User;
 import com.projecttypea.typea.dao.ManifestationDao;
+import com.projecttypea.typea.dao.UserDao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +19,9 @@ public class ManifestationService {
     @Autowired
     ManifestationDao manifestationDao;
 
+    @Autowired
+    UserDao userDao;
+
     public Optional<Manifestation> findById(Long id) {
         return manifestationDao.findById(id);
     }
@@ -23,13 +30,11 @@ public class ManifestationService {
         return manifestationDao.findAll();
     }
 
-    public int addManifestation(Manifestation manifestation) {
-        if (manifestationDao.findById(manifestation.getId()) != null) {
-            return -1;
-        } else {
-            manifestationDao.save(manifestation);
-            return 1;
-        }
+    public int addManifestation(Manifestation manif, HttpSession session) {
+        User currentUser = userDao.findByEmail((String) session.getAttribute("session"));
+        manif.setUser(currentUser);
+        manifestationDao.save(manif);
+        return 1;
     }
 
     public int updateManifestation(Long id, Manifestation manifestation) {
@@ -37,7 +42,6 @@ public class ManifestationService {
         if (currentManif == null) {
             return -1;
         } else {
-            currentManif.setDateCreation(manifestation.getDateCreation());
             currentManif.setDateDebut(manifestation.getDateDebut());
             currentManif.setDateDepart(manifestation.getDateDepart());
             currentManif.setDateFin(manifestation.getDateFin());
