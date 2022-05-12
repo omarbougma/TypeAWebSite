@@ -58,7 +58,7 @@ public class MissionStage {
     @ManyToOne
     private User user;
 
-    @JsonManagedReference(value = "soutien")
+    @JsonManagedReference(value = "soutienMS")
     @OneToOne(mappedBy = "missionstage")
     private Soutien soutien;
 

@@ -62,7 +62,7 @@ public class Manifestation {
     @ManyToOne
     private User user;
 
-    @JsonManagedReference(value = "soutien")
+    @JsonManagedReference(value = "soutienM")
     @OneToOne(mappedBy = "manifestation")
     private Soutien soutien;
 

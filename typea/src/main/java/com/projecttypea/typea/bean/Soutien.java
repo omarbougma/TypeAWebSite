@@ -34,11 +34,11 @@ public class Soutien {
     @NotEmpty(message = "Montant autre peut pas etre vide")
     private float mAutre;
 
-    @JsonBackReference("soutien")
+    @JsonBackReference("soutienM")
     @OneToOne
     private Manifestation manifestation;
 
-    @JsonBackReference("soutien")
+    @JsonBackReference("soutienMS")
     @OneToOne
     private MissionStage missionstage;
 
