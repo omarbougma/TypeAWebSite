@@ -11,12 +11,11 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 //import javax.persistence.OneToOne;
 import javax.persistence.OneToOne;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.projecttypea.typea.security.UserRoles;
+import com.projecttypea.typea.security.enums.UserRoles;
 
 @Entity
 public class User {
@@ -33,7 +32,6 @@ public class User {
     private String prenom;
 
     @NotEmpty(message = "Email peut pas etre vide")
-    @Email
     private String email;
 
     @NotEmpty(message = "Mot de passe peut pas etre vide")

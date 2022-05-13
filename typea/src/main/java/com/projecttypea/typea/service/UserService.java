@@ -4,8 +4,8 @@ import java.util.List;
 
 import com.projecttypea.typea.bean.User;
 import com.projecttypea.typea.dao.UserDao;
-import com.projecttypea.typea.security.UserRoles;
 import com.projecttypea.typea.security.config.PasswordConfig;
+import com.projecttypea.typea.security.enums.UserRoles;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,14 +34,16 @@ public class UserService {
         return userDao.findAll();
     }
 
-    public int addUser(User utilisateur) {
+    public String addUser(User utilisateur) {
         if (userDao.findByEmail(utilisateur.getEmail()) != null) {
-            return -1;
+            return "Ce Mail existe deja";
+        } else if (!utilisateur.getEmail().matches("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@uca.ma$")) {
+            return "Ce mail doit etre mail d'universite";
         } else {
             utilisateur.setPassword(encoder.passwordEncoder().encode(utilisateur.getPassword()));
             utilisateur.setUserRole(UserRoles.USER);
             userDao.save(utilisateur);
-            return 1;
+            return "L'utilisateur a ete creer";
         }
     }
 

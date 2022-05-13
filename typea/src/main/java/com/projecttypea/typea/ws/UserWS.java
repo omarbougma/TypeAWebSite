@@ -39,6 +39,16 @@ public class UserWS {
         }
     }
 
+    @PostMapping("/allusers/logout")
+    public int logoutUser(HttpSession session) {
+        if (session.getAttribute("session") != null) {
+            session.removeAttribute("session");
+            return 1;
+        } else {
+            return -1;
+        }
+    }
+
     @PutMapping("/user/updateuser/{id}")
     public int updateUser(@PathVariable Long id, @RequestBody User user) {
         return userService.updateUser(id, user);
@@ -55,7 +65,7 @@ public class UserWS {
     }
 
     @PostMapping("/allusers/register")
-    public int addUser(@Valid @RequestBody User utilisateur) {
+    public String addUser(@Valid @RequestBody User utilisateur) {
         return userService.addUser(utilisateur);
     }
 

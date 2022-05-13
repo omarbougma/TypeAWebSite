@@ -7,7 +7,7 @@ import com.projecttypea.typea.bean.MissionStage;
 import com.projecttypea.typea.classes.Demande;
 import com.projecttypea.typea.dao.ManifestationDao;
 import com.projecttypea.typea.dao.MissionStageDao;
-import com.projecttypea.typea.security.DemandesState;
+import com.projecttypea.typea.security.enums.DemandesState;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
