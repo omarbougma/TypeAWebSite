@@ -45,7 +45,7 @@ public class DocumentsService {
         Documents documents = new Documents(documentName, document.getContentType(), document.getBytes());
         MissionStage curreMissionStage = missionStageDao.getById(missionId);
         documents.setMissionstage(curreMissionStage);
-        documents.setStoredName(UUID.randomUUID());
+        documents.setName(UUID.randomUUID().toString());
         documentsDao.save(documents);
 
         return 1;
@@ -56,6 +56,7 @@ public class DocumentsService {
         Documents documents = new Documents(documentName, document.getContentType(), document.getBytes());
         Manifestation currentManifestation = manifestationDao.getById(manifId);
         documents.setManifestation(currentManifestation);
+        documents.setName(UUID.randomUUID().toString());
         documentsDao.save(documents);
         return 1;
     }

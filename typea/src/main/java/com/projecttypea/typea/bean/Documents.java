@@ -1,7 +1,5 @@
 package com.projecttypea.typea.bean;
 
-import java.util.UUID;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,7 +15,6 @@ public class Documents {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    private UUID storedName;
     private String type;
     @Lob
     private byte[] data;
@@ -86,14 +83,6 @@ public class Documents {
 
     public void setMissionstage(MissionStage missionstage) {
         this.missionstage = missionstage;
-    }
-
-    public UUID getStoredName() {
-        return storedName;
-    }
-
-    public void setStoredName(UUID storedName) {
-        this.storedName = storedName;
     }
 
 }

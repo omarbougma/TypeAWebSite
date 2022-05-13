@@ -59,4 +59,10 @@ public class MissionStageService {
             return 1;
         }
     }
+
+    public List<MissionStage> findAllByUserEmail(HttpSession session) {
+        String email = (String) session.getAttribute("session");
+        return missionStageDao.findAllByUserEmail(email);
+    }
+
 }

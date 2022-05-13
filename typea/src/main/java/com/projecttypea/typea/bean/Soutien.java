@@ -20,7 +20,7 @@ public class Soutien {
     @NotEmpty(message = "Montant peut pas etre vide")
     private float montant;
 
-    private boolean nature;
+    private String nature;
 
     @NotEmpty(message = "Montant titre transport peut pas etre vide")
     private float mTitreTransport;
@@ -66,11 +66,11 @@ public class Soutien {
         this.montant = montant;
     }
 
-    public boolean isNature() {
+    public String isNature() {
         return nature;
     }
 
-    public void setNature(boolean nature) {
+    public void setNature(String nature) {
         this.nature = nature;
     }
 

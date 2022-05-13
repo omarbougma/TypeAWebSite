@@ -39,7 +39,7 @@ public class UserWS {
         }
     }
 
-    @PostMapping("/allusers/logout")
+    @GetMapping("/allusers/logout")
     public int logoutUser(HttpSession session) {
         if (session.getAttribute("session") != null) {
             session.removeAttribute("session");
@@ -65,6 +65,7 @@ public class UserWS {
     }
 
     @PostMapping("/allusers/register")
+
     public String addUser(@Valid @RequestBody User utilisateur) {
         return userService.addUser(utilisateur);
     }

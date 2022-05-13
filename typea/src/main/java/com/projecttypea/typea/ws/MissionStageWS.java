@@ -11,13 +11,17 @@ import com.projecttypea.typea.bean.MissionStage;
 import com.projecttypea.typea.service.MissionStageService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*", methods = { RequestMethod.POST, RequestMethod.GET,
+        RequestMethod.OPTIONS })
 @RestController
 
 public class MissionStageWS {
@@ -50,6 +54,11 @@ public class MissionStageWS {
     @PostMapping("/user/addmission")
     public int addMissionStage(@Valid @RequestBody MissionStage mission, HttpSession session) {
         return missionStageService.addMissionStage(mission, session);
+    }
+
+    @GetMapping("/user/getmStage")
+    public List<MissionStage> findAllByUserEmail(HttpSession session) {
+        return missionStageService.findAllByUserEmail(session);
     }
 
 }
