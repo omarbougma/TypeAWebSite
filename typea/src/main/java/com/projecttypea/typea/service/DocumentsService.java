@@ -34,10 +34,16 @@ public class DocumentsService {
         return documentsDao.findAll();
     }
 
-    public Documents storeDocument(MultipartFile document) throws IOException {
-        String documentName = document.getOriginalFilename();
-        Documents documents = new Documents(documentName, document.getContentType(), document.getBytes());
-        return documentsDao.save(documents);
+    public int storeDocumentMissionStage(Long missionId, MultipartFile document, MultipartFile document1,
+            MultipartFile document2,
+            MultipartFile document3, MultipartFile document4, MultipartFile document5) throws IOException {
+        int cinDoc = storeDocumentMission(missionId, document);
+        int doc1 = storeDocumentMission(missionId, document);
+        int doc2 = storeDocumentMission(missionId, document);
+        int doc3 = storeDocumentMission(missionId, document);
+        int doc4 = storeDocumentMission(missionId, document);
+        int doc5 = storeDocumentMission(missionId, document);
+        return 1;
     }
 
     public int storeDocumentMission(Long missionId, MultipartFile document) throws IOException {

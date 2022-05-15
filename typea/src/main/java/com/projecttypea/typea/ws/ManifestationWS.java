@@ -10,18 +10,14 @@ import com.projecttypea.typea.bean.Manifestation;
 import com.projecttypea.typea.service.ManifestationService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*", methods = { RequestMethod.POST, RequestMethod.GET,
-        RequestMethod.OPTIONS })
 @RestController
 public class ManifestationWS {
 
@@ -47,6 +43,11 @@ public class ManifestationWS {
     @PostMapping("/user/addmanifestation")
     public int addManifestation(@Valid @RequestBody Manifestation manifestation, HttpSession session) {
         return manifestationService.addManifestation(manifestation, session);
+    }
+
+    @GetMapping("/user/getmanifestations")
+    public List<Manifestation> findAllByUserEmail(HttpSession session) {
+        return manifestationService.findAllByUserEmail(session);
     }
 
 }

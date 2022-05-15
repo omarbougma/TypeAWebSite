@@ -2,6 +2,8 @@ package com.projecttypea.typea.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import com.projecttypea.typea.bean.User;
 import com.projecttypea.typea.dao.UserDao;
 import com.projecttypea.typea.security.config.PasswordConfig;
@@ -47,7 +49,7 @@ public class UserService {
         }
     }
 
-    public int loginUser(User user) {
+    public int loginUser(User user, HttpSession session) {
         String mail = user.getEmail();
         String pass = user.getPassword();
         User dbUser = findByEmail(mail);
@@ -57,6 +59,7 @@ public class UserService {
         } else if (dbUser == null || !isUser) {
             return -2;
         } else {
+            session.setAttribute("session", user.getEmail());
             return 1;
         }
     }

@@ -27,8 +27,12 @@ public class DonéesProService {
 
     public int addDonesPro(DonéesPro donne, HttpSession session) {
         User currentUser = userDao.findByEmail((String) session.getAttribute("session"));
+        System.out.println(session.getAttribute("session"));
         if (currentUser.getDonne() != null) {
+            currentUser.setDonne(donne);
+            donéesProDao.save(donne);
             return -1;
+
         } else {
             donne.setUser(currentUser);
             donéesProDao.save(donne);
@@ -36,22 +40,23 @@ public class DonéesProService {
         }
     }
 
-    public int updateDonesPro(Long id, DonéesPro donnePro) {
-        DonéesPro currentDonnes = donéesProDao.getById(id);
-        if (currentDonnes == null) {
-            return -1;
-        } else {
-            currentDonnes.setCed(donnePro.getCed());
-            currentDonnes.setEntiteRecherche(donnePro.getEntiteRecherche());
-            currentDonnes.setEtablissement(donnePro.getEtablissement());
-            currentDonnes.setGrade(donnePro.getGrade());
-            currentDonnes.setNiveau(donnePro.getNiveau());
-            currentDonnes.setRespoEntite(donnePro.getRespoEntite());
-            donéesProDao.save(currentDonnes);
-            return 1;
-        }
-    }
-
+    /*
+     * public int updateDonesPro(Long id, DonéesPro donnePro) {
+     * DonéesPro currentDonnes = donéesProDao.getById(id);
+     * if (currentDonnes == null) {
+     * return -1;
+     * } else {
+     * currentDonnes.setCed(donnePro.getCed());
+     * currentDonnes.setEntiteRecherche(donnePro.getEntiteRecherche());
+     * currentDonnes.setEtablissement(donnePro.getEtablissement());
+     * currentDonnes.setGrade(donnePro.getGrade());
+     * currentDonnes.setNiveau(donnePro.getNiveau());
+     * currentDonnes.setRespoEntite(donnePro.getRespoEntite());
+     * donéesProDao.save(currentDonnes);
+     * return 1;
+     * }
+     * }
+     */
     public void deleteById(Long id) {
         donéesProDao.deleteById(id);
     }

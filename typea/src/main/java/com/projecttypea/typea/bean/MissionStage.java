@@ -3,6 +3,7 @@ package com.projecttypea.typea.bean;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 //import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -59,15 +60,15 @@ public class MissionStage {
     private User user;
 
     @JsonManagedReference(value = "soutienMS")
-    @OneToOne(mappedBy = "missionstage")
+    @OneToOne(mappedBy = "missionstage", cascade = CascadeType.ALL)
     private Soutien soutien;
 
     @JsonManagedReference(value = "cadre")
-    @OneToOne(mappedBy = "missionstage")
+    @OneToOne(mappedBy = "missionstage", cascade = CascadeType.ALL)
     private Cadre cadre;
 
     @JsonManagedReference(value = "Sdocuments")
-    @OneToMany(mappedBy = "missionstage")
+    @OneToMany(mappedBy = "missionstage", cascade = CascadeType.ALL)
     private List<Documents> documents;
 
     public long getId() {
