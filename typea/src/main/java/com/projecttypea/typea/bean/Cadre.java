@@ -18,11 +18,13 @@ public class Cadre {
     @NotEmpty(message = "Titre de cadre peut pas etre vide")
     private String titreCadre;
 
-    @NotEmpty(message = "Titre de cadre peut pas etre vide")
-    private String titreprojet;
+    /* @NotEmpty(message = "Titre de projet peut pas etre vide") */
+    private String titreProjet;
 
     @NotEmpty(message = "responsable marocain du projet peut pas etre vide")
     private String respoMarDuProjet;
+
+    private String isFinanced;
 
     private String partenaireEtranger;
 
@@ -47,11 +49,11 @@ public class Cadre {
     }
 
     public String getTitreprojet() {
-        return titreprojet;
+        return titreProjet;
     }
 
-    public void setTitreprojet(String titreprojet) {
-        this.titreprojet = titreprojet;
+    public void setTitreprojet(String titreProjet) {
+        this.titreProjet = titreProjet;
     }
 
     public String getRespoMarDuProjet() {
@@ -76,6 +78,14 @@ public class Cadre {
 
     public void setMissionstage(MissionStage missionstage) {
         this.missionstage = missionstage;
+    }
+
+    public String getIsFinance() {
+        return isFinanced;
+    }
+
+    public void setIsFinance(String isFinanced) {
+        this.isFinanced = isFinanced;
     }
 
     public Cadre() {

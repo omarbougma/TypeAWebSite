@@ -15,24 +15,24 @@ public class Soutien {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    private Boolean isBenfTypeA;
+    private String isBenfTypeA;
 
-    @NotEmpty(message = "Montant peut pas etre vide")
-    private float montant;
+    /* @NotEmpty(message = "Montant peut pas etre vide") */
+    private int montant;
 
     private String nature;
 
-    @NotEmpty(message = "Montant titre transport peut pas etre vide")
-    private float mTitreTransport;
+    /* @NotEmpty(message = "Montant titre transport peut pas etre vide") */
+    private int mTitreTransport;
 
-    @NotEmpty(message = "Montant frais inscription peut pas etre vide")
-    private float mFraisInscription;
+    /* @NotEmpty(message = "Montant frais inscription peut pas etre vide") */
+    private int mFraisInscription;
 
-    @NotEmpty(message = "Montant hebergement peut pas etre vide")
-    private float mHebergement;
+    /* @NotEmpty(message = "Montant hebergement peut pas etre vide") */
+    private int mHebergement;
 
-    @NotEmpty(message = "Montant autre peut pas etre vide")
-    private float mAutre;
+    /* @NotEmpty(message = "Montant autre peut pas etre vide") */
+    private int mAutre;
 
     @JsonBackReference("soutienM")
     @OneToOne
@@ -46,11 +46,11 @@ public class Soutien {
         return id;
     }
 
-    public Boolean getIsBenfTypeA() {
+    public String getIsBenfTypeA() {
         return isBenfTypeA;
     }
 
-    public void setIsBenfTypeA(Boolean isBenfTypeA) {
+    public void setIsBenfTypeA(String isBenfTypeA) {
         this.isBenfTypeA = isBenfTypeA;
     }
 
@@ -58,11 +58,11 @@ public class Soutien {
         this.id = id;
     }
 
-    public float getMontant() {
+    public int getMontant() {
         return montant;
     }
 
-    public void setMontant(float montant) {
+    public void setMontant(int montant) {
         this.montant = montant;
     }
 
@@ -78,7 +78,7 @@ public class Soutien {
         return mTitreTransport;
     }
 
-    public void setmTitreTransport(float mTitreTransport) {
+    public void setmTitreTransport(int mTitreTransport) {
         this.mTitreTransport = mTitreTransport;
     }
 
@@ -86,7 +86,7 @@ public class Soutien {
         return mFraisInscription;
     }
 
-    public void setmFraisInscription(float mFraisInscription) {
+    public void setmFraisInscription(int mFraisInscription) {
         this.mFraisInscription = mFraisInscription;
     }
 
@@ -94,7 +94,7 @@ public class Soutien {
         return mHebergement;
     }
 
-    public void setmHebergement(float mHebergement) {
+    public void setmHebergement(int mHebergement) {
         this.mHebergement = mHebergement;
     }
 
@@ -102,7 +102,7 @@ public class Soutien {
         return mAutre;
     }
 
-    public void setmAutre(float mAutre) {
+    public void setmAutre(int mAutre) {
         this.mAutre = mAutre;
     }
 

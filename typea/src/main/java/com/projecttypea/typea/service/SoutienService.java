@@ -29,13 +29,12 @@ public class SoutienService {
 
     public int addSoutienMission(Long missionId, Soutien soutien) {
         MissionStage currentMission = missionStageDao.getById(missionId);
-        if (currentMission.getSoutien() != null) {
-            return -1;
-        } else {
-            soutien.setMissionstage(currentMission);
-            soutienDao.save(soutien);
-            return 1;
-        }
+        System.out.println(soutien);
+        soutien.setMissionstage(currentMission);
+        System.out.println("hna");
+        soutienDao.save(soutien);
+        System.out.println("hna");
+        return 1;
     }
 
     public int addSoutienManifestation(Long manifId, Soutien soutien) {
@@ -45,23 +44,6 @@ public class SoutienService {
         } else {
             soutien.setManifestation(curentManifestation);
             soutienDao.save(soutien);
-            return 1;
-        }
-    }
-
-    public int updateSoutien(Long id, Soutien soutien) {
-        Soutien currentSoutien = soutienDao.getById(id);
-        if (currentSoutien == null) {
-            return -1;
-        } else {
-            currentSoutien.setIsBenfTypeA(soutien.getIsBenfTypeA());
-            currentSoutien.setMontant(soutien.getMontant());
-            currentSoutien.setNature(soutien.isNature());
-            currentSoutien.setmAutre(soutien.getmAutre());
-            currentSoutien.setmFraisInscription(soutien.getmFraisInscription());
-            currentSoutien.setmHebergement(soutien.getmHebergement());
-            currentSoutien.setmTitreTransport(soutien.getmTitreTransport());
-            soutienDao.save(currentSoutien);
             return 1;
         }
     }

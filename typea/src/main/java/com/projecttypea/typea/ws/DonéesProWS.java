@@ -10,28 +10,26 @@ import com.projecttypea.typea.bean.DonéesPro;
 import com.projecttypea.typea.service.DonéesProService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*", methods = { RequestMethod.POST, RequestMethod.GET,
-        RequestMethod.OPTIONS },allowCredentials = "true")
 @RestController
 public class DonéesProWS {
 
     @Autowired
     DonéesProService donéesProService;
 
-    @PutMapping("/user/updatedonnes/{id}")
-    public int updateCadre(@PathVariable Long id, @RequestBody DonéesPro donnePro) {
-        return donéesProService.updateDonesPro(id, donnePro);
-    }
+    /*
+     * @PutMapping("/user/updatedonnes/{id}")
+     * public int updateCadre(@PathVariable Long id, @RequestBody DonéesPro
+     * donnePro) {
+     * return donéesProService.updateDonesPro(id, donnePro);
+     * }
+     */
 
     @Transactional
     @DeleteMapping("/deletedonnes/{id}")
@@ -44,9 +42,9 @@ public class DonéesProWS {
         return donéesProService.findAll();
     }
 
-    @PostMapping("/user/adddonéespro/{email}")
-    public int addDonesPro(@Valid @RequestBody DonéesPro donne, @PathVariable String email) {
-        return donéesProService.addDonesPro(donne,email);
+    @PostMapping("/user/adddonéespro")
+    public int addDonesPro(@Valid @RequestBody DonéesPro donne, HttpSession session) {
+        return donéesProService.addDonesPro(donne, session);
     }
 
 }

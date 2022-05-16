@@ -10,6 +10,7 @@ import com.projecttypea.typea.bean.User;
 import com.projecttypea.typea.dao.ManifestationDao;
 import com.projecttypea.typea.dao.UserDao;
 
+import org.hibernate.annotations.Any;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,12 +23,22 @@ public class ManifestationService {
     @Autowired
     UserDao userDao;
 
+    @Autowired
+    SoutienService soutienService;
+
     public Optional<Manifestation> findById(Long id) {
         return manifestationDao.findById(id);
     }
 
     public List<Manifestation> findAll() {
         return manifestationDao.findAll();
+    }
+
+    public Long ajoutManifestation(Manifestation manif, HttpSession session) {
+        addManifestation(manif, session);
+        Long manifId = manif.getId();
+        soutienService.addSoutienManifestation(manifId, manif.getSoutien());
+        return manif.getId();
     }
 
     public int addManifestation(Manifestation manif, HttpSession session) {
@@ -61,4 +72,10 @@ public class ManifestationService {
     public void deleteById(Long id) {
         manifestationDao.deleteById(id);
     }
+
+    public List<Manifestation> findAllByUserEmail(HttpSession session) {
+        String email = (String) session.getAttribute("session");
+        return manifestationDao.findAllByUserEmail(email);
+    }
+
 }
