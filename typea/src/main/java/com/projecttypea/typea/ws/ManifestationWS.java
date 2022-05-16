@@ -25,7 +25,7 @@ public class ManifestationWS {
     ManifestationService manifestationService;
 
     @PostMapping("/user/manifestationadd")
-    public Long ajoutManifestation(Manifestation manif, HttpSession session) {
+    public Long ajoutManifestation(@RequestBody Manifestation manif, HttpSession session) {
         return manifestationService.ajoutManifestation(manif, session);
     }
 

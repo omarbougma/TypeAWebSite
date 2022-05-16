@@ -23,17 +23,6 @@ public class CadreWS {
     @Autowired
     CadreService cadreService;
 
-    @Transactional
-    @DeleteMapping("/deletecadre/{id}")
-    public void deleteById(Long id) {
-        cadreService.deleteById(id);
-    }
-
-    @PutMapping("/updatecadre/{id}")
-    public int updateCadre(@PathVariable Long id, @RequestBody Cadre cadre) {
-        return cadreService.updateCadre(id, cadre);
-    }
-
     @GetMapping("/cadres")
     public List<Cadre> findAll() {
         return cadreService.findAll();

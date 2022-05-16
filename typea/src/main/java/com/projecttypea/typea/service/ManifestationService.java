@@ -43,7 +43,9 @@ public class ManifestationService {
 
     public int addManifestation(Manifestation manif, HttpSession session) {
         User currentUser = userDao.findByEmail((String) session.getAttribute("session"));
+        System.out.println((String) session.getAttribute("session"));
         manif.setUser(currentUser);
+        System.out.println(manif.getTitreParticipation());
         manifestationDao.save(manif);
         return 1;
     }
