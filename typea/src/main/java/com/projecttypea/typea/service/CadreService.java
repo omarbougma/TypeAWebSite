@@ -37,18 +37,4 @@ public class CadreService {
         }
     }
 
-    public int updateCadre(Long id, Cadre cadre) {
-        Cadre currentCadre = cadreDao.getById(id);
-        if (currentCadre == null) {
-            return -1;
-        } else {
-            currentCadre.setTitreCadre(cadre.getTitreCadre());
-            currentCadre.setTitreprojet(cadre.getTitreprojet());
-            currentCadre.setRespoMarDuProjet(cadre.getRespoMarDuProjet());
-            currentCadre.setPartenaireEtranger(cadre.getPartenaireEtranger());
-            cadreDao.save(currentCadre);
-            return 1;
-        }
-    }
-
 }

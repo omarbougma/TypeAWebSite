@@ -48,11 +48,11 @@ public class Cadre {
         this.titreCadre = titreCadre;
     }
 
-    public String getTitreprojet() {
+    public String getTitreProjet() {
         return titreProjet;
     }
 
-    public void setTitreprojet(String titreProjet) {
+    public void setTitreProjet(String titreProjet) {
         this.titreProjet = titreProjet;
     }
 
@@ -80,11 +80,11 @@ public class Cadre {
         this.missionstage = missionstage;
     }
 
-    public String getIsFinance() {
+    public String getIsFinanced() {
         return isFinanced;
     }
 
-    public void setIsFinance(String isFinanced) {
+    public void setIsFinanced(String isFinanced) {
         this.isFinanced = isFinanced;
     }
 
