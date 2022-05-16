@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*", methods = { RequestMethod.POST, RequestMethod.GET,
-        RequestMethod.OPTIONS })
+        RequestMethod.OPTIONS },allowCredentials = "true")
 @RestController
 
 public class UserWS {
@@ -31,6 +31,7 @@ public class UserWS {
 
         if (userService.loginUser(user) == 1) {
             session.setAttribute("session", user.getEmail());
+            System.out.println(session.getAttribute("session"));
             return 1;
         } else if (userService.loginUser(user) == -1) {
             return -1;

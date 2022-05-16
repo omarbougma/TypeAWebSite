@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*", methods = { RequestMethod.POST, RequestMethod.GET,
-        RequestMethod.OPTIONS })
+        RequestMethod.OPTIONS },allowCredentials = "true")
 @RestController
 public class DonéesProWS {
 
@@ -44,9 +44,9 @@ public class DonéesProWS {
         return donéesProService.findAll();
     }
 
-    @PostMapping("/user/adddonéespro")
-    public int addDonesPro(@Valid @RequestBody DonéesPro donne, HttpSession session) {
-        return donéesProService.addDonesPro(donne, session);
+    @PostMapping("/user/adddonéespro/{email}")
+    public int addDonesPro(@Valid @RequestBody DonéesPro donne, @PathVariable String email) {
+        return donéesProService.addDonesPro(donne,email);
     }
 
 }

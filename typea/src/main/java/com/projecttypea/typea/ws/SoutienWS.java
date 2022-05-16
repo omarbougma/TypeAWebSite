@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*", methods = { RequestMethod.POST, RequestMethod.GET,
-        RequestMethod.OPTIONS })
+        RequestMethod.OPTIONS },allowCredentials = "true")
 @RestController
 public class SoutienWS {
 

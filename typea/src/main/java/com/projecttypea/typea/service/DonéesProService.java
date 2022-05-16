@@ -25,11 +25,14 @@ public class DonéesProService {
         return donéesProDao.findAll();
     }
 
-    public int addDonesPro(DonéesPro donne, HttpSession session) {
-        User currentUser = userDao.findByEmail((String) session.getAttribute("session"));
-        if (currentUser.getDonne() != null) {
+    public int addDonesPro(DonéesPro donne, String email) {
+        User currentUser= userService.findByEmail(email);
+        DonéesPro donnee = findByUser(currentUser);
+        if (currentUser == null) {
             return -1;
-        } else {
+        }else if(donnee !=null)
+            return -2;
+        else {
             donne.setUser(currentUser);
             donéesProDao.save(donne);
             return 1;
@@ -52,8 +55,14 @@ public class DonéesProService {
         }
     }
 
+    public DonéesPro findByUser(User user) {
+        return donéesProDao.findByUser(user);
+    }
+
     public void deleteById(Long id) {
         donéesProDao.deleteById(id);
     }
+    @Autowired
+    private UserService userService;
 
 }
