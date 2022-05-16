@@ -23,7 +23,6 @@ public class Messages {
     @NotEmpty(message = "Message peut pas etre vide")
     private String subject;
 
-    @Email
     private String email;
 
     @NotEmpty(message = "Message peut pas etre vide")

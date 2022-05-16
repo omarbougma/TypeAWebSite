@@ -64,4 +64,9 @@ public class MissionStageWS {
         return missionStageService.findAllByUserEmail(session);
     }
 
+    @GetMapping("/admin/getmstage/{id}")
+    public MissionStage getById(@PathVariable Long id) {
+        return missionStageService.getById(id);
+    }
+
 }

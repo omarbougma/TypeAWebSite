@@ -32,6 +32,10 @@ public class MissionStageService {
     @Autowired
     CadreService cadreService;
 
+    public MissionStage getById(Long id) {
+        return missionStageDao.getById(id);
+    }
+
     public Long ajoutMissionStage(MissionStage mStage, HttpSession session) {
 
         addMissionStage(mStage, session);
@@ -57,6 +61,7 @@ public class MissionStageService {
         User currentUser = userDao.findByEmail((String) session.getAttribute("session"));
         mission.setState(DemandesState.IDLE);
         mission.setUser(currentUser);
+        mission.setDemandeType("MissionStage");
         missionStageDao.save(mission);
         return 1;
     }

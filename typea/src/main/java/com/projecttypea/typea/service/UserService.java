@@ -79,4 +79,8 @@ public class UserService {
         }
     }
 
+    public User getById(Long id) {
+        return userDao.getById(id);
+    }
+
 }

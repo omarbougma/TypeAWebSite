@@ -59,4 +59,9 @@ public class UserWS {
         return userService.addUser(utilisateur);
     }
 
+    @GetMapping("/admin/getuserbyid/{id}")
+    public User getById(@PathVariable Long id) {
+        return userService.getById(id);
+    }
+
 }
