@@ -60,13 +60,24 @@ public class DocumentsWS {
         return documentsService.findAll();
     }
 
-    @PostMapping("/user/add_documentMST")
+    @PostMapping("/user/add_documentMST/{missionId}")
     public int storeDocument(@PathVariable Long missionId, @RequestParam("filecin") MultipartFile document,
             @RequestParam("fileA") MultipartFile document1, @RequestParam("fileB") MultipartFile document2,
             @RequestParam("fileC") MultipartFile document3, @RequestParam("fileD") MultipartFile document4,
             @RequestParam("fileE") MultipartFile document5)
             throws IOException {
         return documentsService.storeDocumentMissionStage(missionId, document, document1, document2, document3,
+                document4,
+                document5);
+    }
+
+    @PostMapping("/user/add_documentM/{manifId}")
+    public int storeDocumentManif(@PathVariable Long manifId, @RequestParam("filecin") MultipartFile document,
+            @RequestParam("fileA") MultipartFile document1, @RequestParam("fileB") MultipartFile document2,
+            @RequestParam("fileC") MultipartFile document3, @RequestParam("fileD") MultipartFile document4,
+            @RequestParam("fileE") MultipartFile document5)
+            throws IOException {
+        return documentsService.storeDocumentManifestation(manifId, document, document1, document2, document3,
                 document4,
                 document5);
     }

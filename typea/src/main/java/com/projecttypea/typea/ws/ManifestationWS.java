@@ -24,6 +24,11 @@ public class ManifestationWS {
     @Autowired
     ManifestationService manifestationService;
 
+    @PostMapping("/user/manifestationadd")
+    public Long ajoutManifestation(Manifestation manif, HttpSession session) {
+        return manifestationService.ajoutManifestation(manif, session);
+    }
+
     @PutMapping("/user/updatemanif/{id}")
     public int updateManifestation(@PathVariable Long id, @RequestBody Manifestation manifestation) {
         return manifestationService.updateManifestation(id, manifestation);

@@ -34,11 +34,11 @@ public class MissionStageService {
 
     public Long ajoutMissionStage(MissionStage mStage, HttpSession session) {
 
-        int succesMS = addMissionStage(mStage, session);
+        addMissionStage(mStage, session);
         Long mStageId = mStage.getId();
-        int succesSoutien = soutienService.addSoutienMission(mStageId, mStage.getSoutien());
-        int succesCadre = cadreService.addCadreMission(mStageId, mStage.getCadre());
-        return mStage.getId();
+        soutienService.addSoutienMission(mStageId, mStage.getSoutien());
+        cadreService.addCadreMission(mStageId, mStage.getCadre());
+        return mStageId;
     }
 
     public Optional<MissionStage> findById(Long id) {

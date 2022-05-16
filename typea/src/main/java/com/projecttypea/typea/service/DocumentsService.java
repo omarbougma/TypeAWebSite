@@ -37,12 +37,24 @@ public class DocumentsService {
     public int storeDocumentMissionStage(Long missionId, MultipartFile document, MultipartFile document1,
             MultipartFile document2,
             MultipartFile document3, MultipartFile document4, MultipartFile document5) throws IOException {
-        int cinDoc = storeDocumentMission(missionId, document);
-        int doc1 = storeDocumentMission(missionId, document);
-        int doc2 = storeDocumentMission(missionId, document);
-        int doc3 = storeDocumentMission(missionId, document);
-        int doc4 = storeDocumentMission(missionId, document);
-        int doc5 = storeDocumentMission(missionId, document);
+        storeDocumentMission(missionId, document);
+        storeDocumentMission(missionId, document1);
+        storeDocumentMission(missionId, document2);
+        storeDocumentMission(missionId, document3);
+        storeDocumentMission(missionId, document4);
+        storeDocumentMission(missionId, document5);
+        return 1;
+    }
+
+    public int storeDocumentManifestation(Long manifId, MultipartFile document, MultipartFile document1,
+            MultipartFile document2,
+            MultipartFile document3, MultipartFile document4, MultipartFile document5) throws IOException {
+        storeDocumentManifestation(manifId, document);
+        storeDocumentManifestation(manifId, document1);
+        storeDocumentManifestation(manifId, document2);
+        storeDocumentManifestation(manifId, document3);
+        storeDocumentManifestation(manifId, document4);
+        storeDocumentManifestation(manifId, document5);
         return 1;
     }
 

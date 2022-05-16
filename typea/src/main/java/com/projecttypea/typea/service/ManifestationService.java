@@ -34,11 +34,10 @@ public class ManifestationService {
         return manifestationDao.findAll();
     }
 
-    public Long ajoutMissionStage(Manifestation manif, HttpSession session) {
-
-        int succesManif = addManifestation(manif, session);
+    public Long ajoutManifestation(Manifestation manif, HttpSession session) {
+        addManifestation(manif, session);
         Long manifId = manif.getId();
-        int succesSoutien = soutienService.addSoutienMission(manifId, manif.getSoutien());
+        soutienService.addSoutienManifestation(manifId, manif.getSoutien());
         return manif.getId();
     }
 

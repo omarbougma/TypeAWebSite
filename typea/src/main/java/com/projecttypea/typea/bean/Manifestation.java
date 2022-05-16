@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -33,10 +34,10 @@ public class Manifestation {
     private String titreParticipation;
 
     @NotEmpty(message = "Pays peut pas etre vite ")
-    private String Pays;
+    private String pays;
 
     @NotEmpty(message = "Ville peut pas etre vite ")
-    private String Ville;
+    private String ville;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateDebut;
@@ -63,11 +64,11 @@ public class Manifestation {
     private User user;
 
     @JsonManagedReference(value = "soutienM")
-    @OneToOne(mappedBy = "manifestation")
+    @OneToOne(mappedBy = "manifestation", cascade = CascadeType.ALL)
     private Soutien soutien;
 
     @JsonManagedReference(value = "Mdocuments")
-    @OneToMany(mappedBy = "manifestation")
+    @OneToMany(mappedBy = "manifestation", cascade = CascadeType.ALL)
     private List<Documents> documents;
 
     public long getId() {
@@ -95,19 +96,19 @@ public class Manifestation {
     }
 
     public String getPays() {
-        return Pays;
+        return pays;
     }
 
     public void setPays(String pays) {
-        Pays = pays;
+        this.pays = pays;
     }
 
     public String getVille() {
-        return Ville;
+        return ville;
     }
 
     public void setVille(String ville) {
-        Ville = ville;
+        this.ville = ville;
     }
 
     public LocalDate getDateDebut() {
