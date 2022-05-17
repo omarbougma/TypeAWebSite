@@ -8,8 +8,10 @@ import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import com.projecttypea.typea.bean.Cadre;
+import com.projecttypea.typea.bean.DonéesPro;
 import com.projecttypea.typea.bean.MissionStage;
 import com.projecttypea.typea.bean.Soutien;
+import com.projecttypea.typea.bean.User;
 import com.projecttypea.typea.service.MissionStageService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,6 +64,21 @@ public class MissionStageWS {
     @GetMapping("/user/getmStage")
     public List<MissionStage> findAllByUserEmail(HttpSession session) {
         return missionStageService.findAllByUserEmail(session);
+    }
+
+    @GetMapping("/admin/getmstage/{id}")
+    public MissionStage getById(@PathVariable Long id) {
+        return missionStageService.getById(id);
+    }
+
+    @GetMapping("/admin/theuser/{mStageId}")
+    public User getCurrentUser(@PathVariable Long mStageId) {
+        return missionStageService.getCurrentUser(mStageId);
+    }
+
+    @GetMapping("/admin/userdonne/{mStageId}")
+    public DonéesPro getCurrentDonne(@PathVariable Long mStageId) {
+        return missionStageService.getCurrentDonne(mStageId);
     }
 
 }

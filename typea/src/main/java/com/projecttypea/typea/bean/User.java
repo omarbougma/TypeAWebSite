@@ -2,6 +2,7 @@ package com.projecttypea.typea.bean;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 //import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -47,11 +48,11 @@ public class User {
     private DonéesPro donne;
 
     @JsonManagedReference(value = "manifeStation")
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Manifestation> manifEstation;
 
     @JsonManagedReference(value = "missionStage")
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<MissionStage> missionStage;
 
     public DonéesPro getDonne() {

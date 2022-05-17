@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.servlet.http.HttpSession;
 
 import com.projecttypea.typea.bean.Cadre;
+import com.projecttypea.typea.bean.DonéesPro;
 import com.projecttypea.typea.bean.MissionStage;
 import com.projecttypea.typea.bean.Soutien;
 import com.projecttypea.typea.bean.User;
@@ -36,6 +37,10 @@ public class MissionStageService {
     @Autowired
     CadreService cadreService;
 
+    public MissionStage getById(Long id) {
+        return missionStageDao.getById(id);
+    }
+
     public Long ajoutMissionStage(MissionStage mStage, HttpSession session) {
 
         addMissionStage(mStage, session);
@@ -61,6 +66,7 @@ public class MissionStageService {
         User currentUser = userDao.findByEmail((String) session.getAttribute("session"));
         mission.setState(DemandesState.IDLE);
         mission.setUser(currentUser);
+        mission.setDemandeType("MissionStage");
         missionStageDao.save(mission);
         return 1;
     }
@@ -88,6 +94,19 @@ public class MissionStageService {
     public List<MissionStage> findAllByUserEmail(HttpSession session) {
         String email = (String) session.getAttribute("session");
         return missionStageDao.findAllByUserEmail(email);
+    }
+
+    public User getCurrentUser(Long mStageId) {
+        MissionStage currentMStage = getById(mStageId);
+        User currentUser = currentMStage.getUser();
+        return currentUser;
+    }
+
+    public DonéesPro getCurrentDonne(Long mStageId) {
+        MissionStage currentMStage = getById(mStageId);
+        User currentUser = currentMStage.getUser();
+        DonéesPro currentDonnePro = currentUser.getDonne();
+        return currentDonnePro;
     }
 
 }

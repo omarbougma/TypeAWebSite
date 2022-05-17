@@ -56,7 +56,6 @@ public class Manifestation {
 
     private DemandesState state;
 
-    @Value("Manifestation")
     private String demandeType;
 
     @JsonBackReference(value = "manifeStation")
@@ -181,6 +180,14 @@ public class Manifestation {
 
     public void setState(DemandesState state) {
         this.state = state;
+    }
+
+    public String getDemandeType() {
+        return demandeType;
+    }
+
+    public void setDemandeType(String demandeType) {
+        this.demandeType = demandeType;
     }
 
     public Manifestation() {

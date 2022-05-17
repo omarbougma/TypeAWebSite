@@ -2,6 +2,8 @@ package com.projecttypea.typea.ws;
 
 import java.util.List;
 
+import com.projecttypea.typea.bean.MissionStage;
+
 //import javax.transaction.Transactional;
 
 import com.projecttypea.typea.bean.User;
@@ -57,6 +59,11 @@ public class UserWS {
     @PostMapping("/allusers/register")
     public String addUser(@Valid @RequestBody User utilisateur) {
         return userService.addUser(utilisateur);
+    }
+
+    @GetMapping("/admin/getuserbyid/{id}")
+    public User getById(@PathVariable Long id) {
+        return userService.getById(id);
     }
 
 }

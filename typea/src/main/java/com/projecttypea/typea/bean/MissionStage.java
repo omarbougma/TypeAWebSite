@@ -52,7 +52,6 @@ public class MissionStage {
 
     private DemandesState state;
 
-    @Value("MissionStage")
     private String demandeType;
 
     @JsonBackReference(value = "missionStage")
@@ -173,6 +172,14 @@ public class MissionStage {
 
     public void setState(DemandesState state) {
         this.state = state;
+    }
+
+    public String getDemandeType() {
+        return demandeType;
+    }
+
+    public void setDemandeType(String demandeType) {
+        this.demandeType = demandeType;
     }
 
     public MissionStage() {

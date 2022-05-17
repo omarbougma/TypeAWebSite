@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import com.projecttypea.typea.bean.MissionStage;
 import com.projecttypea.typea.bean.User;
 import com.projecttypea.typea.dao.UserDao;
 import com.projecttypea.typea.security.config.PasswordConfig;
@@ -77,6 +78,10 @@ public class UserService {
             userDao.save(currentUser);
             return 1;
         }
+    }
+
+    public User getById(Long id) {
+        return userDao.getById(id);
     }
 
 }
