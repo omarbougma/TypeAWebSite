@@ -25,6 +25,9 @@ public class MissionStageService {
     MissionStageDao missionStageDao;
 
     @Autowired
+    DemandeService demandeService;
+
+    @Autowired
     UserDao userDao;
 
     @Autowired
@@ -103,6 +106,19 @@ public class MissionStageService {
         User currentUser = currentMStage.getUser();
         DonéesPro currentDonnePro = currentUser.getDonne();
         return currentDonnePro;
+    }
+
+    public int mStageRefused(Long missionId) {
+        MissionStage currentMissionStage = missionStageDao.getById(missionId);
+        currentMissionStage.setState(DemandesState.REFUSED);
+        return 1;
+    }
+
+    public int mStageAccepted(Long missionId, String toMail, String body, String subject) {
+        MissionStage currentMissionStage = missionStageDao.getById(missionId);
+        currentMissionStage.setState(DemandesState.APPROVED);
+        demandeService.sendSimpleMail(toMail, body, subject);
+        return 1;
     }
 
 }

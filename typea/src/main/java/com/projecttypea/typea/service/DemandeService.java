@@ -36,33 +36,6 @@ public class DemandeService {
         mailSender.send(mssg);
     }
 
-    public int userRefused(Long id, Boolean isManif) {
-        if (isManif) {
-            Manifestation currentManif = manifestationDao.getById(id);
-            currentManif.setState(DemandesState.REFUSED);
-            return 1;
-        } else {
-            MissionStage currentMissionStage = missionStageDao.getById(id);
-            currentMissionStage.setState(DemandesState.REFUSED);
-            return 2;
-        }
-    }
-
-    public int userAccepted(Long id, Boolean isManif, String toMail, String body, String subject) {
-        if (isManif) {
-            Manifestation currentManif = manifestationDao.getById(id);
-            currentManif.setState(DemandesState.APPROVED);
-            sendSimpleMail(toMail, body, subject);
-            return 1;
-        } else {
-            MissionStage currentMissionStage = missionStageDao.getById(id);
-            currentMissionStage.setState(DemandesState.APPROVED);
-            sendSimpleMail(toMail, body, subject);
-            return 2;
-        }
-
-    }
-
     public Demande findAll() {
         List<Manifestation> listManif = manifestationDao.findAll();
         List<MissionStage> listMStage = missionStageDao.findAll();
