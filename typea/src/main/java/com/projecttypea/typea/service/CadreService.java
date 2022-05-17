@@ -18,6 +18,10 @@ public class CadreService {
     @Autowired
     MissionStageDao missionStageDao;
 
+    public Cadre findByMissionstage(MissionStage mission) {
+        return cadreDao.findByMissionstage(mission);
+    }
+
     public void deleteById(Long id) {
         cadreDao.deleteById(id);
     }

@@ -14,6 +14,10 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class SoutienService {
+    public Soutien getById(Long aLong) {
+        return soutienDao.getById(aLong);
+    }
+
     @Autowired
     SoutienDao soutienDao;
 

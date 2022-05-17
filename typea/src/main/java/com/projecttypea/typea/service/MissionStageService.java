@@ -20,6 +20,10 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 @CrossOrigin()
 @Service
 public class MissionStageService {
+    public MissionStage getById(Long aLong) {
+        return missionStageDao.getById(aLong);
+    }
+
     @Autowired
     MissionStageDao missionStageDao;
 
