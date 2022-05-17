@@ -91,4 +91,10 @@ public class MissionStageService {
         return missionStageDao.findAllByUserEmail(email);
     }
 
+    public User getCurrentUser(Long mStageId) {
+        MissionStage currentMStage = getById(mStageId);
+        User currentUser = currentMStage.getUser();
+        return currentUser;
+    }
+
 }

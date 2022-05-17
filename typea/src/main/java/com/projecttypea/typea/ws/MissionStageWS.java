@@ -10,6 +10,7 @@ import javax.validation.Valid;
 import com.projecttypea.typea.bean.Cadre;
 import com.projecttypea.typea.bean.MissionStage;
 import com.projecttypea.typea.bean.Soutien;
+import com.projecttypea.typea.bean.User;
 import com.projecttypea.typea.service.MissionStageService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,4 +70,8 @@ public class MissionStageWS {
         return missionStageService.getById(id);
     }
 
+    @GetMapping("/admin/theuser/{mStageId}")
+    public User getCurrentUser(@PathVariable Long mStageId) {
+        return missionStageService.getCurrentUser(mStageId);
+    }
 }

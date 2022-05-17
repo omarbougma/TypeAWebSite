@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import com.projecttypea.typea.bean.MissionStage;
 import com.projecttypea.typea.bean.User;
 import com.projecttypea.typea.dao.UserDao;
 import com.projecttypea.typea.security.config.PasswordConfig;

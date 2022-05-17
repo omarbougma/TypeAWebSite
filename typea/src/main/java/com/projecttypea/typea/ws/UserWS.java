@@ -2,6 +2,8 @@ package com.projecttypea.typea.ws;
 
 import java.util.List;
 
+import com.projecttypea.typea.bean.MissionStage;
+
 //import javax.transaction.Transactional;
 
 import com.projecttypea.typea.bean.User;
