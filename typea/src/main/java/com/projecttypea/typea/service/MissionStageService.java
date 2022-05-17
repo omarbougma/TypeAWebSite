@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.servlet.http.HttpSession;
 
 import com.projecttypea.typea.bean.Cadre;
+import com.projecttypea.typea.bean.DonéesPro;
 import com.projecttypea.typea.bean.MissionStage;
 import com.projecttypea.typea.bean.Soutien;
 import com.projecttypea.typea.bean.User;
@@ -95,6 +96,13 @@ public class MissionStageService {
         MissionStage currentMStage = getById(mStageId);
         User currentUser = currentMStage.getUser();
         return currentUser;
+    }
+
+    public DonéesPro getCurrentDonne(Long mStageId) {
+        MissionStage currentMStage = getById(mStageId);
+        User currentUser = currentMStage.getUser();
+        DonéesPro currentDonnePro = currentUser.getDonne();
+        return currentDonnePro;
     }
 
 }

@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import com.projecttypea.typea.bean.Cadre;
+import com.projecttypea.typea.bean.DonéesPro;
 import com.projecttypea.typea.bean.MissionStage;
 import com.projecttypea.typea.bean.Soutien;
 import com.projecttypea.typea.bean.User;
@@ -74,4 +75,10 @@ public class MissionStageWS {
     public User getCurrentUser(@PathVariable Long mStageId) {
         return missionStageService.getCurrentUser(mStageId);
     }
+
+    @GetMapping("/admin/userdonne/{mStageId}")
+    public DonéesPro getCurrentDonne(@PathVariable Long mStageId) {
+        return missionStageService.getCurrentDonne(mStageId);
+    }
+
 }
