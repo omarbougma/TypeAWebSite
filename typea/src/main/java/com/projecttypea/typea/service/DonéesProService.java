@@ -18,6 +18,10 @@ public class DonéesProService {
     @Autowired
     UserDao userDao;
 
+    public DonéesPro findByUser(User user) {
+        return donéesProDao.findByUser(user);
+    }
+
     @Autowired
     DonéesProDao donéesProDao;
 
