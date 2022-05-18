@@ -16,7 +16,7 @@ import java.util.Map;
 
 @Service
 public class formulaire {
-
+    String home = System.getProperty("user.home");
 
     public int exportReport(long id) throws FileNotFoundException, JRException {
         Manifestation manifestation = getById(id);
@@ -60,7 +60,7 @@ public class formulaire {
         parameters.put("montant autre", soutien.getmAutre());
 
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
-        String home = System.getProperty("user.home");
+
 
 
         JasperExportManager.exportReportToPdfFile(jasperPrint, home+"/Downloads/" + user.getNom()+manifestation.getId() + ".pdf");
@@ -121,7 +121,7 @@ public class formulaire {
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
 
 
-        JasperExportManager.exportReportToPdfFile(jasperPrint, "C:\\Users\\User\\Desktop\\repports\\mission" + "\\"+user.getNom()+mission.getId()+".pdf");
+        JasperExportManager.exportReportToPdfFile(jasperPrint, home+"/Downloads/" + user.getNom()+mission.getId() + ".pdf");
 
         return 1;
     }
