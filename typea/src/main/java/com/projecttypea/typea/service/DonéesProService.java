@@ -32,15 +32,19 @@ public class DonéesProService {
     public int addDonesPro(DonéesPro donne, HttpSession session) {
         User currentUser = userDao.findByEmail((String) session.getAttribute("session"));
         System.out.println(session.getAttribute("session"));
-        if (currentUser.getDonne() != null) {
-            currentUser.setDonne(donne);
-            donéesProDao.save(donne);
-            return -1;
+        try {
+            if (currentUser.getDonne() != null) {
+                currentUser.setDonne(donne);
+                donéesProDao.save(donne);
+                return -1;
 
-        } else {
-            donne.setUser(currentUser);
-            donéesProDao.save(donne);
-            return 1;
+            } else {
+                donne.setUser(currentUser);
+                donéesProDao.save(donne);
+                return 1;
+            }
+        } catch (Exception e) {
+            return -2;
         }
     }
 
