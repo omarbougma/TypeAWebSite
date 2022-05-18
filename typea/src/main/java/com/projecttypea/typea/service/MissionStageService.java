@@ -4,11 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
-
-import com.projecttypea.typea.bean.Cadre;
 import com.projecttypea.typea.bean.DonéesPro;
 import com.projecttypea.typea.bean.MissionStage;
-import com.projecttypea.typea.bean.Soutien;
 import com.projecttypea.typea.bean.User;
 import com.projecttypea.typea.dao.MissionStageDao;
 import com.projecttypea.typea.dao.UserDao;
@@ -42,11 +39,15 @@ public class MissionStageService {
 
     public Long ajoutMissionStage(MissionStage mStage, HttpSession session) {
 
-        addMissionStage(mStage, session);
-        Long mStageId = mStage.getId();
-        soutienService.addSoutienMission(mStageId, mStage.getSoutien());
-        cadreService.addCadreMission(mStageId, mStage.getCadre());
-        return mStageId;
+        try {
+            addMissionStage(mStage, session);
+            Long mStageId = mStage.getId();
+            soutienService.addSoutienMission(mStageId, mStage.getSoutien());
+            cadreService.addCadreMission(mStageId, mStage.getCadre());
+            return mStageId;
+        } catch (Exception e) {
+            return Long.valueOf(-1);
+        }
     }
 
     public Optional<MissionStage> findById(Long id) {
@@ -65,7 +66,6 @@ public class MissionStageService {
         User currentUser = userDao.findByEmail((String) session.getAttribute("session"));
         mission.setState(DemandesState.IDLE);
         mission.setUser(currentUser);
-        mission.setDemandeType("MissionStage");
         missionStageDao.save(mission);
         return 1;
     }
@@ -111,6 +111,7 @@ public class MissionStageService {
     public int mStageRefused(Long missionId) {
         MissionStage currentMissionStage = missionStageDao.getById(missionId);
         currentMissionStage.setState(DemandesState.REFUSED);
+        missionStageDao.save(currentMissionStage);
         return 1;
     }
 

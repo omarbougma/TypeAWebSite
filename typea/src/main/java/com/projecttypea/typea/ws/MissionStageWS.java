@@ -81,4 +81,13 @@ public class MissionStageWS {
         return missionStageService.getCurrentDonne(mStageId);
     }
 
+    @GetMapping("/admin/refusestage/{missionId}")
+    public int mStageRefused(@PathVariable Long missionId) {
+        return missionStageService.mStageRefused(missionId);
+    }
+
+    public int mStageAccepted(Long missionId, String toMail, String body, String subject) {
+        return missionStageService.mStageAccepted(missionId, toMail, body, subject);
+    }
+
 }

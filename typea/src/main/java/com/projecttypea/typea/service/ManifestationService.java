@@ -39,10 +39,14 @@ public class ManifestationService {
     }
 
     public Long ajoutManifestation(Manifestation manif, HttpSession session) {
-        addManifestation(manif, session);
-        Long manifId = manif.getId();
-        soutienService.addSoutienManifestation(manifId, manif.getSoutien());
-        return manif.getId();
+        try {
+            addManifestation(manif, session);
+            Long manifId = manif.getId();
+            soutienService.addSoutienManifestation(manifId, manif.getSoutien());
+            return manif.getId();
+        } catch (Exception e) {
+            return Long.valueOf(-1);
+        }
     }
 
     public int addManifestation(Manifestation manif, HttpSession session) {
