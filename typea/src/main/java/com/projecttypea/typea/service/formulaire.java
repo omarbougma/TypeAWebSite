@@ -60,9 +60,10 @@ public class formulaire {
         parameters.put("montant autre", soutien.getmAutre());
 
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
+        String home = System.getProperty("user.home");
 
 
-        JasperExportManager.exportReportToPdfFile(jasperPrint, "C:\\Users\\User\\Desktop\\repports\\manif" +"\\"+user.getNom()+manifestation.getId()+".pdf");
+        JasperExportManager.exportReportToPdfFile(jasperPrint, home+"/Downloads/" + user.getNom()+manifestation.getId() + ".pdf");
 
         return 1;
     }

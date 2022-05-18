@@ -40,9 +40,7 @@ public class MissionStageService {
     @Autowired
     CadreService cadreService;
 
-    public MissionStage getById(Long id) {
-        return missionStageDao.getById(id);
-    }
+
 
     public Long ajoutMissionStage(MissionStage mStage, HttpSession session) {
 
