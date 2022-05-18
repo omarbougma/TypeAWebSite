@@ -9,6 +9,7 @@ import com.projecttypea.typea.bean.Manifestation;
 import com.projecttypea.typea.bean.User;
 import com.projecttypea.typea.dao.ManifestationDao;
 import com.projecttypea.typea.dao.UserDao;
+import com.projecttypea.typea.security.enums.DemandesState;
 
 import org.hibernate.annotations.Any;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,9 @@ public class ManifestationService {
 
     @Autowired
     SoutienService soutienService;
+
+    @Autowired
+    DemandeService demandeService;
 
     public Optional<Manifestation> findById(Long id) {
         return manifestationDao.findById(id);
@@ -77,6 +81,19 @@ public class ManifestationService {
     public List<Manifestation> findAllByUserEmail(HttpSession session) {
         String email = (String) session.getAttribute("session");
         return manifestationDao.findAllByUserEmail(email);
+    }
+
+    public int manifAccepted(Long manifId, String toMail, String body, String subject) {
+        Manifestation currentManif = manifestationDao.getById(manifId);
+        currentManif.setState(DemandesState.APPROVED);
+        demandeService.sendSimpleMail(toMail, body, subject);
+        return 1;
+    }
+
+    public int manifRefused(Long manifId) {
+        Manifestation currentManif = manifestationDao.getById(manifId);
+        currentManif.setState(DemandesState.REFUSED);
+        return 1;
     }
 
 }

@@ -23,7 +23,7 @@ public class MessagesWS {
         return messageService.findAll();
     }
 
-    @PostMapping("/user/contact")
+    @PostMapping("/allusers/contact")
     public int addMessg(@Valid @RequestBody Messages mssg) {
         return messageService.addMessg(mssg);
     }

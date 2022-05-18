@@ -57,13 +57,18 @@ public class UserWS {
     }
 
     @PostMapping("/allusers/register")
-    public String addUser(@Valid @RequestBody User utilisateur) {
+    public int addUser(@RequestBody User utilisateur) {
         return userService.addUser(utilisateur);
     }
 
     @GetMapping("/admin/getuserbyid/{id}")
     public User getById(@PathVariable Long id) {
         return userService.getById(id);
+    }
+
+    @GetMapping("/allusers/isadmin/{mail}")
+    public boolean isAdmin(@PathVariable String mail) {
+        return userService.isAdmin(mail);
     }
 
 }
