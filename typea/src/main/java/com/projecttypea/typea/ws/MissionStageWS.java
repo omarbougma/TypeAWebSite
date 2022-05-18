@@ -90,4 +90,14 @@ public class MissionStageWS {
         return missionStageService.mStageAccepted(missionId, toMail, body, subject);
     }
 
+    @GetMapping("/admin/getcadrebystage/{mStageId}")
+    public Cadre getCadreByMStage(@PathVariable Long mStageId) {
+        return missionStageService.getCadreByMStage(mStageId);
+    }
+
+    @GetMapping("/admin/getsoutienbystage/{mStageId}")
+    public Soutien getSoutienByMStage(@PathVariable Long mStageId) {
+        return missionStageService.getSoutienByMStage(mStageId);
+    }
+
 }

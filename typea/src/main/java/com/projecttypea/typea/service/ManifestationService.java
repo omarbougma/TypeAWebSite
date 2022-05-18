@@ -5,7 +5,9 @@ import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 
+import com.projecttypea.typea.bean.DonéesPro;
 import com.projecttypea.typea.bean.Manifestation;
+import com.projecttypea.typea.bean.Soutien;
 import com.projecttypea.typea.bean.User;
 import com.projecttypea.typea.dao.ManifestationDao;
 import com.projecttypea.typea.dao.UserDao;
@@ -29,6 +31,10 @@ public class ManifestationService {
 
     @Autowired
     DemandeService demandeService;
+
+    public Manifestation getById(Long id) {
+        return manifestationDao.getById(id);
+    }
 
     public Optional<Manifestation> findById(Long id) {
         return manifestationDao.findById(id);
@@ -100,4 +106,22 @@ public class ManifestationService {
         return 1;
     }
 
+    public User getCurrentUser(Long manifId) {
+        Manifestation currentManifestation = getById(manifId);
+        User currentUser = currentManifestation.getUser();
+        return currentUser;
+    }
+
+    public DonéesPro getCurrentDonne(Long manifId) {
+        Manifestation currentManifestation = getById(manifId);
+        User currentUser = currentManifestation.getUser();
+        DonéesPro currentDonnePro = currentUser.getDonne();
+        return currentDonnePro;
+    }
+
+    public Soutien getSoutienByMStage(Long manifId) {
+        Manifestation currentManifestation = getById(manifId);
+        Soutien currentSoutien = currentManifestation.getSoutien();
+        return currentSoutien;
+    }
 }

@@ -6,7 +6,10 @@ import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 
+import com.projecttypea.typea.bean.DonéesPro;
 import com.projecttypea.typea.bean.Manifestation;
+import com.projecttypea.typea.bean.Soutien;
+import com.projecttypea.typea.bean.User;
 import com.projecttypea.typea.service.ManifestationService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +56,26 @@ public class ManifestationWS {
     @GetMapping("/user/getmanifestations")
     public List<Manifestation> findAllByUserEmail(HttpSession session) {
         return manifestationService.findAllByUserEmail(session);
+    }
+
+    @GetMapping("/admin/getmanifbyid")
+    public Manifestation getById(Long id) {
+        return manifestationService.getById(id);
+    }
+
+    @GetMapping("/admin/getuserbymanif/{manifId}")
+    public User getCurrentUser(@PathVariable Long manifId) {
+        return manifestationService.getCurrentUser(manifId);
+    }
+
+    @GetMapping("/admin/getdonnebymanif/{manifId}")
+    public DonéesPro getCurrentDonne(@PathVariable Long manifId) {
+        return manifestationService.getCurrentDonne(manifId);
+    }
+
+    @GetMapping("/admin/getsoutienbymanif/{manifId}")
+    public Soutien getSoutienByMStage(@PathVariable Long manifId) {
+        return manifestationService.getSoutienByMStage(manifId);
     }
 
 }

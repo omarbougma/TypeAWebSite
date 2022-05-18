@@ -4,8 +4,11 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
+
+import com.projecttypea.typea.bean.Cadre;
 import com.projecttypea.typea.bean.DonéesPro;
 import com.projecttypea.typea.bean.MissionStage;
+import com.projecttypea.typea.bean.Soutien;
 import com.projecttypea.typea.bean.User;
 import com.projecttypea.typea.dao.MissionStageDao;
 import com.projecttypea.typea.dao.UserDao;
@@ -37,10 +40,7 @@ public class MissionStageService {
     @Autowired
     CadreService cadreService;
 
-
-
     public Long ajoutMissionStage(MissionStage mStage, HttpSession session) {
-
         try {
             addMissionStage(mStage, session);
             Long mStageId = mStage.getId();
@@ -108,6 +108,18 @@ public class MissionStageService {
         User currentUser = currentMStage.getUser();
         DonéesPro currentDonnePro = currentUser.getDonne();
         return currentDonnePro;
+    }
+
+    public Cadre getCadreByMStage(Long mStageId) {
+        MissionStage currentMStage = getById(mStageId);
+        Cadre currentCadre = currentMStage.getCadre();
+        return currentCadre;
+    }
+
+    public Soutien getSoutienByMStage(Long mStageId) {
+        MissionStage currentMStage = getById(mStageId);
+        Soutien currentSoutien = currentMStage.getSoutien();
+        return currentSoutien;
     }
 
     public int mStageRefused(Long missionId) {
