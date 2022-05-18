@@ -35,31 +35,39 @@ public class UserService {
         return userDao.findAll();
     }
 
-    public String addUser(User utilisateur) {
-        if (userDao.findByEmail(utilisateur.getEmail()) != null) {
-            return "Ce Mail existe deja";
-        } else if (!utilisateur.getEmail().matches("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@uca.ma$")) {
-            return "Ce mail doit etre mail d'universite";
-        } else {
-            utilisateur.setPassword(encoder.passwordEncoder().encode(utilisateur.getPassword()));
-            utilisateur.setUserRole(UserRoles.USER);
-            userDao.save(utilisateur);
-            return "L'utilisateur a ete creer";
+    public int addUser(User utilisateur) {
+        try {
+            if (userDao.findByEmail(utilisateur.getEmail()) != null) {
+                return -1;
+            } else if (!utilisateur.getEmail().matches("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@uca.ma$")) {
+                return -2;
+            } else {
+                utilisateur.setPassword(encoder.passwordEncoder().encode(utilisateur.getPassword()));
+                utilisateur.setUserRole(UserRoles.USER);
+                userDao.save(utilisateur);
+                return 1;
+            }
+        } catch (NullPointerException e) {
+            return -3;
         }
     }
 
     public int loginUser(User user, HttpSession session) {
-        String mail = user.getEmail();
-        String pass = user.getPassword();
-        User dbUser = findByEmail(mail);
-        Boolean isUser = encoder.passwordEncoder().matches(pass, dbUser.getPassword());
-        if (mail == "" || pass == "") {
-            return -1;
-        } else if (dbUser == null || !isUser) {
-            return -2;
-        } else {
-            session.setAttribute("session", user.getEmail());
-            return 1;
+        try {
+            String mail = user.getEmail();
+            String pass = user.getPassword();
+            User dbUser = findByEmail(mail);
+            Boolean isUser = encoder.passwordEncoder().matches(pass, dbUser.getPassword());
+            if (mail == "" || pass == "") {
+                return -1;
+            } else if (dbUser == null || !isUser) {
+                return -2;
+            } else {
+                session.setAttribute("session", user.getEmail());
+                return 1;
+            }
+        } catch (NullPointerException e) {
+            return -3;
         }
     }
 
@@ -80,6 +88,15 @@ public class UserService {
 
     public User getById(Long id) {
         return userDao.getById(id);
+    }
+
+    public boolean isAdmin(String mail) {
+        User dbUser = findByEmail(mail);
+        if (dbUser.getUserRole() == UserRoles.ADMIN) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }
