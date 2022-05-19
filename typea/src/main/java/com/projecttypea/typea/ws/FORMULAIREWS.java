@@ -16,7 +16,7 @@ import java.io.FileNotFoundException;
 public class FORMULAIREWS {
 
     @GetMapping("/user/raport/{id}")
-        public int generateReport(@PathVariable long id) throws FileNotFoundException, JRException {
+        public String generateReport(@PathVariable long id) throws FileNotFoundException, JRException {
         return formulairee.exportReport(id);
     }
     @GetMapping("/user/raportmission/{id}")

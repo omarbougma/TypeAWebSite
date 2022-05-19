@@ -18,7 +18,7 @@ import java.util.Map;
 public class formulaire {
     String home = System.getProperty("user.home");
 
-    public int exportReport(long id) throws FileNotFoundException, JRException {
+    public String exportReport(long id) throws FileNotFoundException, JRException {
         Manifestation manifestation = getById(id);
         User user = userService.findByNom(manifestation.getUser().getNom());
         DonéesPro donéesPro = donéesProService.findByUser(user);
@@ -62,10 +62,10 @@ public class formulaire {
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
 
 
+String path=home+"/Downloads/" + user.getNom()+manifestation.getId() + ".pdf";
+        JasperExportManager.exportReportToPdfFile(jasperPrint, path);
 
-        JasperExportManager.exportReportToPdfFile(jasperPrint, home+"/Downloads/" + user.getNom()+manifestation.getId() + ".pdf");
-
-        return 1;
+        return path;
     }
 
 
@@ -125,6 +125,14 @@ public class formulaire {
 
         return 1;
     }
+
+    public String exportLettre(long id) throws FileNotFoundException, JRException {
+
+
+        return null;
+    }
+
+
 
     public Manifestation getById(Long aLong) {
         return manifestationDao.getById(aLong);
