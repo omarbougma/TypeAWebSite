@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface DonéesProDao extends JpaRepository<DonéesPro, Long> {
+    DonéesPro findByUserId(Long id);
     DonéesPro findByUser(User user);
 
 }

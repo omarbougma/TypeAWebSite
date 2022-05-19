@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import com.projecttypea.typea.bean.DonéesPro;
+import com.projecttypea.typea.bean.User;
 import com.projecttypea.typea.service.DonéesProService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,5 +47,8 @@ public class DonéesProWS {
     public int addDonesPro(@RequestBody DonéesPro donne, HttpSession session) {
         return donéesProService.addDonesPro(donne, session);
     }
-
+    @GetMapping ("/user/getdonne/{id}")
+    public DonéesPro findByUserId(@PathVariable Long id) {
+        return donéesProService.findByUserId(id);
+    }
 }

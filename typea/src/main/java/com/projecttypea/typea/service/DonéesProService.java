@@ -18,12 +18,17 @@ public class DonéesProService {
     @Autowired
     UserDao userDao;
 
-    public DonéesPro findByUser(User user) {
-        return donéesProDao.findByUser(user);
+    public DonéesPro findByUserId(Long id) {
+
+        return donéesProDao.findByUserId(id);
     }
 
     @Autowired
     DonéesProDao donéesProDao;
+
+    public DonéesPro findByUser(User user) {
+        return donéesProDao.findByUser(user);
+    }
 
     public List<DonéesPro> findAll() {
         return donéesProDao.findAll();

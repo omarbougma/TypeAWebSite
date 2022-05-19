@@ -119,9 +119,9 @@ String path=home+"/Downloads/" + user.getNom()+manifestation.getId() + ".pdf";
 
 
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
+String path= home+"/Downloads/" + user.getNom()+mission.getId() + ".pdf";
 
-
-        JasperExportManager.exportReportToPdfFile(jasperPrint, home+"/Downloads/" + user.getNom()+mission.getId() + ".pdf");
+        JasperExportManager.exportReportToPdfFile(jasperPrint, path);
 
         return 1;
     }
