@@ -43,7 +43,7 @@ public class DonéesProWS {
     }
 
     @PostMapping("/user/adddonéespro")
-    public int addDonesPro(@Valid @RequestBody DonéesPro donne, HttpSession session) {
+    public int addDonesPro(@RequestBody DonéesPro donne, HttpSession session) {
         return donéesProService.addDonesPro(donne, session);
     }
 

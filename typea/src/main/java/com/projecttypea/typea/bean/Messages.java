@@ -6,7 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -23,6 +22,7 @@ public class Messages {
     @NotEmpty(message = "Message peut pas etre vide")
     private String subject;
 
+    @NotEmpty
     private String email;
 
     @NotEmpty(message = "Message peut pas etre vide")

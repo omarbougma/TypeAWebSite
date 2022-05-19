@@ -20,9 +20,13 @@ public class MessagesService {
     }
 
     public int addMessg(Messages mssg) {
-        mssg.setTimeSent(LocalDate.now());
-        mssgDao.save(mssg);
-        return 1;
+        try {
+            mssg.setTimeSent(LocalDate.now());
+            mssgDao.save(mssg);
+            return 1;
+        } catch (Exception e) {
+            return -1;
+        }
     }
 
 }
