@@ -31,7 +31,7 @@ public class NouveauMontantService {
 
     public int addMontantsM(Long manifId, NouveauMontant nvMontant) {
         Manifestation currentM = manifDao.getById(manifId);
-        nvMontant.setManif(currentM);
+        nvMontant.setManifestation(currentM);
         nouveauMontantDao.save(nvMontant);
         return 1;
     }

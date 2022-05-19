@@ -22,11 +22,11 @@ public class NouveauMontant {
 
     @JsonBackReference(value = "newMontantMS")
     @OneToOne
-    private MissionStage mStage;
+    private MissionStage missionstage;
 
     @JsonBackReference(value = "newMontantM")
     @OneToOne
-    private Manifestation manif;
+    private Manifestation manifestation;
 
     public Long getId() {
         return id;
@@ -69,19 +69,19 @@ public class NouveauMontant {
     }
 
     public MissionStage getmStage() {
-        return mStage;
+        return missionstage;
     }
 
     public void setmStage(MissionStage mStage) {
-        this.mStage = mStage;
+        this.missionstage = mStage;
     }
 
-    public Manifestation getManif() {
-        return manif;
+    public Manifestation getManifestation() {
+        return manifestation;
     }
 
-    public void setManif(Manifestation manif) {
-        this.manif = manif;
+    public void setManifestation(Manifestation manif) {
+        this.manifestation = manif;
     }
 
     public NouveauMontant() {
