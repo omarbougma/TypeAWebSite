@@ -126,10 +126,46 @@ String path=home+"/Downloads/" + user.getNom()+manifestation.getId() + ".pdf";
         return 1;
     }
 
-    public String exportLettre(long id) throws FileNotFoundException, JRException {
+    public String exportLettremanif(long id) throws FileNotFoundException, JRException {
+        Manifestation manifestation = getById(id);
+        File file = ResourceUtils.getFile("classpath:Lettremanif.jrxml");
+        JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
+        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(Collections.singleton(manifestation));
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("titremanifestation",manifestation.getTitreManifestation());
+        parameters.put("ville",manifestation.getVille());
+        parameters.put("datedebut",manifestation.getDateDebut());
+        parameters.put("datefin",manifestation.getDateFin());
+
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
 
 
-        return null;
+        String path=home+"/Downloads/" + "Lettre"+manifestation.getId() + ".pdf";
+    JasperExportManager.exportReportToPdfFile(jasperPrint, path);
+
+return path;
+
+    }
+
+    public String exportLettremission(long id) throws FileNotFoundException, JRException {
+        MissionStage mission =  missionStageService.getById(id);
+        File file = ResourceUtils.getFile("classpath:Lettremission.jrxml");
+        JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
+        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(Collections.singleton(mission));
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("titremanifestation",mission.getObjetMission());
+        parameters.put("ville",mission.getVille());
+        parameters.put("datedebut",mission.getDateDebut());
+        parameters.put("datefin",mission.getDateFin());
+
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
+
+
+        String path=home+"/Downloads/" + "Lettre"+mission.getId() + ".pdf";
+        JasperExportManager.exportReportToPdfFile(jasperPrint, path);
+
+        return path;
+
     }
 
 

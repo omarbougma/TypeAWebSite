@@ -19,9 +19,18 @@ public class FORMULAIREWS {
         public String generateReport(@PathVariable long id) throws FileNotFoundException, JRException {
         return formulairee.exportReport(id);
     }
+    @GetMapping("/user/raportlettremission/{id}")
+    public String exportLettremission(@PathVariable long id) throws FileNotFoundException, JRException {
+        return formulairee.exportLettremission(id);
+    }
+
     @GetMapping("/user/raportmission/{id}")
     public int exportReportMission(@PathVariable long id) throws FileNotFoundException, JRException {
         return formulairee.exportReportMission(id);
+    }
+    @GetMapping("/user/raportlettremanif/{id}")
+    public String exportLettremanif(@PathVariable long id) throws FileNotFoundException, JRException {
+        return formulairee.exportLettremanif(id);
     }
 
     @Autowired

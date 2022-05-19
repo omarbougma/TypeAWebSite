@@ -27,16 +27,16 @@ public class Manifestation {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    /* @NotEmpty(message = "Titre de manifestation peut pas etre vite ") */
+     @NotEmpty(message = "Titre de manifestation peut pas etre vite ")
     private String titreManifestation;
 
-    /* @NotEmpty(message = "Titre de participation peut pas etre vite ") */
+    @NotEmpty(message = "Titre de participation peut pas etre vite ")
     private String titreParticipation;
 
-    /* @NotEmpty(message = "Pays peut pas etre vite ") */
+     @NotEmpty(message = "Pays peut pas etre vite ")
     private String pays;
 
-    /* @NotEmpty(message = "Ville peut pas etre vite ") */
+    @NotEmpty(message = "Ville peut pas etre vite ")
     private String ville;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
