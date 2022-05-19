@@ -60,6 +60,10 @@ public class MissionStage {
     @OneToOne(mappedBy = "missionstage", cascade = CascadeType.ALL)
     private Soutien soutien;
 
+    @JsonManagedReference(value = "newMontantMS")
+    @OneToOne(mappedBy = "missionstage", cascade = CascadeType.ALL)
+    private NouveauMontant nvMnt;
+
     @JsonManagedReference(value = "cadre")
     @OneToOne(mappedBy = "missionstage", cascade = CascadeType.ALL)
     private Cadre cadre;
@@ -170,6 +174,14 @@ public class MissionStage {
 
     public void setState(DemandesState state) {
         this.state = state;
+    }
+
+    public NouveauMontant getNvMnt() {
+        return nvMnt;
+    }
+
+    public void setNvMnt(NouveauMontant nvMnt) {
+        this.nvMnt = nvMnt;
     }
 
     public MissionStage() {
