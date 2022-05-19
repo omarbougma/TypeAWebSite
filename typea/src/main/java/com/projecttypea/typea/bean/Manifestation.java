@@ -27,13 +27,13 @@ public class Manifestation {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-     @NotEmpty(message = "Titre de manifestation peut pas etre vite ")
+    @NotEmpty(message = "Titre de manifestation peut pas etre vite ")
     private String titreManifestation;
 
     @NotEmpty(message = "Titre de participation peut pas etre vite ")
     private String titreParticipation;
 
-     @NotEmpty(message = "Pays peut pas etre vite ")
+    @NotEmpty(message = "Pays peut pas etre vite ")
     private String pays;
 
     @NotEmpty(message = "Ville peut pas etre vite ")
@@ -61,6 +61,10 @@ public class Manifestation {
     @JsonBackReference(value = "manifeStation")
     @ManyToOne
     private User user;
+
+    @JsonManagedReference(value = "newMontantM")
+    @OneToOne(mappedBy = "manifestation", cascade = CascadeType.ALL)
+    private NouveauMontant nvMnt;
 
     @JsonManagedReference(value = "soutienM")
     @OneToOne(mappedBy = "manifestation", cascade = CascadeType.ALL)
@@ -188,6 +192,14 @@ public class Manifestation {
 
     public void setDemandeType(String demandeType) {
         this.demandeType = demandeType;
+    }
+
+    public NouveauMontant getNvMnt() {
+        return nvMnt;
+    }
+
+    public void setNvMnt(NouveauMontant nvMnt) {
+        this.nvMnt = nvMnt;
     }
 
     public Manifestation() {

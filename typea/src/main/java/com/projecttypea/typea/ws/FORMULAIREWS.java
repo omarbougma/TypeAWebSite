@@ -15,25 +15,27 @@ import java.io.FileNotFoundException;
 
 public class FORMULAIREWS {
 
-    @GetMapping("/user/raport/{id}")
-        public String generateReport(@PathVariable long id) throws FileNotFoundException, JRException {
+    @GetMapping("/allusers/raport/{id}")
+    public String generateReport(@PathVariable long id) throws FileNotFoundException, JRException {
         return formulairee.exportReport(id);
     }
-    @GetMapping("/user/raportlettremission/{id}")
+
+    @GetMapping("/admin/raportlettremission/{id}")
     public String exportLettremission(@PathVariable long id) throws FileNotFoundException, JRException {
         return formulairee.exportLettremission(id);
     }
 
-    @GetMapping("/user/raportmission/{id}")
+    @GetMapping("/allusers/raportmission/{id}")
     public int exportReportMission(@PathVariable long id) throws FileNotFoundException, JRException {
         return formulairee.exportReportMission(id);
     }
-    @GetMapping("/user/raportlettremanif/{id}")
+
+    @GetMapping("/admin/raportlettremanif/{id}")
     public String exportLettremanif(@PathVariable long id) throws FileNotFoundException, JRException {
         return formulairee.exportLettremanif(id);
     }
 
     @Autowired
-        private formulaire formulairee;
+    private formulaire formulairee;
 
-    }
+}

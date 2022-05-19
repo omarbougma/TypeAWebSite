@@ -23,10 +23,6 @@ public class MailMessagesService {
     JavaMailSender emailSender;
 
     public int sendMail(MailMessages mailMessages) {
-
-        String body = "Mme Hanane NEKOUA\nDIVISION RECHERCHE SCIENTIFIQUE\nPRÉSIDENCE UNIVERSITÉ CADI AYYAD\nBP 511, Av Moulay Abdellah, Marrakech\nTél : 05 24 43 48 13/14\nFax : 05 24 43 44 94\nCourrier : ha.nekoua@uca.ma";
-
-        mailMessages.setBody(body);
         MimeMessage mssg = emailSender.createMimeMessage();
         try {
             MimeMessageHelper helper = new MimeMessageHelper(mssg, true);
@@ -38,6 +34,7 @@ public class MailMessagesService {
             FileSystemResource file = new FileSystemResource(mailMessages.getPathToAttachement());
             helper.addAttachment(file.getFilename(), file);
             emailSender.send(mssg);
+            mailMessageDao.save(mailMessages);
             return 1;
         } catch (MessagingException e) {
             return -1;
