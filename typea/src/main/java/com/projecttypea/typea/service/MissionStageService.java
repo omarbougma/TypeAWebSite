@@ -40,15 +40,16 @@ public class MissionStageService {
     @Autowired
     CadreService cadreService;
 
-
-
     public Long ajoutMissionStage(MissionStage mStage, HttpSession session) {
-
-        addMissionStage(mStage, session);
-        Long mStageId = mStage.getId();
-        soutienService.addSoutienMission(mStageId, mStage.getSoutien());
-        cadreService.addCadreMission(mStageId, mStage.getCadre());
-        return mStageId;
+        try {
+            addMissionStage(mStage, session);
+            Long mStageId = mStage.getId();
+            soutienService.addSoutienMission(mStageId, mStage.getSoutien());
+            cadreService.addCadreMission(mStageId, mStage.getCadre());
+            return mStageId;
+        } catch (Exception e) {
+            return Long.valueOf(-1);
+        }
     }
 
     public Optional<MissionStage> findById(Long id) {
@@ -67,7 +68,6 @@ public class MissionStageService {
         User currentUser = userDao.findByEmail((String) session.getAttribute("session"));
         mission.setState(DemandesState.IDLE);
         mission.setUser(currentUser);
-        mission.setDemandeType("MissionStage");
         missionStageDao.save(mission);
         return 1;
     }
@@ -110,9 +110,22 @@ public class MissionStageService {
         return currentDonnePro;
     }
 
+    public Cadre getCadreByMStage(Long mStageId) {
+        MissionStage currentMStage = getById(mStageId);
+        Cadre currentCadre = currentMStage.getCadre();
+        return currentCadre;
+    }
+
+    public Soutien getSoutienByMStage(Long mStageId) {
+        MissionStage currentMStage = getById(mStageId);
+        Soutien currentSoutien = currentMStage.getSoutien();
+        return currentSoutien;
+    }
+
     public int mStageRefused(Long missionId) {
         MissionStage currentMissionStage = missionStageDao.getById(missionId);
         currentMissionStage.setState(DemandesState.REFUSED);
+        missionStageDao.save(currentMissionStage);
         return 1;
     }
 
