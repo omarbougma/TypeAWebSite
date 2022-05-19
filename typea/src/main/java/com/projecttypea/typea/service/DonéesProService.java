@@ -38,10 +38,12 @@ public class DonéesProService {
                 donéesProDao.save(donne);
                 return -1;
 
-            } else {
+            } else if (currentUser.getDonne() == null) {
                 donne.setUser(currentUser);
                 donéesProDao.save(donne);
                 return 1;
+            } else {
+                return -3;
             }
         } catch (Exception e) {
             return -2;

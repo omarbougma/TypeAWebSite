@@ -24,7 +24,7 @@ public class MessagesWS {
     }
 
     @PostMapping("/allusers/contact")
-    public int addMessg(@Valid @RequestBody Messages mssg) {
+    public int addMessg(@RequestBody Messages mssg) {
         return messageService.addMessg(mssg);
     }
 
