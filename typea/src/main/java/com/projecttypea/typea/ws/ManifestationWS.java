@@ -58,8 +58,8 @@ public class ManifestationWS {
         return manifestationService.findAllByUserEmail(session);
     }
 
-    @GetMapping("/admin/getmanifbyid")
-    public Manifestation getById(Long id) {
+    @GetMapping("/admin/getmanifbyid/{id}")
+    public Manifestation getById(@PathVariable Long id) {
         return manifestationService.getById(id);
     }
 
@@ -76,6 +76,15 @@ public class ManifestationWS {
     @GetMapping("/admin/getsoutienbymanif/{manifId}")
     public Soutien getSoutienByMStage(@PathVariable Long manifId) {
         return manifestationService.getSoutienByMStage(manifId);
+    }
+
+    public int manifAccepted(Long manifId, String toMail, String body, String subject) {
+        return manifestationService.manifAccepted(manifId, toMail, body, subject);
+    }
+
+    @GetMapping("/admin/refusemanif/{manifId}")
+    public int manifRefused(@PathVariable Long manifId) {
+        return manifestationService.manifRefused(manifId);
     }
 
 }

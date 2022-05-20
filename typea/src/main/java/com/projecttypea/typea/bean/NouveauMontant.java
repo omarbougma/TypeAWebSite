@@ -68,11 +68,13 @@ public class NouveauMontant {
         this.newMontant = newMontant;
     }
 
-    public MissionStage getmStage() {
+    @JsonBackReference
+    public MissionStage getMissionStage() {
         return missionstage;
     }
 
-    public void setmStage(MissionStage mStage) {
+    @JsonBackReference
+    public void setMissionStage(MissionStage mStage) {
         this.missionstage = mStage;
     }
 

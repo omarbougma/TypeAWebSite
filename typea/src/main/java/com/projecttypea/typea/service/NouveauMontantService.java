@@ -32,7 +32,7 @@ public class NouveauMontantService {
 
     public int addMontantsMS(Long mStageId, NouveauMontant nvMontant) {
         MissionStage currentMS = missionStageDao.getById(mStageId);
-        nvMontant.setmStage(currentMS);
+        nvMontant.setMissionStage(currentMS);
         nouveauMontantDao.save(nvMontant);
         return 1;
     }

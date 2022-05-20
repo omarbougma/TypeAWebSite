@@ -96,6 +96,7 @@ public class ManifestationService {
     public int manifAccepted(Long manifId, String toMail, String body, String subject) {
         Manifestation currentManif = manifestationDao.getById(manifId);
         currentManif.setState(DemandesState.APPROVED);
+        manifestationDao.save(currentManif);
         demandeService.sendSimpleMail(toMail, body, subject);
         return 1;
     }
@@ -103,6 +104,7 @@ public class ManifestationService {
     public int manifRefused(Long manifId) {
         Manifestation currentManif = manifestationDao.getById(manifId);
         currentManif.setState(DemandesState.REFUSED);
+        manifestationDao.save(currentManif);
         return 1;
     }
 

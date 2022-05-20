@@ -47,7 +47,8 @@ public class DonéesProWS {
     public int addDonesPro(@RequestBody DonéesPro donne, HttpSession session) {
         return donéesProService.addDonesPro(donne, session);
     }
-    @GetMapping ("/user/getdonne/{id}")
+
+    @GetMapping("/admin/getdonne/{id}")
     public DonéesPro findByUserId(@PathVariable Long id) {
         return donéesProService.findByUserId(id);
     }

@@ -132,6 +132,7 @@ public class MissionStageService {
     public int mStageAccepted(Long missionId, String toMail, String body, String subject) {
         MissionStage currentMissionStage = missionStageDao.getById(missionId);
         currentMissionStage.setState(DemandesState.APPROVED);
+        missionStageDao.save(currentMissionStage);
         demandeService.sendSimpleMail(toMail, body, subject);
         return 1;
     }
