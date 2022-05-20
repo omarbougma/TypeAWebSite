@@ -26,13 +26,21 @@ public class FORMULAIREWS {
     }
 
     @GetMapping("/user/raportmission/{id}")
-    public int exportReportMission(@PathVariable long id) throws FileNotFoundException, JRException {
+    public String exportReportMission(@PathVariable long id) throws FileNotFoundException, JRException {
         return formulairee.exportReportMission(id);
     }
 
     @GetMapping("/admin/raportlettremanif/{id}")
     public String exportLettremanif(@PathVariable long id) throws FileNotFoundException, JRException {
         return formulairee.exportLettremanif(id);
+    }
+    @GetMapping("/admin/raportNVmontantmanif/{id}")
+    public String exportNvmontantmanif(long id) throws FileNotFoundException, JRException {
+        return formulairee.exportNvmontantmanif(id);
+    }
+    @GetMapping("/admin/raportNvmontantmis/{id}")
+    public String exportNvmontantmission(long id) throws FileNotFoundException, JRException {
+        return formulairee.exportNvmontantmission(id);
     }
 
     @Autowired

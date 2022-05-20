@@ -47,13 +47,6 @@
 				<text><![CDATA[Type de la demande : Mission stage]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="174" y="80" width="236" height="30" uuid="d96e0741-51a8-4438-b67e-b5f32eba9524"/>
-				<textElement>
-					<font size="14" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Informations Demandeur]]></text>
-			</staticText>
-			<staticText>
 				<reportElement x="20" y="120" width="154" height="20" uuid="7970dc26-cce2-40f9-bdfc-1bdcc2b9683b"/>
 				<textElement>
 					<font size="12" isBold="true"/>
@@ -412,12 +405,43 @@
 				<text><![CDATA[Montant total :]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="150" y="480" width="184" height="20" uuid="fe1d00d6-a388-4fb5-bf45-c24af9200c7d"/>
+				<reportElement x="179" y="80" width="176" height="30" uuid="7708b34c-eee9-4a21-abf7-20037ffc822d"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Informations Demandeur]]></text>
+			</staticText>
+			<line>
+				<reportElement x="8" y="90" width="151" height="1" uuid="8a596108-808a-4f45-a89e-33930111952e"/>
+			</line>
+			<line>
+				<reportElement x="360" y="96" width="201" height="1" uuid="6481a7c7-0d28-42f1-8f0d-288f1601d829"/>
+			</line>
+			<staticText>
+				<reportElement x="172" y="480" width="184" height="20" uuid="09764212-a66f-4790-8c52-0799dc4f0024"/>
 				<textElement>
 					<font size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Informations sur le soutien]]></text>
 			</staticText>
+			<line>
+				<reportElement x="357" y="490" width="201" height="1" uuid="6b0bec28-352d-49a0-86fa-fe7cafa6eb28"/>
+			</line>
+			<line>
+				<reportElement x="2" y="490" width="166" height="1" uuid="1e6724a4-5098-4bff-9e87-443e108d791c"/>
+			</line>
+			<line>
+				<reportElement x="-17" y="339" width="160" height="1" uuid="f77055ad-f400-46fc-a963-782b56be341e"/>
+			</line>
+			<line>
+				<reportElement x="-15" y="604" width="174" height="1" uuid="45123325-ca30-4b7b-94b8-b00a7315b8a7"/>
+			</line>
+			<line>
+				<reportElement x="340" y="605" width="228" height="3" uuid="549bab78-3d65-44ec-a693-f89d5e44b184"/>
+			</line>
+			<line>
+				<reportElement x="374" y="340" width="201" height="1" uuid="675519d2-f450-44fd-b763-baf0384bef90"/>
+			</line>
 		</band>
 	</detail>
 </jasperReport>

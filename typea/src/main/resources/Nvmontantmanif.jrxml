@@ -17,6 +17,11 @@
 	<parameter name="mtotal" class="java.lang.Number"/>
 	<parameter name="mfraisinscription" class="java.lang.Number"/>
 	<parameter name="montant autre" class="java.lang.Number"/>
+	<parameter name="mtitretransported" class="java.lang.Number"/>
+	<parameter name="mhebergemented" class="java.lang.Number"/>
+	<parameter name="mtotaled" class="java.lang.Number"/>
+	<parameter name="mfraisinscriptioned" class="java.lang.Number"/>
+	<parameter name="montant autreed" class="java.lang.Number"/>
 	<parameter name="pays" class="java.lang.String"/>
 	<parameter name="ville" class="java.lang.String"/>
 	<parameter name="datedebut" class="java.time.LocalDate"/>
@@ -30,94 +35,71 @@
 		<band splitType="Stretch"/>
 	</background>
 	<detail>
-		<band height="756" splitType="Stretch">
-			<staticText>
-				<reportElement x="210" y="640" width="180" height="20" uuid="8abb635b-b5d2-4ea7-9026-f93de2e05543"/>
-				<textElement>
-					<font size="13" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Signature de demandeur]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="450" y="710" width="114" height="36" uuid="a0929356-1162-40e7-be75-fd32e2e702e3"/>
-				<text><![CDATA[Texte Statique]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="300" y="710" width="110" height="36" uuid="11e5b514-f8ed-456b-8393-ca526c91b9b5"/>
-				<text><![CDATA[Texte Statique]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="140" y="710" width="110" height="36" uuid="2f26bbf5-644f-41ed-944f-74c3f4d8c461"/>
-				<text><![CDATA[Texte Statique]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="0" y="710" width="110" height="36" uuid="22e30c6d-9253-4d8a-91c3-37a5873c6e70"/>
-				<text><![CDATA[signature de présidence]]></text>
-			</staticText>
+		<band height="802" splitType="Stretch">
 			<textField>
-				<reportElement x="140" y="534" width="100" height="30" uuid="61176f71-214b-4ca5-aa1d-99aa1abac2b7"/>
+				<reportElement x="110" y="520" width="100" height="30" uuid="61176f71-214b-4ca5-aa1d-99aa1abac2b7"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{nature}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="20" y="534" width="100" height="30" uuid="a1904a81-920a-4faf-ada3-ef999c6ef6b6"/>
+				<reportElement x="10" y="520" width="100" height="30" uuid="a1904a81-920a-4faf-ada3-ef999c6ef6b6"/>
 				<text><![CDATA[Nature :]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="140" y="560" width="100" height="30" uuid="841d44c1-35d5-4f1d-aeef-c134fdb18e89"/>
+				<reportElement x="130" y="550" width="100" height="30" uuid="841d44c1-35d5-4f1d-aeef-c134fdb18e89"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{mtitretransport}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="19" y="564" width="121" height="30" uuid="4c3e8f47-06b9-4573-85b8-f932b2394314"/>
+				<reportElement x="9" y="550" width="112" height="30" uuid="4c3e8f47-06b9-4573-85b8-f932b2394314"/>
 				<text><![CDATA[Montant titre transport :]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="449" y="530" width="100" height="30" uuid="002c538f-e7c1-4af2-85c1-bf43b0349fe7"/>
+				<reportElement x="130" y="610" width="100" height="30" uuid="002c538f-e7c1-4af2-85c1-bf43b0349fe7"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{mfraisinscription}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="319" y="530" width="130" height="30" uuid="7695d21d-372e-494d-ba4b-baebd49a2b7f"/>
+				<reportElement x="10" y="610" width="120" height="30" uuid="7695d21d-372e-494d-ba4b-baebd49a2b7f"/>
 				<text><![CDATA[Montant frais inscription :]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="140" y="590" width="100" height="30" uuid="268a04e6-b59c-4597-b4a9-1fa6cbf28672"/>
+				<reportElement x="120" y="580" width="100" height="30" uuid="268a04e6-b59c-4597-b4a9-1fa6cbf28672"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{mhebergement}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="20" y="590" width="110" height="30" uuid="0693ec67-27ed-4da6-8ec9-7bc4eb806829"/>
+				<reportElement x="10" y="580" width="110" height="30" uuid="0693ec67-27ed-4da6-8ec9-7bc4eb806829"/>
 				<text><![CDATA[Montant hebergement :]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="450" y="560" width="100" height="30" uuid="f1495496-3826-4ba2-bff9-18b79c9c25eb"/>
+				<reportElement x="130" y="640" width="100" height="20" uuid="f1495496-3826-4ba2-bff9-18b79c9c25eb"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{montant autre}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="319" y="560" width="130" height="30" uuid="000a801d-b0b3-4121-a2fc-fb5df01033d4"/>
+				<reportElement x="10" y="640" width="110" height="20" uuid="000a801d-b0b3-4121-a2fc-fb5df01033d4"/>
 				<text><![CDATA[Montant autre :]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="450" y="594" width="100" height="30" uuid="01cf70d6-c30e-4b20-a5f9-5afca4134347"/>
+				<reportElement x="120" y="660" width="100" height="30" uuid="01cf70d6-c30e-4b20-a5f9-5afca4134347"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{mtotal}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="319" y="590" width="131" height="30" uuid="cc42e40a-f203-4af4-abcd-f9f7e12ac120"/>
+				<reportElement x="10" y="660" width="131" height="30" uuid="cc42e40a-f203-4af4-abcd-f9f7e12ac120"/>
 				<text><![CDATA[Montant total :]]></text>
 			</staticText>
 			<staticText>
@@ -369,7 +351,7 @@
 				<text><![CDATA[Titre de manifestation:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="170" y="500" width="184" height="20" uuid="02d5d0d0-ead7-4655-9c52-00165c5e201c"/>
+				<reportElement x="174" y="490" width="184" height="20" uuid="02d5d0d0-ead7-4655-9c52-00165c5e201c"/>
 				<textElement>
 					<font size="14" isBold="true"/>
 				</textElement>
@@ -390,7 +372,7 @@
 				<reportElement x="8" y="90" width="151" height="1" uuid="dc0267df-ab9b-4cb4-aa19-69e4a63eadcf"/>
 			</line>
 			<line>
-				<reportElement x="355" y="510" width="201" height="1" uuid="e06b4e97-0e08-4de3-bf59-a9eb487457bc"/>
+				<reportElement x="360" y="500" width="201" height="1" uuid="e06b4e97-0e08-4de3-bf59-a9eb487457bc"/>
 			</line>
 			<line>
 				<reportElement x="374" y="343" width="201" height="1" uuid="0344839a-3e5f-4673-a6cd-2f216230e5c7"/>
@@ -402,8 +384,63 @@
 				<reportElement x="360" y="96" width="201" height="1" uuid="ab3a3e8b-1acd-431e-8cd8-fecfe5a94fbf"/>
 			</line>
 			<line>
-				<reportElement x="0" y="510" width="166" height="1" uuid="e210ddac-d257-4eb1-9e40-dff651338fdd"/>
+				<reportElement x="0" y="501" width="166" height="1" uuid="e210ddac-d257-4eb1-9e40-dff651338fdd"/>
 			</line>
+			<textField>
+				<reportElement x="461" y="550" width="98" height="30" uuid="ee0ab7de-5023-469b-affe-f74de6531346"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{mtitretransported}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="307" y="550" width="143" height="30" uuid="1e32e8c5-d5d6-4b24-abd0-e0d21d2f4f9f"/>
+				<text><![CDATA[Montant titre transport édité :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="461" y="610" width="98" height="30" uuid="4d57a1bf-47f3-42f4-911b-2e1feb789422"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{mfraisinscriptioned}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="307" y="610" width="152" height="30" uuid="f8af285d-ced2-4b24-9502-f612692f2c7d"/>
+				<text><![CDATA[Montant frais inscription édité :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="451" y="580" width="98" height="30" uuid="502c831a-8eb1-4c3d-b792-89963006627a"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{mhebergemented}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="307" y="580" width="142" height="30" uuid="eaadd5bb-b9cc-4fd2-ac4a-b6fd59736dc3"/>
+				<text><![CDATA[Montant hebergement édité :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="451" y="660" width="98" height="20" uuid="0c401505-0d89-4764-8526-c0a769db4114"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{mtotaled}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="307" y="640" width="142" height="20" uuid="bbbf82e1-ef9c-4ac4-bd11-fa875203edca"/>
+				<text><![CDATA[Montant autre édité :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="451" y="640" width="98" height="20" uuid="7e749130-9b19-4a7e-aba8-224ad809bbe8"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{montant autreed}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="307" y="660" width="163" height="30" uuid="35aa5e1c-39c2-4bd7-a619-e585efa7d27e"/>
+				<text><![CDATA[Montant total édité :]]></text>
+			</staticText>
 		</band>
 	</detail>
 </jasperReport>

@@ -11,4 +11,5 @@ import org.springframework.stereotype.Repository;
 public interface ManifestationDao extends JpaRepository<Manifestation, Long> {
 
     List<Manifestation> findAllByUserEmail(String email);
+
 }

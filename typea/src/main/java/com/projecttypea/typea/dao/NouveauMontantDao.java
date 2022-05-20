@@ -8,4 +8,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface NouveauMontantDao extends JpaRepository<NouveauMontant, Long> {
 
+    NouveauMontant findByManifestationId(Long id);
+    NouveauMontant findByMissionstageId(Long id);
+
 }

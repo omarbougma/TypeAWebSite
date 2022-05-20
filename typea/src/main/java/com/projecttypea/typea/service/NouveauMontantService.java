@@ -19,6 +19,14 @@ public class NouveauMontantService {
     @Autowired
     MissionStageDao missionStageDao;
 
+    public NouveauMontant findByMissionstageId(Long id) {
+        return nouveauMontantDao.findByMissionstageId(id);
+    }
+
+    public NouveauMontant findByManifestationId(Long id) {
+        return nouveauMontantDao.findByManifestationId(id);
+    }
+
     @Autowired
     ManifestationDao manifDao;
 
