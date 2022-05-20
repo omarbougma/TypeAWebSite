@@ -19,8 +19,8 @@ public class DonéesProService {
     UserDao userDao;
 
     public DonéesPro findByUserId(Long id) {
-
-        return donéesProDao.findByUserId(id);
+        User currentUser = userDao.getById(id);
+        return currentUser.getDonne();
     }
 
     @Autowired
