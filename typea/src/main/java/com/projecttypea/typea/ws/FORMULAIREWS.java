@@ -35,11 +35,11 @@ public class FORMULAIREWS {
         return formulairee.exportLettremanif(id);
     }
     @GetMapping("/admin/raportNVmontantmanif/{id}")
-    public String exportNvmontantmanif(long id) throws FileNotFoundException, JRException {
+    public String exportNvmontantmanif(@PathVariable long id) throws FileNotFoundException, JRException {
         return formulairee.exportNvmontantmanif(id);
     }
     @GetMapping("/admin/raportNvmontantmis/{id}")
-    public String exportNvmontantmission(long id) throws FileNotFoundException, JRException {
+    public String exportNvmontantmission(@PathVariable long id) throws FileNotFoundException, JRException {
         return formulairee.exportNvmontantmission(id);
     }
 
