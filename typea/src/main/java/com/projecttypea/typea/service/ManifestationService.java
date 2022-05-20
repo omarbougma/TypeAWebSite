@@ -1,5 +1,6 @@
 package com.projecttypea.typea.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -59,6 +60,7 @@ public class ManifestationService {
         User currentUser = userDao.findByEmail((String) session.getAttribute("session"));
         manif.setUser(currentUser);
         manif.setDemandeType("Manifestation");
+        manif.setState(DemandesState.IDLE);
         manifestationDao.save(manif);
         return 1;
     }
