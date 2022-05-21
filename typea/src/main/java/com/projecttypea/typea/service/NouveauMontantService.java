@@ -32,15 +32,23 @@ public class NouveauMontantService {
 
     public int addMontantsMS(Long mStageId, NouveauMontant nvMontant) {
         MissionStage currentMS = missionStageDao.getById(mStageId);
-        nvMontant.setMissionStage(currentMS);
-        nouveauMontantDao.save(nvMontant);
-        return 1;
+        if (currentMS.getNvMnt() != null) {
+            return -1;
+        } else {
+            nvMontant.setMissionStage(currentMS);
+            nouveauMontantDao.save(nvMontant);
+            return 1;
+        }
     }
 
     public int addMontantsM(Long manifId, NouveauMontant nvMontant) {
         Manifestation currentM = manifDao.getById(manifId);
-        nvMontant.setManifestation(currentM);
-        nouveauMontantDao.save(nvMontant);
-        return 1;
+        if (currentM.getNvMnt() != null) {
+            return -1;
+        } else {
+            nvMontant.setManifestation(currentM);
+            nouveauMontantDao.save(nvMontant);
+            return 1;
+        }
     }
 }

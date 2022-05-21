@@ -66,7 +66,7 @@ public class Soutien {
         this.montant = montant;
     }
 
-    public String isNature() {
+    public String getNature() {
         return nature;
     }
 

@@ -28,7 +28,8 @@ public class formulaire {
             Soutien soutien = soutienService.getById(manifestation.getSoutien().getId());
             File file = ResourceUtils.getFile("classpath:formulaire.jrxml");
             JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
-            JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(Collections.singleton(manifestation));
+            JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(
+                    Collections.singleton(manifestation));
             Map<String, Object> parameters = new HashMap<>();
             parameters.put("nom", user.getNom());
             parameters.put("prenom", user.getPrenom());
@@ -53,8 +54,7 @@ public class formulaire {
             parameters.put("entitérecherche", donéesPro.getEntiteRecherche());
             parameters.put("respoentité", donéesPro.getRespoEntite());
 
-
-            parameters.put("nature", soutien.isNature());
+            parameters.put("nature", soutien.getNature());
             parameters.put("mtitretransport", soutien.getmTitreTransport());
             parameters.put("mhebergement", soutien.getmHebergement());
             parameters.put("mtotal", soutien.getMontant());
@@ -63,45 +63,44 @@ public class formulaire {
 
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
 
-
             String path = home + "/Downloads/" + user.getNom() + manifestation.getId() + ".pdf";
             JasperExportManager.exportReportToPdfFile(jasperPrint, path);
 
             return path;
+        } catch (Exception e) {
+            return "erreur";
         }
-         catch (Exception e){
-                return "erreur";
-            }
     }
 
     public String exportNvmontantmanif(long id)throws FileNotFoundException, JRException {
 
 
 
-            Manifestation manifestation = getById(id);
-            User user = userService.findByNom(manifestation.getUser().getNom());
-            DonéesPro donéesPro = donéesProService.findByUser(user);
-            NouveauMontant nouveauMontant = nouveauMontantService.findByManifestationId(id);
+        Manifestation manifestation = getById(id);
+        User user = userService.getById(manifestation.getUser().getId());
+        DonéesPro donéesPro = donéesProService.findByUser(user);
+        NouveauMontant nouveauMontant = nouveauMontantService.findByManifestationId(id);
 
-            Soutien soutien = soutienService.getById(manifestation.getSoutien().getId());
-            File file = ResourceUtils.getFile("classpath:Nvmontantmanif.jrxml");
-            JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
-            JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(Collections.singleton(manifestation));
-            Map<String, Object> parameters = new HashMap<>();
-            parameters.put("nom", user.getNom());
-            parameters.put("prenom", user.getPrenom());
-            parameters.put("telephone", user.getTelephone());
-            parameters.put("email", user.getEmail());
+        Soutien soutien = soutienService.getById(manifestation.getSoutien().getId());
+        File file = ResourceUtils.getFile("classpath:Nvmontantmanif.jrxml");
+        JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
+        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(
+                Collections.singleton(manifestation));
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("nom", user.getNom());
+        parameters.put("prenom", user.getPrenom());
+        parameters.put("telephone", user.getTelephone());
+        parameters.put("email", user.getEmail());
 
-            parameters.put("id", manifestation.getId());
-            parameters.put("titremanifestation", manifestation.getTitreManifestation());
-            parameters.put("titreparticipation", manifestation.getTitreParticipation());
-            parameters.put("pays", manifestation.getPays());
-            parameters.put("datedebut", manifestation.getDateDebut());
-            parameters.put("datefin", manifestation.getDateFin());
-            parameters.put("datedepert", manifestation.getDateDepart());
-            parameters.put("dateretour", manifestation.getDateRetour());
-            parameters.put("ville", manifestation.getVille());
+        parameters.put("id", manifestation.getId());
+        parameters.put("titremanifestation", manifestation.getTitreManifestation());
+        parameters.put("titreparticipation", manifestation.getTitreParticipation());
+        parameters.put("pays", manifestation.getPays());
+        parameters.put("datedebut", manifestation.getDateDebut());
+        parameters.put("datefin", manifestation.getDateFin());
+        parameters.put("datedepert", manifestation.getDateDepart());
+        parameters.put("dateretour", manifestation.getDateRetour());
+        parameters.put("ville", manifestation.getVille());
 
 
             parameters.put("niveau", donéesPro.getNiveau());
@@ -112,7 +111,7 @@ public class formulaire {
             parameters.put("respoentité", donéesPro.getRespoEntite());
 
 
-            parameters.put("nature", soutien.isNature());
+            parameters.put("nature", soutien.getNature());
             parameters.put("mtitretransport", soutien.getmTitreTransport());
             parameters.put("mhebergement", soutien.getmHebergement());
             parameters.put("mtotal", soutien.getMontant());
@@ -131,8 +130,12 @@ public class formulaire {
             String path = home + "/Downloads/" + user.getNom() + manifestation.getId() + "NV.pdf";
             JasperExportManager.exportReportToPdfFile(jasperPrint, path);
 
-            return path;
-
+        return path;
+        /*
+         * } catch (Exception e) {
+         * return "erreur";
+         * }
+         */
     }
 
 
@@ -140,20 +143,20 @@ public class formulaire {
     public String exportNvmontantmission(long id)throws FileNotFoundException, JRException {
         try {
 
-            MissionStage mission =  missionStageService.getById(id);
-        User user = userService.findByNom(mission.getUser().getNom());
-        DonéesPro donéesPro = donéesProService.findByUser(user);
-        Cadre cadre = cadreService.findByMissionstage(mission);
-       NouveauMontant nouveauMontant= nouveauMontantService.findByMissionstageId(id);
-        Soutien soutien = soutienService.getById(mission.getSoutien().getId());
-        File file = ResourceUtils.getFile("classpath:Nvmontantmis.jrxml");
-        JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
-        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(Collections.singleton(mission));
-        Map<String, Object> parameters = new HashMap<>();
-        parameters.put("nom", user.getNom());
-        parameters.put("prenom", user.getPrenom());
-        parameters.put("telephone", user.getTelephone());
-        parameters.put("email", user.getEmail());
+            MissionStage mission = missionStageService.getById(id);
+            User user = userService.getById(mission.getUser().getId());
+            DonéesPro donéesPro = donéesProService.findByUser(user);
+            Cadre cadre = cadreService.findByMissionstage(mission);
+            NouveauMontant nouveauMontant = nouveauMontantService.findByMissionstageId(id);
+            Soutien soutien = soutienService.getById(mission.getSoutien().getId());
+            File file = ResourceUtils.getFile("classpath:Nvmontantmis.jrxml");
+            JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
+            JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(Collections.singleton(mission));
+            Map<String, Object> parameters = new HashMap<>();
+            parameters.put("nom", user.getNom());
+            parameters.put("prenom", user.getPrenom());
+            parameters.put("telephone", user.getTelephone());
+            parameters.put("email", user.getEmail());
 
         parameters.put("id",mission.getId());
 
@@ -174,7 +177,7 @@ public class formulaire {
         parameters.put("respoentité", donéesPro.getRespoEntite());
 
 
-        parameters.put("nature", soutien.isNature());
+        parameters.put("nature", soutien.getNature());
         parameters.put("mtitretransport", soutien.getmTitreTransport());
         parameters.put("mhebergement", soutien.getmHebergement());
         parameters.put("mtotal", soutien.getMontant());
@@ -237,8 +240,7 @@ public class formulaire {
             parameters.put("entitérecherche", donéesPro.getEntiteRecherche());
             parameters.put("respoentité", donéesPro.getRespoEntite());
 
-
-            parameters.put("nature", soutien.isNature());
+            parameters.put("nature", soutien.getNature());
             parameters.put("mtitretransport", soutien.getmTitreTransport());
             parameters.put("mhebergement", soutien.getmHebergement());
             parameters.put("mtotal", soutien.getMontant());
@@ -266,7 +268,7 @@ public class formulaire {
     }
 
     public String exportLettremanif(long id) throws FileNotFoundException, JRException {
-        Manifestation manifestation = getById(id);
+        Manifestation manifestation = manifestationDao.getById(id);
         File file = ResourceUtils.getFile("classpath:Lettremanif.jrxml");
         JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
         JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(Collections.singleton(manifestation));
@@ -306,9 +308,6 @@ return path;
         return path;
 
     }
-
-
-
 
     public Manifestation getById(Long aLong) {
         return manifestationDao.getById(aLong);
