@@ -75,7 +75,7 @@ public class formulaire {
     }
 
     public String exportNvmontantmanif(long id)throws FileNotFoundException, JRException {
-        try {
+
 
 
             Manifestation manifestation = getById(id);
@@ -132,10 +132,7 @@ public class formulaire {
             JasperExportManager.exportReportToPdfFile(jasperPrint, path);
 
             return path;
-        }
-        catch (Exception e){
-            return "erreur";
-        }
+
     }
 
 
