@@ -1,7 +1,10 @@
 package com.projecttypea.typea.service;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import com.projecttypea.typea.bean.Documents;
@@ -83,6 +86,21 @@ public class DocumentsService {
         Documents doc = documentsDao.findByName(docName);
         byte[] docBytes = doc.getData();
         return docBytes;
+    }
+
+    public Map<String, String> findAllBDocsyMStageId(Long mStageId) {
+        MissionStage currentMStage = missionStageDao.getById(mStageId);
+        List<Documents> docs = new ArrayList<Documents>();
+        docs = currentMStage.getDocuments();
+        System.out.println(docs.size());
+        HashMap<String, String> map = new HashMap<>();
+        map.put("filecin", "http://localhost:8000/admin/retrievedoc/" + docs.get(0).getName());
+        map.put("fileA", "http://localhost:8000/admin/retrievedoc/" + docs.get(1).getName());
+        map.put("fileB", "http://localhost:8000/admin/retrievedoc/" + docs.get(2).getName());
+        map.put("fileC", "http://localhost:8000/admin/retrievedoc/" + docs.get(3).getName());
+        map.put("fileD", "http://localhost:8000/admin/retrievedoc/" + docs.get(4).getName());
+        map.put("fileE", "http://localhost:8000/admin/retrievedoc/" + docs.get(5).getName());
+        return map;
     }
 
 }

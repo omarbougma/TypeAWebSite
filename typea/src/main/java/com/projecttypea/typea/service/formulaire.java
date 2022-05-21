@@ -20,9 +20,11 @@ public class formulaire {
 
     public String exportReport(long id) throws FileNotFoundException, JRException {
 
+
         Manifestation manifestation = getById(id);
-        User user = userService.findByNom(manifestation.getUser().getNom());
+        User user = userService.getById(manifestation.getUser().getId());
         DonéesPro donéesPro = donéesProService.findByUser(user);
+
 
         Soutien soutien = soutienService.getById(manifestation.getSoutien().getId());
         File file = ResourceUtils.getFile("classpath:formulaire.jrxml");
@@ -201,7 +203,7 @@ public class formulaire {
         try {
 
             MissionStage mission = missionStageService.getById(id);
-            User user = userService.findByNom(mission.getUser().getNom());
+            User user = userService.getById(mission.getUser().getId());
             DonéesPro donéesPro = donéesProService.findByUser(user);
             Cadre cadre = cadreService.findByMissionstage(mission);
 

@@ -19,8 +19,14 @@ import java.io.FileNotFoundException;
 public class FORMULAIREWS {
 
     @GetMapping("/user/raport/{id}")
-    public String generateReport(@PathVariable long id) throws FileNotFoundException, JRException {
-        return formulairee.exportReport(id);
+    public ResponseEntity<String> generateReport(@PathVariable long id) throws FileNotFoundException, JRException {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "text/plain");
+        String path = formulairee.exportReport(id);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .headers(headers)
+                .body(path);
     }
 
     @GetMapping("/admin/raportlettremission/{id}")
@@ -35,8 +41,14 @@ public class FORMULAIREWS {
     }
 
     @GetMapping("/user/raportmission/{id}")
-    public String exportReportMission(@PathVariable long id) throws FileNotFoundException, JRException {
-        return formulairee.exportReportMission(id);
+    public ResponseEntity<String> exportReportMission(@PathVariable long id) throws FileNotFoundException, JRException {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "text/plain");
+        String path = formulairee.exportReportMission(id);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .headers(headers)
+                .body(path);
     }
 
     @GetMapping("/admin/raportlettremanif/{id}")
@@ -49,6 +61,7 @@ public class FORMULAIREWS {
                 .headers(headers)
                 .body(path);
     }
+
     @GetMapping("/admin/raportNVmontantmanif/{id}")
     public ResponseEntity<String> exportNvmontantmanif(@PathVariable long id)
             throws FileNotFoundException, JRException {

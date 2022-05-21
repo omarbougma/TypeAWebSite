@@ -39,7 +39,7 @@ public class UserService {
         try {
             if (userDao.findByEmail(utilisateur.getEmail()) != null) {
                 return -1;
-            } else if (!utilisateur.getEmail().matches("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@uca.ma$")) {
+            } else if (!utilisateur.getEmail().matches("[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@(uca.ma|uca.ac.ma)")) {
                 return -2;
             } else {
                 utilisateur.setPassword(encoder.passwordEncoder().encode(utilisateur.getPassword()));

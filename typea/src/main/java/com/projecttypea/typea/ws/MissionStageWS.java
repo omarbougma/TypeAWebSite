@@ -12,6 +12,7 @@ import com.projecttypea.typea.bean.DonéesPro;
 import com.projecttypea.typea.bean.MissionStage;
 import com.projecttypea.typea.bean.Soutien;
 import com.projecttypea.typea.bean.User;
+import com.projecttypea.typea.security.enums.DemandesState;
 import com.projecttypea.typea.service.MissionStageService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -98,6 +99,11 @@ public class MissionStageWS {
     @GetMapping("/admin/getsoutienbystage/{mStageId}")
     public Soutien getSoutienByMStage(@PathVariable Long mStageId) {
         return missionStageService.getSoutienByMStage(mStageId);
+    }
+
+    @GetMapping("/admin/findallmstages/{state}")
+    public List<MissionStage> findAllByState(@PathVariable DemandesState state) {
+        return missionStageService.findAllByState(state);
     }
 
 }

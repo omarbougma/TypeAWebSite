@@ -137,4 +137,8 @@ public class MissionStageService {
         return 1;
     }
 
+    public List<MissionStage> findAllByState(DemandesState state) {
+        return missionStageDao.findAllByState(state);
+    }
+
 }
