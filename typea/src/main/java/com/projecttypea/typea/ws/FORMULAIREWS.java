@@ -4,6 +4,9 @@ import com.projecttypea.typea.service.formulaire;
 
 import net.sf.jasperreports.engine.JRException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,8 +24,14 @@ public class FORMULAIREWS {
     }
 
     @GetMapping("/admin/raportlettremission/{id}")
-    public String exportLettremission(@PathVariable long id) throws FileNotFoundException, JRException {
-        return formulairee.exportLettremission(id);
+    public ResponseEntity<String> exportLettremission(@PathVariable long id) throws FileNotFoundException, JRException {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "text/plain");
+        String path = formulairee.exportLettremission(id);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .headers(headers)
+                .body(path);
     }
 
     @GetMapping("/user/raportmission/{id}")
@@ -31,16 +40,38 @@ public class FORMULAIREWS {
     }
 
     @GetMapping("/admin/raportlettremanif/{id}")
-    public String exportLettremanif(@PathVariable long id) throws FileNotFoundException, JRException {
-        return formulairee.exportLettremanif(id);
+    public ResponseEntity<String> exportLettremanif(@PathVariable long id) throws FileNotFoundException, JRException {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "text/plain");
+        String path = formulairee.exportLettremanif(id);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .headers(headers)
+                .body(path);
     }
+
     @GetMapping("/admin/raportNVmontantmanif/{id}")
-    public String exportNvmontantmanif(long id) throws FileNotFoundException, JRException {
-        return formulairee.exportNvmontantmanif(id);
+    public ResponseEntity<String> exportNvmontantmanif(@PathVariable long id)
+            throws FileNotFoundException, JRException {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "text/plain");
+        String path = formulairee.exportNvmontantmanif(id);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .headers(headers)
+                .body(path);
     }
+
     @GetMapping("/admin/raportNvmontantmis/{id}")
-    public String exportNvmontantmission(long id) throws FileNotFoundException, JRException {
-        return formulairee.exportNvmontantmission(id);
+    public ResponseEntity<String> exportNvmontantmission(@PathVariable long id)
+            throws FileNotFoundException, JRException {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "text/plain");
+        String path = formulairee.exportNvmontantmission(id);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .headers(headers)
+                .body(path);
     }
 
     @Autowired

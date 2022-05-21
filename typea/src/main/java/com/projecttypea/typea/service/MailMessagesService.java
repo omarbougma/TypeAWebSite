@@ -30,7 +30,7 @@ public class MailMessagesService {
             helper.setTo(mailMessages.getToEmail());
             helper.setSubject(mailMessages.getSubject());
             helper.setText(mailMessages.getBody());
-
+            System.out.println(mailMessages.getPathToAttachement());
             FileSystemResource file = new FileSystemResource(mailMessages.getPathToAttachement());
             helper.addAttachment(file.getFilename(), file);
             emailSender.send(mssg);
