@@ -22,7 +22,7 @@ public class formulaire {
         try {
 
             Manifestation manifestation = getById(id);
-            User user = userService.findByNom(manifestation.getUser().getNom());
+            User user = userService.getById(manifestation.getUser().getId());
             DonéesPro donéesPro = donéesProService.findByUser(user);
             System.out.println(user);
             Soutien soutien = soutienService.getById(manifestation.getSoutien().getId());
@@ -193,7 +193,7 @@ public class formulaire {
         try {
 
             MissionStage mission = missionStageService.getById(id);
-            User user = userService.findByNom(mission.getUser().getNom());
+            User user = userService.getById(mission.getUser().getId());
             DonéesPro donéesPro = donéesProService.findByUser(user);
             Cadre cadre = cadreService.findByMissionstage(mission);
 

@@ -10,6 +10,7 @@ import com.projecttypea.typea.bean.DonéesPro;
 import com.projecttypea.typea.bean.Manifestation;
 import com.projecttypea.typea.bean.Soutien;
 import com.projecttypea.typea.bean.User;
+import com.projecttypea.typea.security.enums.DemandesState;
 import com.projecttypea.typea.service.ManifestationService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -85,6 +86,11 @@ public class ManifestationWS {
     @GetMapping("/admin/refusemanif/{manifId}")
     public int manifRefused(@PathVariable Long manifId) {
         return manifestationService.manifRefused(manifId);
+    }
+
+    @GetMapping("/admin/findallmanifs/{state}")
+    public List<Manifestation> findAllByState(@PathVariable DemandesState state) {
+        return manifestationService.findAllByState(state);
     }
 
 }

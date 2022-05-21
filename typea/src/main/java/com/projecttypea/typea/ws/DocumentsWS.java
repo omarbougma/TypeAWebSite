@@ -82,4 +82,9 @@ public class DocumentsWS {
                 document5);
     }
 
+    @GetMapping("/admin/viewdocs/{mStageId}")
+    public List<Documents> findAllByMStageId(Long mStageId) {
+        return documentsService.findAllByMStageId(mStageId);
+    }
+
 }

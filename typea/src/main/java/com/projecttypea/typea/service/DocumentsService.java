@@ -1,6 +1,7 @@
 package com.projecttypea.typea.service;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -83,6 +84,12 @@ public class DocumentsService {
         Documents doc = documentsDao.findByName(docName);
         byte[] docBytes = doc.getData();
         return docBytes;
+    }
+
+    public List<Documents> findAllByMStageId(Long mStageId) {
+        MissionStage currentMStage = missionStageDao.getById(mStageId);
+        List<Documents> docs = currentMStage.getDocuments();
+        return docs;
     }
 
 }

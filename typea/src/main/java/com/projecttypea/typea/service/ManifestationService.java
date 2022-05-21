@@ -128,4 +128,9 @@ public class ManifestationService {
         Soutien currentSoutien = currentManifestation.getSoutien();
         return currentSoutien;
     }
+
+    public List<Manifestation> findAllByState(DemandesState state) {
+        return manifestationDao.findAllByState(state);
+    }
+
 }
