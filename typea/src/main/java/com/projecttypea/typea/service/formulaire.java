@@ -24,7 +24,7 @@ public class formulaire {
             Manifestation manifestation = getById(id);
             User user = userService.findByNom(manifestation.getUser().getNom());
             DonéesPro donéesPro = donéesProService.findByUser(user);
-
+            System.out.println(user);
             Soutien soutien = soutienService.getById(manifestation.getSoutien().getId());
             File file = ResourceUtils.getFile("classpath:formulaire.jrxml");
             JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
@@ -282,7 +282,6 @@ public class formulaire {
 
         String path = home + "/Downloads/" + "Lettre" + mission.getId() + ".pdf";
         JasperExportManager.exportReportToPdfFile(jasperPrint, path);
-
         return path;
 
     }
