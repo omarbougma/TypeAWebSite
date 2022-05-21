@@ -38,10 +38,7 @@ public class FORMULAIREWS {
     public String exportNvmontantmanif(@PathVariable long id) throws FileNotFoundException, JRException {
         return formulairee.exportNvmontantmanif(id);
     }
-    @GetMapping("/admin/raportNvmontantmis/{id}")
-    public String exportNvmontantmission(@PathVariable long id) throws FileNotFoundException, JRException {
-        return formulairee.exportNvmontantmission(id);
-    }
+
 
     @Autowired
     private formulaire formulairee;
