@@ -1,7 +1,9 @@
 package com.projecttypea.typea.ws;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.transaction.Transactional;
 
@@ -83,8 +85,8 @@ public class DocumentsWS {
     }
 
     @GetMapping("/admin/viewdocs/{mStageId}")
-    public List<Documents> findAllByMStageId(Long mStageId) {
-        return documentsService.findAllByMStageId(mStageId);
+    public Map<String, String> findAllByMStageId(@PathVariable Long mStageId) {
+        return documentsService.findAllBDocsyMStageId(mStageId);
     }
 
 }
