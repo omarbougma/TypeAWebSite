@@ -402,7 +402,7 @@
 			</line>
 			<image>
 				<reportElement x="231" y="-11" width="69" height="73" uuid="c29341b2-8d28-41a5-b303-3a6dd7d46b2b"/>
-				<imageExpression><![CDATA["https://github.com/MINAidahmed/demande-type-A-assets/blob/main/img_2.png?raw=true"]]></imageExpression>
+				<imageExpression><![CDATA["C:/Users/User/IdeaProjects/frontend/src/assets/images/img_2.png"]]></imageExpression>
 			</image>
 		</band>
 	</detail>
