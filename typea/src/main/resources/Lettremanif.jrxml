@@ -8,12 +8,14 @@
 	<parameter name="montant" class="java.lang.String" />
 	<detail>
 		<band height="802" splitType="Stretch">
-			<!-- <image>
+
+			<image>
 				<reportElement x="-10" y="-20" width="111" height="120" uuid="282a515c-4f57-4364-8a06-b7b89261a2e0" />
 				<imageExpression>
 					<![CDATA["C:/Users/User/IdeaProjects/frontend/src/assets/images/img_2.png"]]>
 				</imageExpression>
-			</image> -->
+			</image>
+
 			<staticText>
 				<reportElement x="110" y="0" width="220" height="90" uuid="9c16b8d3-4ae2-48db-8d02-632c53dfabd7" />
 				<textElement>
