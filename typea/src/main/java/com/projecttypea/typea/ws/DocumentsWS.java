@@ -89,4 +89,9 @@ public class DocumentsWS {
         return documentsService.findAllBDocsyMStageId(mStageId);
     }
 
+    @GetMapping("/admin/viewdocsmanif/{manifId}")
+    public Map<String, String> findAllBDocsyManifId(Long manifId) {
+        return documentsService.findAllBDocsyManifId(manifId);
+    }
+
 }
