@@ -148,7 +148,6 @@ public class formulaire {
             DonéesPro donéesPro = donéesProService.findByUser(user);
             Cadre cadre = cadreService.findByMissionstage(mission);
             NouveauMontant nouveauMontant = nouveauMontantService.findByMissionstageId(id);
-
             Soutien soutien = soutienService.getById(mission.getSoutien().getId());
             File file = ResourceUtils.getFile("classpath:Nvmontantmis.jrxml");
             JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
@@ -185,6 +184,7 @@ public class formulaire {
             parameters.put("mfraisinscription", soutien.getmFraisInscription());
             parameters.put("montant autre", soutien.getmAutre());
 
+
             parameters.put("mtitretransported", nouveauMontant.getNewmTitre());
             parameters.put("mhebeed", nouveauMontant.getNewmHebergement());
             parameters.put("mtotaled", nouveauMontant.getNewMontant());
@@ -196,10 +196,12 @@ public class formulaire {
             JasperExportManager.exportReportToPdfFile(jasperPrint, path);
 
             return path;
+
         } catch (Exception e) {
             return "erreur";
         }
     }
+
 
 
     public String exportReportMission(long id) throws FileNotFoundException, JRException {
@@ -209,7 +211,6 @@ public class formulaire {
             User user = userService.getById(mission.getUser().getId());
             DonéesPro donéesPro = donéesProService.findByUser(user);
             Cadre cadre = cadreService.findByMissionstage(mission);
-
 
             Soutien soutien = soutienService.getById(mission.getSoutien().getId());
             File file = ResourceUtils.getFile("classpath:formmission.jrxml");

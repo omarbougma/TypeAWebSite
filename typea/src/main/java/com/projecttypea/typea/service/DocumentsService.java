@@ -40,24 +40,49 @@ public class DocumentsService {
     public int storeDocumentMissionStage(Long missionId, MultipartFile document, MultipartFile document1,
             MultipartFile document2,
             MultipartFile document3, MultipartFile document4, MultipartFile document5) throws IOException {
-        storeDocumentMission(missionId, document);
-        storeDocumentMission(missionId, document1);
-        storeDocumentMission(missionId, document2);
-        storeDocumentMission(missionId, document3);
-        storeDocumentMission(missionId, document4);
-        storeDocumentMission(missionId, document5);
+        if (document != null) {
+            storeDocumentMission(missionId, document);
+        }
+        if (document1 != null) {
+            storeDocumentMission(missionId, document1);
+        }
+        if (document2 != null) {
+            storeDocumentMission(missionId, document2);
+        }
+        if (document3 != null) {
+            storeDocumentMission(missionId, document3);
+        }
+        if (document4 != null) {
+            storeDocumentMission(missionId, document4);
+        }
+        if (document5 != null) {
+            storeDocumentMission(missionId, document5);
+        }
         return 1;
     }
 
     public int storeDocumentManifestation(Long manifId, MultipartFile document, MultipartFile document1,
             MultipartFile document2,
             MultipartFile document3, MultipartFile document4, MultipartFile document5) throws IOException {
-        storeDocumentManifestation(manifId, document);
-        storeDocumentManifestation(manifId, document1);
-        storeDocumentManifestation(manifId, document2);
-        storeDocumentManifestation(manifId, document3);
-        storeDocumentManifestation(manifId, document4);
-        storeDocumentManifestation(manifId, document5);
+        if (document != null) {
+            storeDocumentManifestation(manifId, document);
+        }
+        if (document1 != null) {
+            storeDocumentManifestation(manifId, document1);
+        }
+        if (document2 != null) {
+            storeDocumentManifestation(manifId, document2);
+        }
+        if (document3 != null) {
+            storeDocumentManifestation(manifId, document3);
+        }
+        if (document4 != null) {
+            storeDocumentManifestation(manifId, document4);
+        }
+        if (document5 != null) {
+            storeDocumentManifestation(manifId, document5);
+        }
+
         return 1;
     }
 
@@ -100,6 +125,32 @@ public class DocumentsService {
         map.put("fileC", "http://localhost:8000/admin/retrievedoc/" + docs.get(3).getName());
         map.put("fileD", "http://localhost:8000/admin/retrievedoc/" + docs.get(4).getName());
         map.put("fileE", "http://localhost:8000/admin/retrievedoc/" + docs.get(5).getName());
+        return map;
+    }
+
+    public Map<String, String> findAllBDocsyManifId(Long manifId) {
+        Manifestation currentManif = manifestationDao.getById(manifId);
+        List<Documents> docs = new ArrayList<Documents>();
+        docs = currentManif.getDocuments();
+        HashMap<String, String> map = new HashMap<>();
+        if (docs.size() > 0) {
+            map.put("filecin", "http://localhost:8000/admin/retrievedoc/" + docs.get(0).getName());
+        }
+        if (docs.size() > 1) {
+            map.put("fileA", "http://localhost:8000/admin/retrievedoc/" + docs.get(1).getName());
+        }
+        if (docs.size() > 2) {
+            map.put("fileB", "http://localhost:8000/admin/retrievedoc/" + docs.get(2).getName());
+        }
+        if (docs.size() > 3) {
+            map.put("fileC", "http://localhost:8000/admin/retrievedoc/" + docs.get(3).getName());
+        }
+        if (docs.size() > 4) {
+            map.put("fileD", "http://localhost:8000/admin/retrievedoc/" + docs.get(4).getName());
+        }
+        if (docs.size() > 5) {
+            map.put("fileE", "http://localhost:8000/admin/retrievedoc/" + docs.get(5).getName());
+        }
         return map;
     }
 

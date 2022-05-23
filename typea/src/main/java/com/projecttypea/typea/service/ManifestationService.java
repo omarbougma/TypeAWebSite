@@ -47,10 +47,15 @@ public class ManifestationService {
 
     public Long ajoutManifestation(Manifestation manif, HttpSession session) {
         try {
-            addManifestation(manif, session);
-            Long manifId = manif.getId();
-            soutienService.addSoutienManifestation(manifId, manif.getSoutien());
-            return manif.getId();
+            User currentUser = userDao.findByEmail((String) (session.getAttribute("session")));
+            if (currentUser.getDonne() != null) {
+                addManifestation(manif, session);
+                Long manifId = manif.getId();
+                soutienService.addSoutienManifestation(manifId, manif.getSoutien());
+                return manif.getId();
+            } else {
+                return Long.valueOf(-2);
+            }
         } catch (Exception e) {
             return Long.valueOf(-1);
         }
