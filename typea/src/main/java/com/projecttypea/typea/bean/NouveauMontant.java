@@ -20,6 +20,18 @@ public class NouveauMontant {
     private int newmHebergement;
     private int newMontant;
 
+    private int newautreMontant;
+
+    public int getNewautreMontant() {
+        return newautreMontant;
+    }
+
+    public void setNewautreMontant(int newautreMontant) {
+        this.newautreMontant = newautreMontant;
+    }
+
+
+
     @JsonBackReference(value = "newMontantMS")
     @OneToOne
     private MissionStage missionstage;
@@ -61,7 +73,7 @@ public class NouveauMontant {
     }
 
     public int getNewMontant() {
-        return newMontant;
+        return newMontant=newmTitre+newmHebergement+newmFraisInscription+newautreMontant;
     }
 
     public void setNewMontant(int newMontant) {

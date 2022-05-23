@@ -59,7 +59,7 @@ public class Soutien {
     }
 
     public int getMontant() {
-        return montant;
+        return montant=mAutre+mFraisInscription+mHebergement+mTitreTransport;
     }
 
     public void setMontant(int montant) {
