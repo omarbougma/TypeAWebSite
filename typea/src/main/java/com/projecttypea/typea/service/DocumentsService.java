@@ -129,17 +129,28 @@ public class DocumentsService {
     }
 
     public Map<String, String> findAllBDocsyManifId(Long manifId) {
-        MissionStage currentMStage = missionStageDao.getById(manifId);
+        Manifestation currentManif = manifestationDao.getById(manifId);
         List<Documents> docs = new ArrayList<Documents>();
-        docs = currentMStage.getDocuments();
-        System.out.println(docs.size());
+        docs = currentManif.getDocuments();
         HashMap<String, String> map = new HashMap<>();
-        map.put("filecin", "http://localhost:8000/admin/retrievedoc/" + docs.get(0).getName());
-        map.put("fileA", "http://localhost:8000/admin/retrievedoc/" + docs.get(1).getName());
-        map.put("fileB", "http://localhost:8000/admin/retrievedoc/" + docs.get(2).getName());
-        map.put("fileC", "http://localhost:8000/admin/retrievedoc/" + docs.get(3).getName());
-        map.put("fileD", "http://localhost:8000/admin/retrievedoc/" + docs.get(4).getName());
-        map.put("fileE", "http://localhost:8000/admin/retrievedoc/" + docs.get(5).getName());
+        if (docs.size() > 0) {
+            map.put("filecin", "http://localhost:8000/admin/retrievedoc/" + docs.get(0).getName());
+        }
+        if (docs.size() > 1) {
+            map.put("fileA", "http://localhost:8000/admin/retrievedoc/" + docs.get(1).getName());
+        }
+        if (docs.size() > 2) {
+            map.put("fileB", "http://localhost:8000/admin/retrievedoc/" + docs.get(2).getName());
+        }
+        if (docs.size() > 3) {
+            map.put("fileC", "http://localhost:8000/admin/retrievedoc/" + docs.get(3).getName());
+        }
+        if (docs.size() > 4) {
+            map.put("fileD", "http://localhost:8000/admin/retrievedoc/" + docs.get(4).getName());
+        }
+        if (docs.size() > 5) {
+            map.put("fileE", "http://localhost:8000/admin/retrievedoc/" + docs.get(5).getName());
+        }
         return map;
     }
 

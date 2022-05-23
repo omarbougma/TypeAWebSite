@@ -63,10 +63,13 @@ public class DocumentsWS {
     }
 
     @PostMapping("/user/add_documentMST/{missionId}")
-    public int storeDocument(@PathVariable Long missionId, @RequestParam("filecin") MultipartFile document,
-            @RequestParam("fileA") MultipartFile document1, @RequestParam("fileB") MultipartFile document2,
-            @RequestParam("fileC") MultipartFile document3, @RequestParam("fileD") MultipartFile document4,
-            @RequestParam("fileE") MultipartFile document5)
+    public int storeDocument(@PathVariable Long missionId,
+            @RequestParam(value = "filecin", required = false) MultipartFile document,
+            @RequestParam(value = "fileA", required = false) MultipartFile document1,
+            @RequestParam(value = "fileB", required = false) MultipartFile document2,
+            @RequestParam(value = "fileC", required = false) MultipartFile document3,
+            @RequestParam(value = "fileD", required = false) MultipartFile document4,
+            @RequestParam(value = "fileE", required = false) MultipartFile document5)
             throws IOException {
         return documentsService.storeDocumentMissionStage(missionId, document, document1, document2, document3,
                 document4,
@@ -74,10 +77,13 @@ public class DocumentsWS {
     }
 
     @PostMapping("/user/add_documentM/{manifId}")
-    public int storeDocumentManif(@PathVariable Long manifId, @RequestParam("filecin") MultipartFile document,
-            @RequestParam("fileA") MultipartFile document1, @RequestParam("fileB") MultipartFile document2,
-            @RequestParam("fileC") MultipartFile document3, @RequestParam("fileD") MultipartFile document4,
-            @RequestParam("fileE") MultipartFile document5)
+    public int storeDocumentManif(@PathVariable Long manifId,
+            @RequestParam(value = "filecin", required = false) MultipartFile document,
+            @RequestParam(value = "fileA", required = false) MultipartFile document1,
+            @RequestParam(value = "fileB", required = false) MultipartFile document2,
+            @RequestParam(value = "fileC", required = false) MultipartFile document3,
+            @RequestParam(value = "fileD", required = false) MultipartFile document4,
+            @RequestParam(value = "fileE", required = false) MultipartFile document5)
             throws IOException {
         return documentsService.storeDocumentManifestation(manifId, document, document1, document2, document3,
                 document4,
@@ -90,7 +96,7 @@ public class DocumentsWS {
     }
 
     @GetMapping("/admin/viewdocsmanif/{manifId}")
-    public Map<String, String> findAllBDocsyManifId(Long manifId) {
+    public Map<String, String> findAllBDocsyManifId(@PathVariable Long manifId) {
         return documentsService.findAllBDocsyManifId(manifId);
     }
 

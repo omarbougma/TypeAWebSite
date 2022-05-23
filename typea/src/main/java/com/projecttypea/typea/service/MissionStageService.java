@@ -42,11 +42,17 @@ public class MissionStageService {
 
     public Long ajoutMissionStage(MissionStage mStage, HttpSession session) {
         try {
-            addMissionStage(mStage, session);
-            Long mStageId = mStage.getId();
-            soutienService.addSoutienMission(mStageId, mStage.getSoutien());
-            cadreService.addCadreMission(mStageId, mStage.getCadre());
-            return mStageId;
+            User currentUser = userDao.findByEmail((String) (session.getAttribute("session")));
+            if (currentUser.getDonne() != null) {
+                addMissionStage(mStage, session);
+                Long mStageId = mStage.getId();
+                soutienService.addSoutienMission(mStageId, mStage.getSoutien());
+                cadreService.addCadreMission(mStageId, mStage.getCadre());
+                return mStageId;
+            } else {
+                return Long.valueOf(-2);
+            }
+
         } catch (Exception e) {
             return Long.valueOf(-1);
         }
