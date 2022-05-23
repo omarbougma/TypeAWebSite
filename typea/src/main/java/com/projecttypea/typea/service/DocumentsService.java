@@ -40,24 +40,49 @@ public class DocumentsService {
     public int storeDocumentMissionStage(Long missionId, MultipartFile document, MultipartFile document1,
             MultipartFile document2,
             MultipartFile document3, MultipartFile document4, MultipartFile document5) throws IOException {
-        storeDocumentMission(missionId, document);
-        storeDocumentMission(missionId, document1);
-        storeDocumentMission(missionId, document2);
-        storeDocumentMission(missionId, document3);
-        storeDocumentMission(missionId, document4);
-        storeDocumentMission(missionId, document5);
+        if (document != null) {
+            storeDocumentMission(missionId, document);
+        }
+        if (document1 != null) {
+            storeDocumentMission(missionId, document1);
+        }
+        if (document2 != null) {
+            storeDocumentMission(missionId, document2);
+        }
+        if (document3 != null) {
+            storeDocumentMission(missionId, document3);
+        }
+        if (document4 != null) {
+            storeDocumentMission(missionId, document4);
+        }
+        if (document5 != null) {
+            storeDocumentMission(missionId, document5);
+        }
         return 1;
     }
 
     public int storeDocumentManifestation(Long manifId, MultipartFile document, MultipartFile document1,
             MultipartFile document2,
             MultipartFile document3, MultipartFile document4, MultipartFile document5) throws IOException {
-        storeDocumentManifestation(manifId, document);
-        storeDocumentManifestation(manifId, document1);
-        storeDocumentManifestation(manifId, document2);
-        storeDocumentManifestation(manifId, document3);
-        storeDocumentManifestation(manifId, document4);
-        storeDocumentManifestation(manifId, document5);
+        if (document != null) {
+            storeDocumentManifestation(manifId, document);
+        }
+        if (document1 != null) {
+            storeDocumentManifestation(manifId, document1);
+        }
+        if (document2 != null) {
+            storeDocumentManifestation(manifId, document2);
+        }
+        if (document3 != null) {
+            storeDocumentManifestation(manifId, document3);
+        }
+        if (document4 != null) {
+            storeDocumentManifestation(manifId, document4);
+        }
+        if (document5 != null) {
+            storeDocumentManifestation(manifId, document5);
+        }
+
         return 1;
     }
 
