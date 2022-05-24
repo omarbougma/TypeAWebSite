@@ -1,5 +1,6 @@
 package com.projecttypea.typea.dao;
 
+import com.projecttypea.typea.bean.Token;
 import com.projecttypea.typea.bean.User;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -14,4 +15,6 @@ public interface UserDao extends JpaRepository<User, Long> {
     int deleteByEmail(String email);
 
     User findByEmailAndPassword(String email, String password);
+
+    User findByTokenTheToken(String theToken);
 }

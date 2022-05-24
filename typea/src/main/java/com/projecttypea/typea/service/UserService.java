@@ -1,15 +1,25 @@
 package com.projecttypea.typea.service;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import com.projecttypea.typea.bean.MailMessages;
+import com.projecttypea.typea.bean.Token;
 import com.projecttypea.typea.bean.User;
+import com.projecttypea.typea.dao.TokenDao;
 import com.projecttypea.typea.dao.UserDao;
 import com.projecttypea.typea.security.config.PasswordConfig;
 import com.projecttypea.typea.security.enums.UserRoles;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Service
 public class UserService {
@@ -18,6 +28,12 @@ public class UserService {
 
     @Autowired
     PasswordConfig encoder;
+
+    @Autowired
+    JavaMailSender emailSender;
+
+    @Autowired
+    TokenDao tokenDao;
 
     public User findByNom(String name) {
         return userDao.findByNom(name);
@@ -44,7 +60,13 @@ public class UserService {
             } else {
                 utilisateur.setPassword(encoder.passwordEncoder().encode(utilisateur.getPassword()));
                 utilisateur.setUserRole(UserRoles.USER);
+                utilisateur.setEnable(false);
+                Token token = new Token(UUID.randomUUID().toString());
+                token.setUser(utilisateur);
+                tokenDao.save(token);
+                utilisateur.setToken(token);
                 userDao.save(utilisateur);
+                sendConfirmationMail(utilisateur.getToken());
                 return 1;
             }
         } catch (NullPointerException e) {
@@ -62,6 +84,8 @@ public class UserService {
                 return -1;
             } else if (dbUser == null || !isUser) {
                 return -2;
+            } else if (!dbUser.isEnable()) {
+                return -4;
             } else {
                 session.setAttribute("session", user.getEmail());
                 return 1;
@@ -90,12 +114,38 @@ public class UserService {
         return userDao.getById(id);
     }
 
+    public int sendConfirmationMail(Token token) {
+        SimpleMailMessage mssg = new SimpleMailMessage();
+        mssg.setFrom("spring.email.from@gmail.com");
+        mssg.setTo(token.getUser().getEmail());
+        mssg.setText("http://localhost:8000/user/registrationConfirm?token=" + token.getTheToken());
+        mssg.setSubject("Confirmer votre registration");
+
+        emailSender.send(mssg);
+        return 1;
+    }
+
     public boolean isAdmin(String mail) {
         User dbUser = findByEmail(mail);
         if (dbUser.getUserRole() == UserRoles.ADMIN) {
             return true;
         } else {
             return false;
+        }
+    }
+
+    public int checkUserToken(String token,
+            HttpServletResponse httpServletResponse) throws IOException {
+        if (token != null) {
+
+            User currentUser = userDao.findByTokenTheToken(token);
+            currentUser.setEnable(true);
+            userDao.save(currentUser);
+
+            httpServletResponse.sendRedirect("http://localhost:4200/login");
+            return 1;
+        } else {
+            return -1;
         }
     }
 
