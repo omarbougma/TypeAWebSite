@@ -61,6 +61,7 @@ public class formulaire {
         parameters.put("mtotal", soutien.getMontant());
         parameters.put("mfraisinscription", soutien.getmFraisInscription());
         parameters.put("montant autre", soutien.getmAutre());
+        parameters.put("isbénf", soutien.getIsBenfTypeA());
 
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
 
@@ -116,7 +117,7 @@ public class formulaire {
         parameters.put("mtotal", soutien.getMontant());
         parameters.put("mfraisinscription", soutien.getmFraisInscription());
         parameters.put("montant autre", soutien.getmAutre());
-
+        parameters.put("isbénf", soutien.getIsBenfTypeA());
         parameters.put("mtitretransported", nouveauMontant.getNewmTitre());
         parameters.put("mhebergemented", nouveauMontant.getNewmHebergement());
         parameters.put("mtotaled", nouveauMontant.getNewMontant());
@@ -141,12 +142,12 @@ public class formulaire {
 
 
     public String exportNvmontantmission(long id) throws FileNotFoundException, JRException {
-        try {
+
 
             MissionStage mission = missionStageService.getById(id);
             User user = userService.getById(mission.getUser().getId());
             DonéesPro donéesPro = donéesProService.findByUser(user);
-            Cadre cadre = cadreService.findByMissionstage(mission);
+
             NouveauMontant nouveauMontant = nouveauMontantService.findByMissionstageId(id);
             Soutien soutien = soutienService.getById(mission.getSoutien().getId());
             File file = ResourceUtils.getFile("classpath:Nvmontantmis.jrxml");
@@ -183,7 +184,7 @@ public class formulaire {
             parameters.put("mtotal", soutien.getMontant());
             parameters.put("mfraisinscription", soutien.getmFraisInscription());
             parameters.put("montant autre", soutien.getmAutre());
-
+        parameters.put("isbénf", soutien.getIsBenfTypeA());
 
             parameters.put("mtitretransported", nouveauMontant.getNewmTitre());
             parameters.put("mhebeed", nouveauMontant.getNewmHebergement());
@@ -197,9 +198,6 @@ public class formulaire {
 
             return path;
 
-        } catch (Exception e) {
-            return "erreur";
-        }
     }
 
 
@@ -246,7 +244,7 @@ public class formulaire {
             parameters.put("mtotal", soutien.getMontant());
             parameters.put("mfraisinscription", soutien.getmFraisInscription());
             parameters.put("montant autre", soutien.getmAutre());
-
+            parameters.put("isbénf", soutien.getIsBenfTypeA());
 
             parameters.put("1", cadre.getTitreCadre());
             parameters.put("3", cadre.getRespoMarDuProjet());
