@@ -20,9 +20,11 @@ public class formulaire {
 
     public String exportReport(long id) throws FileNotFoundException, JRException {
 
+
         Manifestation manifestation = getById(id);
         User user = userService.getById(manifestation.getUser().getId());
         DonéesPro donéesPro = donéesProService.findByUser(user);
+
 
         Soutien soutien = soutienService.getById(manifestation.getSoutien().getId());
         File file = ResourceUtils.getFile("classpath:formulaire.jrxml");
@@ -45,6 +47,7 @@ public class formulaire {
         parameters.put("dateretour", manifestation.getDateRetour());
         parameters.put("ville", manifestation.getVille());
 
+
         parameters.put("niveau", donéesPro.getNiveau());
         parameters.put("grade", donéesPro.getGrade());
         parameters.put("ced", donéesPro.getCed());
@@ -58,17 +61,21 @@ public class formulaire {
         parameters.put("mtotal", soutien.getMontant());
         parameters.put("mfraisinscription", soutien.getmFraisInscription());
         parameters.put("montant autre", soutien.getmAutre());
+        parameters.put("isbénf", soutien.getIsBenfTypeA());
+        parameters.put("devise", soutien.getDevise());
 
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
 
-        String path = home + "/Downloads/" + user.getNom() + manifestation.getId() + ".pdf";
+        String path = home + "/Downloads/" + user.getNom() + manifestation.getId() + "manifestation.pdf";
         JasperExportManager.exportReportToPdfFile(jasperPrint, path);
 
         return path;
 
     }
 
+
     public String exportNvmontantmanif(long id) throws FileNotFoundException, JRException {
+
 
         Manifestation manifestation = getById(id);
         User user = userService.getById(manifestation.getUser().getId());
@@ -96,6 +103,7 @@ public class formulaire {
         parameters.put("dateretour", manifestation.getDateRetour());
         parameters.put("ville", manifestation.getVille());
 
+
         parameters.put("niveau", donéesPro.getNiveau());
         parameters.put("grade", donéesPro.getGrade());
         parameters.put("ced", donéesPro.getCed());
@@ -103,21 +111,28 @@ public class formulaire {
         parameters.put("entitérecherche", donéesPro.getEntiteRecherche());
         parameters.put("respoentité", donéesPro.getRespoEntite());
 
+
         parameters.put("nature", soutien.getNature());
         parameters.put("mtitretransport", soutien.getmTitreTransport());
         parameters.put("mhebergement", soutien.getmHebergement());
         parameters.put("mtotal", soutien.getMontant());
         parameters.put("mfraisinscription", soutien.getmFraisInscription());
         parameters.put("montant autre", soutien.getmAutre());
+        parameters.put("isbénf", soutien.getIsBenfTypeA());
+        parameters.put("devise", soutien.getDevise());
 
         parameters.put("mtitretransported", nouveauMontant.getNewmTitre());
         parameters.put("mhebergemented", nouveauMontant.getNewmHebergement());
         parameters.put("mtotaled", nouveauMontant.getNewMontant());
+        parameters.put("montant autreed", nouveauMontant.getNewautreMontant());
+
         parameters.put("mfraisinscriptioned", nouveauMontant.getNewmFraisInscription());
+
 
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
 
-        String path = home + "/Downloads/" + user.getNom() + manifestation.getId() + "NV.pdf";
+
+        String path = home + "/Downloads/" + user.getNom() + manifestation.getId() + "nouveau montants manifestation.pdf";
         JasperExportManager.exportReportToPdfFile(jasperPrint, path);
 
         return path;
@@ -128,13 +143,14 @@ public class formulaire {
          */
     }
 
+
     public String exportNvmontantmission(long id) throws FileNotFoundException, JRException {
-        try {
+
 
             MissionStage mission = missionStageService.getById(id);
             User user = userService.getById(mission.getUser().getId());
             DonéesPro donéesPro = donéesProService.findByUser(user);
-            Cadre cadre = cadreService.findByMissionstage(mission);
+
             NouveauMontant nouveauMontant = nouveauMontantService.findByMissionstageId(id);
             Soutien soutien = soutienService.getById(mission.getSoutien().getId());
             File file = ResourceUtils.getFile("classpath:Nvmontantmis.jrxml");
@@ -156,6 +172,7 @@ public class formulaire {
             parameters.put("dateretour", mission.getDateRetour());
             parameters.put("ville", mission.getVille());
 
+
             parameters.put("niveau", donéesPro.getNiveau());
             parameters.put("grade", donéesPro.getGrade());
             parameters.put("ced", donéesPro.getCed());
@@ -163,29 +180,31 @@ public class formulaire {
             parameters.put("entitérecherche", donéesPro.getEntiteRecherche());
             parameters.put("respoentité", donéesPro.getRespoEntite());
 
+
             parameters.put("nature", soutien.getNature());
             parameters.put("mtitretransport", soutien.getmTitreTransport());
             parameters.put("mhebergement", soutien.getmHebergement());
             parameters.put("mtotal", soutien.getMontant());
             parameters.put("mfraisinscription", soutien.getmFraisInscription());
             parameters.put("montant autre", soutien.getmAutre());
+        parameters.put("isbénf", soutien.getIsBenfTypeA());
+        parameters.put("devise", soutien.getDevise());
 
             parameters.put("mtitretransported", nouveauMontant.getNewmTitre());
-            parameters.put("mhebergemented", nouveauMontant.getNewmHebergement());
+            parameters.put("mhebeed", nouveauMontant.getNewmHebergement());
             parameters.put("mtotaled", nouveauMontant.getNewMontant());
-            parameters.put("mfraisinscriptioned", nouveauMontant.getNewmFraisInscription());
+            parameters.put("mfraised", nouveauMontant.getNewmFraisInscription());
+            parameters.put("mautreed", nouveauMontant.getNewautreMontant());
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
-            String path = home + "/Downloads/" + user.getNom() + mission.getId() + "NV.pdf";
+            String path = home + "/Downloads/" + user.getNom() + mission.getId() + "nouveau montants mission.pdf";
 
             JasperExportManager.exportReportToPdfFile(jasperPrint, path);
 
             return path;
 
-        } catch (Exception e) {
-            return "erreur";
-        }
-
     }
+
+
 
     public String exportReportMission(long id) throws FileNotFoundException, JRException {
         try {
@@ -215,6 +234,7 @@ public class formulaire {
             parameters.put("dateretour", mission.getDateRetour());
             parameters.put("ville", mission.getVille());
 
+
             parameters.put("niveau", donéesPro.getNiveau());
             parameters.put("grade", donéesPro.getGrade());
             parameters.put("ced", donéesPro.getCed());
@@ -228,16 +248,21 @@ public class formulaire {
             parameters.put("mtotal", soutien.getMontant());
             parameters.put("mfraisinscription", soutien.getmFraisInscription());
             parameters.put("montant autre", soutien.getmAutre());
+            parameters.put("isbénf", soutien.getIsBenfTypeA());
+            parameters.put("devise", soutien.getDevise());
+
 
             parameters.put("1", cadre.getTitreCadre());
             parameters.put("3", cadre.getRespoMarDuProjet());
             parameters.put("4", cadre.getPartenaireEtranger());
             parameters.put("2", cadre.getTitreProjet());
 
+
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
-            String path = home + "/Downloads/" + user.getNom() + mission.getId() + ".pdf";
+            String path = home + "/Downloads/" + user.getNom() + mission.getId() + "mission stage.pdf";
 
             JasperExportManager.exportReportToPdfFile(jasperPrint, path);
+
 
             return path;
         } catch (Exception e) {
@@ -260,7 +285,8 @@ public class formulaire {
 
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
 
-        String path = home + "/Downloads/" + "Lettre" + manifestation.getId() + ".pdf";
+
+        String path = home + "/Downloads/"  + manifestation.getId() + "lettre manifestation.pdf";
         JasperExportManager.exportReportToPdfFile(jasperPrint, path);
 
         return path;
@@ -280,9 +306,11 @@ public class formulaire {
         parameters.put("datefin", mission.getDateFin());
         parameters.put("montant", nouveauMontant.getNewMontant());
 
+
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
 
-        String path = home + "/Downloads/" + "Lettre" + mission.getId() + ".pdf";
+
+        String path = home + "/Downloads/" + mission.getId() + "lettre mission.pdf";
         JasperExportManager.exportReportToPdfFile(jasperPrint, path);
 
         return path;

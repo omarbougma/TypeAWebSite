@@ -33,6 +33,15 @@ public class Soutien {
 
     /* @NotEmpty(message = "Montant autre peut pas etre vide") */
     private int mAutre;
+private String devise;
+
+    public String getDevise() {
+        return devise;
+    }
+
+    public void setDevise(String devise) {
+        this.devise = devise;
+    }
 
     @JsonBackReference("soutienM")
     @OneToOne
@@ -59,7 +68,7 @@ public class Soutien {
     }
 
     public int getMontant() {
-        return montant;
+        return montant=mAutre+mFraisInscription+mHebergement+mTitreTransport;
     }
 
     public void setMontant(int montant) {
