@@ -62,6 +62,7 @@ public class formulaire {
         parameters.put("mfraisinscription", soutien.getmFraisInscription());
         parameters.put("montant autre", soutien.getmAutre());
         parameters.put("isbénf", soutien.getIsBenfTypeA());
+        parameters.put("devise", soutien.getDevise());
 
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
 
@@ -118,6 +119,8 @@ public class formulaire {
         parameters.put("mfraisinscription", soutien.getmFraisInscription());
         parameters.put("montant autre", soutien.getmAutre());
         parameters.put("isbénf", soutien.getIsBenfTypeA());
+        parameters.put("devise", soutien.getDevise());
+
         parameters.put("mtitretransported", nouveauMontant.getNewmTitre());
         parameters.put("mhebergemented", nouveauMontant.getNewmHebergement());
         parameters.put("mtotaled", nouveauMontant.getNewMontant());
@@ -185,6 +188,7 @@ public class formulaire {
             parameters.put("mfraisinscription", soutien.getmFraisInscription());
             parameters.put("montant autre", soutien.getmAutre());
         parameters.put("isbénf", soutien.getIsBenfTypeA());
+        parameters.put("devise", soutien.getDevise());
 
             parameters.put("mtitretransported", nouveauMontant.getNewmTitre());
             parameters.put("mhebeed", nouveauMontant.getNewmHebergement());
@@ -245,6 +249,8 @@ public class formulaire {
             parameters.put("mfraisinscription", soutien.getmFraisInscription());
             parameters.put("montant autre", soutien.getmAutre());
             parameters.put("isbénf", soutien.getIsBenfTypeA());
+            parameters.put("devise", soutien.getDevise());
+
 
             parameters.put("1", cadre.getTitreCadre());
             parameters.put("3", cadre.getRespoMarDuProjet());
