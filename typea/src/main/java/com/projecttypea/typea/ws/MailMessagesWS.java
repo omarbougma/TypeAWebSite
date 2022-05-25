@@ -18,4 +18,9 @@ public class MailMessagesWS {
         return mailMessagesService.sendMail(mailMessages);
     }
 
+    @PostMapping("/admin/sendsimplemail")
+    public void sendSimpleMail(@RequestBody MailMessages mailMessages) {
+        mailMessagesService.sendSimpleMail(mailMessages);
+    }
+
 }

@@ -54,7 +54,7 @@ public class Soutien {
 
     /* @NotEmpty(message = "Montant autre peut pas etre vide") */
     private int mAutre;
-private String devise;
+    private String devise;
 
     public String getDevise() {
         return devise;
@@ -89,7 +89,9 @@ private String devise;
     }
 
     public int getMontant() {
+
         return montant;
+
     }
 
     public void setMontant(int montant) {

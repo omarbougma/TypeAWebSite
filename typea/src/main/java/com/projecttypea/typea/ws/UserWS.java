@@ -1,8 +1,10 @@
 package com.projecttypea.typea.ws;
 
+import java.io.IOException;
 import java.util.List;
 
 import com.projecttypea.typea.bean.MissionStage;
+import com.projecttypea.typea.bean.Token;
 
 //import javax.transaction.Transactional;
 
@@ -11,6 +13,8 @@ import com.projecttypea.typea.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -69,6 +73,22 @@ public class UserWS {
     @GetMapping("/allusers/isadmin/{mail}")
     public boolean isAdmin(@PathVariable String mail) {
         return userService.isAdmin(mail);
+    }
+
+    @PostMapping("/user/sendconfmail")
+    public int sendConfirmationMail(@RequestBody Token token) {
+        return userService.sendConfirmationMail(token);
+    }
+
+    @GetMapping("/user/registrationConfirm")
+    public int checkUserToken(@RequestParam("token") String token,
+            HttpServletResponse httpServletResponse) throws IOException {
+        return userService.checkUserToken(token, httpServletResponse);
+    }
+
+    @GetMapping("/user/getthisuserid")
+    public Long getCurrentUserId(HttpSession session) {
+        return userService.getCurrentUserId(session);
     }
 
 }

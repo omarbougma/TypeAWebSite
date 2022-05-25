@@ -43,6 +43,8 @@ public class User {
 
     private UserRoles userRole;
 
+    private boolean isEnable;
+
     @JsonManagedReference(value = "donne")
     @OneToOne(mappedBy = "user")
     private DonéesPro donne;
@@ -54,6 +56,10 @@ public class User {
     @JsonManagedReference(value = "missionStage")
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<MissionStage> missionStage;
+
+    @JsonManagedReference(value = "token")
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private Token token;
 
     public DonéesPro getDonne() {
         return donne;
@@ -133,6 +139,22 @@ public class User {
 
     public void setUserRole(UserRoles userRole) {
         this.userRole = userRole;
+    }
+
+    public boolean isEnable() {
+        return isEnable;
+    }
+
+    public void setEnable(boolean isEnable) {
+        this.isEnable = isEnable;
+    }
+
+    public Token getToken() {
+        return token;
+    }
+
+    public void setToken(Token token) {
+        this.token = token;
     }
 
     public User() {
