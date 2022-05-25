@@ -149,4 +149,9 @@ public class UserService {
         }
     }
 
+    public Long getCurrentUserId(HttpSession session) {
+        User cUser = findByEmail((String) session.getAttribute("session"));
+        return cUser.getId();
+    }
+
 }

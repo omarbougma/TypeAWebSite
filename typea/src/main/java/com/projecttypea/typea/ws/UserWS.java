@@ -86,4 +86,9 @@ public class UserWS {
         return userService.checkUserToken(token, httpServletResponse);
     }
 
+    @GetMapping("/user/getthisuserid")
+    public Long getCurrentUserId(HttpSession session) {
+        return userService.getCurrentUserId(session);
+    }
+
 }

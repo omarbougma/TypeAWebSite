@@ -16,19 +16,14 @@ public class DonéesPro {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @NotEmpty(message = "Niveau peut pas etre vide")
     private String niveau;
 
-    @NotEmpty(message = "Grade peut pas etre vide")
     private String grade;
 
-    @NotEmpty(message = "CED peut pas etre vide")
     private String ced;
 
-    @NotEmpty(message = "Etablissement peut pas etre vide")
     private String etablissement;
 
-    @NotEmpty(message = "Entite de recherche peut pas etre vide")
     private String entiteRecherche;
 
     private String respoEntite;
