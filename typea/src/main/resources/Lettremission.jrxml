@@ -27,13 +27,13 @@
 				</textElement>
 				<text><![CDATA[Le Président
 A
-Madame
+
 S/C de
 Madame la Directrice de l’Ecole Nationale
 De Commerce et de Gestion
 Marrakech
 
-Objet 	: Votre demande de soutien pour participation à une manifestation scientifique
+Objet : Votre demande de soutien pour participation à une manifestation scientifique
 Réf. 	: Votre B.E. N°
 
                 ]]></text>
@@ -62,7 +62,7 @@ Réf. 	: Votre B.E. N°
                 ]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="-11" y="460" width="101" height="20" uuid="a2ee1cff-a371-40e6-be92-7af4599ef984"/>
+				<reportElement x="0" y="460" width="90" height="20" uuid="a2ee1cff-a371-40e6-be92-7af4599ef984"/>
 				<textElement>
 					<font size="14" isBold="true"/>
 				</textElement>
@@ -171,6 +171,13 @@ Tél : (+ 212) 05 24 43 48 14/   05 24 43 77 41– Fax :(+ 212) 0524434494
      Email : presidence@uca.ma    -   Site web : www.uca.ma
 ]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="0" y="180" width="150" height="20" uuid="24d06f67-5932-46a2-bfa8-bcf0f1392aac"/>
+				<textElement>
+					<font size="14" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Text Field"]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 </jasperReport>
