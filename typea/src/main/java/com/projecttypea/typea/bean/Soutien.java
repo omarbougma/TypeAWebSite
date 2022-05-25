@@ -9,6 +9,8 @@ import javax.validation.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
+import java.time.LocalDate;
+
 @Entity
 public class Soutien {
     @Id
@@ -16,6 +18,25 @@ public class Soutien {
     private long id;
 
     private String isBenfTypeA;
+    private LocalDate datederniersoutien;
+
+    public LocalDate getDatederniersoutien() {
+        return datederniersoutien;
+    }
+
+    public void setDatederniersoutien(LocalDate datederniersoutien) {
+        this.datederniersoutien = datederniersoutien;
+    }
+
+    public int getMontantderniersoutien() {
+        return montantderniersoutien;
+    }
+
+    public void setMontantderniersoutien(int montantderniersoutien) {
+        this.montantderniersoutien = montantderniersoutien;
+    }
+
+    private  int montantderniersoutien;
 
     /* @NotEmpty(message = "Montant peut pas etre vide") */
     private int montant;
@@ -68,7 +89,7 @@ private String devise;
     }
 
     public int getMontant() {
-        return montant=mAutre+mFraisInscription+mHebergement+mTitreTransport;
+        return montant;
     }
 
     public void setMontant(int montant) {
@@ -130,6 +151,8 @@ private String devise;
     public void setMissionstage(MissionStage missionstage) {
         this.missionstage = missionstage;
     }
+
+
 
     public Soutien() {
     }

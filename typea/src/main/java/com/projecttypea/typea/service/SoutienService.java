@@ -33,24 +33,32 @@ public class SoutienService {
 
     public int addSoutienMission(Long missionId, Soutien soutien) {
         MissionStage currentMission = missionStageDao.getById(missionId);
-        System.out.println(soutien);
         soutien.setMissionstage(currentMission);
-        System.out.println("hna");
+        int montant = (int) (soutien.getmAutre() + soutien.getmFraisInscription() + soutien.getmHebergement() + soutien.getmTitreTransport());
+        soutien.setMontant(montant);
+        if(soutien.getIsBenfTypeA().equals("non"))
+        {
+            soutien.setDatederniersoutien(null);
+            soutien.setMontantderniersoutien(0);
+        }
         soutienDao.save(soutien);
-        System.out.println("hna");
         return 1;
     }
 
     public int addSoutienManifestation(Long manifId, Soutien soutien) {
         Manifestation curentManifestation = manifestationDao.getById(manifId);
-        if (curentManifestation.getSoutien() != null) {
-            return -1;
-        } else {
-            soutien.setManifestation(curentManifestation);
-            soutienDao.save(soutien);
-            return 1;
+        soutien.setManifestation(curentManifestation);
+        int montant = (int) (soutien.getmAutre() + soutien.getmFraisInscription() + soutien.getmHebergement() + soutien.getmTitreTransport());
+        soutien.setMontant(montant);
+        if(soutien.getIsBenfTypeA().equals("non"))
+        {
+            soutien.setDatederniersoutien(null);
+            soutien.setMontantderniersoutien(0);
         }
-    }
+        soutienDao.save(soutien);
+                return 1;
+        }
+
 
     public void deleteById(Long id) {
         soutienDao.deleteById(id);
