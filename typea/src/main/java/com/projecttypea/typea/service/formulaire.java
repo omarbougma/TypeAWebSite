@@ -256,6 +256,7 @@ public class formulaire {
     public String exportLettremanif(long id) throws FileNotFoundException, JRException {
         Manifestation manifestation = manifestationDao.getById(id);
         NouveauMontant nouveauMontant = nouveauMontantService.findByManifestationId(id);
+        User user= userService.getById(manifestation.getUser().getId());
         File file = ResourceUtils.getFile("classpath:Lettremanif.jrxml");
         JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
         JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(Collections.singleton(manifestation));
@@ -265,6 +266,15 @@ public class formulaire {
         parameters.put("datedebut", manifestation.getDateDebut());
         parameters.put("datefin", manifestation.getDateFin());
         parameters.put("montant", nouveauMontant.getNewMontant());
+        if(user.getGender().equals("male"))
+        {parameters.put("gender", "Monsieur");
+
+        }else{
+            parameters.put("gender", "Madame");
+        }
+        parameters.put("nom",user.getNom());
+        parameters.put("penom",user.getPrenom());
+
 
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
 
@@ -278,6 +288,7 @@ public class formulaire {
     public String exportLettremission(long id) throws FileNotFoundException, JRException {
         MissionStage mission = missionStageService.getById(id);
         NouveauMontant nouveauMontant = nouveauMontantService.findByMissionstageId(id);
+        User user= userService.getById(mission.getUser().getId());
         File file = ResourceUtils.getFile("classpath:Lettremission.jrxml");
         JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
         JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(Collections.singleton(mission));
@@ -287,6 +298,14 @@ public class formulaire {
         parameters.put("datedebut", mission.getDateDebut());
         parameters.put("datefin", mission.getDateFin());
         parameters.put("montant", nouveauMontant.getNewMontant());
+        if(user.getGender().equals("male"))
+        {parameters.put("gender", "Monsieur");
+
+        }else{
+            parameters.put("gender", "Madame");
+        }
+        parameters.put("nom",user.getNom());
+        parameters.put("penom",user.getPrenom());
 
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
 

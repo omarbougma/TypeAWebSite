@@ -41,6 +41,17 @@ public class User {
     @NotEmpty(message = "Telephone peut pas etre vide")
     private String telephone;
 
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    @NotEmpty(message = "gender peut pas etre vide")
+    private String gender;
+
     private UserRoles userRole;
 
     private boolean isEnable;
