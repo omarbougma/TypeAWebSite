@@ -45,7 +45,7 @@ public class DonéesProWS {
         return donéesProService.findAll();
     }
 
-    @PutMapping("/user/adddonéespro")
+    @PostMapping("/user/adddonéespro")
     public int addDonesPro(@RequestBody DonéesPro donne, HttpSession session) {
         return donéesProService.addDonesPro(donne, session);
     }
