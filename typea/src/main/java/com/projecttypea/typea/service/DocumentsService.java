@@ -39,7 +39,8 @@ public class DocumentsService {
 
     public int storeDocumentMissionStage(Long missionId, MultipartFile document, MultipartFile document1,
             MultipartFile document2,
-            MultipartFile document3, MultipartFile document4, MultipartFile document5) throws IOException {
+            MultipartFile document3, MultipartFile document4, MultipartFile document5, MultipartFile document6)
+            throws IOException {
         if (document != null) {
             storeDocumentMission(missionId, document);
         }
@@ -58,12 +59,16 @@ public class DocumentsService {
         if (document5 != null) {
             storeDocumentMission(missionId, document5);
         }
+        if (document6 != null) {
+            storeDocumentMission(missionId, document6);
+        }
         return 1;
     }
 
     public int storeDocumentManifestation(Long manifId, MultipartFile document, MultipartFile document1,
             MultipartFile document2,
-            MultipartFile document3, MultipartFile document4, MultipartFile document5) throws IOException {
+            MultipartFile document3, MultipartFile document4, MultipartFile document5, MultipartFile document6)
+            throws IOException {
         if (document != null) {
             storeDocumentManifestation(manifId, document);
         }
@@ -82,7 +87,9 @@ public class DocumentsService {
         if (document5 != null) {
             storeDocumentManifestation(manifId, document5);
         }
-
+        if (document6 != null) {
+            storeDocumentManifestation(manifId, document6);
+        }
         return 1;
     }
 
@@ -91,6 +98,7 @@ public class DocumentsService {
         Documents documents = new Documents(documentName, document.getContentType(), document.getBytes());
         MissionStage curreMissionStage = missionStageDao.getById(missionId);
         documents.setMissionstage(curreMissionStage);
+        documents.setFileName(documentName);
         documents.setName(UUID.randomUUID().toString());
         documentsDao.save(documents);
 
@@ -102,6 +110,7 @@ public class DocumentsService {
         Documents documents = new Documents(documentName, document.getContentType(), document.getBytes());
         Manifestation currentManifestation = manifestationDao.getById(manifId);
         documents.setManifestation(currentManifestation);
+        documents.setFileName(documentName);
         documents.setName(UUID.randomUUID().toString());
         documentsDao.save(documents);
         return 1;
@@ -119,12 +128,24 @@ public class DocumentsService {
         docs = currentMStage.getDocuments();
         System.out.println(docs.size());
         HashMap<String, String> map = new HashMap<>();
-        map.put("filecin", "http://localhost:8000/admin/retrievedoc/" + docs.get(0).getName());
-        map.put("fileA", "http://localhost:8000/admin/retrievedoc/" + docs.get(1).getName());
-        map.put("fileB", "http://localhost:8000/admin/retrievedoc/" + docs.get(2).getName());
-        map.put("fileC", "http://localhost:8000/admin/retrievedoc/" + docs.get(3).getName());
-        map.put("fileD", "http://localhost:8000/admin/retrievedoc/" + docs.get(4).getName());
-        map.put("fileE", "http://localhost:8000/admin/retrievedoc/" + docs.get(5).getName());
+        if (docs.size() > 0) {
+            map.put("filecin", "http://localhost:8000/admin/retrievedoc/" + docs.get(0).getName());
+        }
+        if (docs.size() > 1) {
+            map.put("fileA", "http://localhost:8000/admin/retrievedoc/" + docs.get(1).getName());
+        }
+        if (docs.size() > 2) {
+            map.put("fileB", "http://localhost:8000/admin/retrievedoc/" + docs.get(2).getName());
+        }
+        if (docs.size() > 3) {
+            map.put("fileC", "http://localhost:8000/admin/retrievedoc/" + docs.get(3).getName());
+        }
+        if (docs.size() > 4) {
+            map.put("fileD", "http://localhost:8000/admin/retrievedoc/" + docs.get(4).getName());
+        }
+        if (docs.size() > 5) {
+            map.put("fileE", "http://localhost:8000/admin/retrievedoc/" + docs.get(5).getName());
+        }
         return map;
     }
 

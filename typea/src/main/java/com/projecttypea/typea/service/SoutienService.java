@@ -34,10 +34,10 @@ public class SoutienService {
     public int addSoutienMission(Long missionId, Soutien soutien) {
         MissionStage currentMission = missionStageDao.getById(missionId);
         soutien.setMissionstage(currentMission);
-        int montant = (int) (soutien.getmAutre() + soutien.getmFraisInscription() + soutien.getmHebergement() + soutien.getmTitreTransport());
+        int montant = (int) (soutien.getmAutre() + soutien.getmFraisInscription() + soutien.getmHebergement()
+                + soutien.getmTitreTransport());
         soutien.setMontant(montant);
-        if(soutien.getIsBenfTypeA().equals("non"))
-        {
+        if (soutien.getIsBenfTypeA().equals("non")) {
             soutien.setDatederniersoutien(null);
             soutien.setMontantderniersoutien(0);
         }
@@ -48,17 +48,16 @@ public class SoutienService {
     public int addSoutienManifestation(Long manifId, Soutien soutien) {
         Manifestation curentManifestation = manifestationDao.getById(manifId);
         soutien.setManifestation(curentManifestation);
-        int montant = (int) (soutien.getmAutre() + soutien.getmFraisInscription() + soutien.getmHebergement() + soutien.getmTitreTransport());
+        int montant = (int) (soutien.getmAutre() + soutien.getmFraisInscription() + soutien.getmHebergement()
+                + soutien.getmTitreTransport());
         soutien.setMontant(montant);
-        if(soutien.getIsBenfTypeA().equals("non"))
-        {
+        if (soutien.getIsBenfTypeA().equals("non")) {
             soutien.setDatederniersoutien(null);
             soutien.setMontantderniersoutien(0);
         }
         soutienDao.save(soutien);
-                return 1;
-        }
-
+        return 1;
+    }
 
     public void deleteById(Long id) {
         soutienDao.deleteById(id);

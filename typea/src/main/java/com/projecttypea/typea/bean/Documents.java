@@ -16,6 +16,7 @@ public class Documents {
     private Long id;
     private String name;
     private String type;
+    private String fileName;
     @Lob
     private byte[] data;
 
@@ -83,6 +84,14 @@ public class Documents {
 
     public void setMissionstage(MissionStage missionstage) {
         this.missionstage = missionstage;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
 
 }

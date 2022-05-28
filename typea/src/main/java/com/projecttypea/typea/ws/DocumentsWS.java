@@ -69,11 +69,13 @@ public class DocumentsWS {
             @RequestParam(value = "fileB", required = false) MultipartFile document2,
             @RequestParam(value = "fileC", required = false) MultipartFile document3,
             @RequestParam(value = "fileD", required = false) MultipartFile document4,
-            @RequestParam(value = "fileE", required = false) MultipartFile document5)
+            @RequestParam(value = "fileE", required = false) MultipartFile document5,
+            @RequestParam(value = "fileF", required = false) MultipartFile document6)
             throws IOException {
         return documentsService.storeDocumentMissionStage(missionId, document, document1, document2, document3,
                 document4,
-                document5);
+                document5,
+                document6);
     }
 
     @PostMapping("/user/add_documentM/{manifId}")
@@ -83,11 +85,13 @@ public class DocumentsWS {
             @RequestParam(value = "fileB", required = false) MultipartFile document2,
             @RequestParam(value = "fileC", required = false) MultipartFile document3,
             @RequestParam(value = "fileD", required = false) MultipartFile document4,
-            @RequestParam(value = "fileE", required = false) MultipartFile document5)
+            @RequestParam(value = "fileE", required = false) MultipartFile document5,
+            @RequestParam(value = "fileF", required = false) MultipartFile document6)
             throws IOException {
         return documentsService.storeDocumentManifestation(manifId, document, document1, document2, document3,
                 document4,
-                document5);
+                document5,
+                document6);
     }
 
     @GetMapping("/admin/viewdocs/{mStageId}")

@@ -130,17 +130,27 @@ public class MissionStageService {
 
     public int mStageRefused(Long missionId) {
         MissionStage currentMissionStage = missionStageDao.getById(missionId);
-        currentMissionStage.setState(DemandesState.REFUSED);
-        missionStageDao.save(currentMissionStage);
-        return 1;
+        if (currentMissionStage.getState() == DemandesState.APPROVED
+                || currentMissionStage.getState() == DemandesState.REFUSED) {
+            return -1;
+        } else {
+            currentMissionStage.setState(DemandesState.REFUSED);
+            missionStageDao.save(currentMissionStage);
+            return 1;
+        }
     }
 
     public int mStageAccepted(Long missionId, String toMail, String body, String subject) {
         MissionStage currentMissionStage = missionStageDao.getById(missionId);
-        currentMissionStage.setState(DemandesState.APPROVED);
-        missionStageDao.save(currentMissionStage);
-        demandeService.sendSimpleMail(toMail, body, subject);
-        return 1;
+        if (currentMissionStage.getState() == DemandesState.APPROVED
+                || currentMissionStage.getState() == DemandesState.REFUSED) {
+            return -1;
+        } else {
+            currentMissionStage.setState(DemandesState.APPROVED);
+            missionStageDao.save(currentMissionStage);
+            demandeService.sendSimpleMail(toMail, body, subject);
+            return 1;
+        }
     }
 
     public List<MissionStage> findAllByState(DemandesState state) {

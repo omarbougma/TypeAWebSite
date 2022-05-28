@@ -5,9 +5,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
@@ -17,7 +21,10 @@ public class Soutien {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @NotBlank
     private String isBenfTypeA;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate datederniersoutien;
 
     public LocalDate getDatederniersoutien() {
@@ -36,7 +43,7 @@ public class Soutien {
         this.montantderniersoutien = montantderniersoutien;
     }
 
-    private  int montantderniersoutien;
+    private int montantderniersoutien;
 
     /* @NotEmpty(message = "Montant peut pas etre vide") */
     private int montant;
@@ -153,8 +160,6 @@ public class Soutien {
     public void setMissionstage(MissionStage missionstage) {
         this.missionstage = missionstage;
     }
-
-
 
     public Soutien() {
     }
