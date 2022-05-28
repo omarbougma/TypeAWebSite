@@ -5,8 +5,10 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import com.projecttypea.typea.bean.DonéesPro;
+import com.projecttypea.typea.bean.Etablissement;
 import com.projecttypea.typea.bean.User;
 import com.projecttypea.typea.dao.DonéesProDao;
+import com.projecttypea.typea.dao.EtablissementDao;
 import com.projecttypea.typea.dao.UserDao;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,10 @@ public class DonéesProService {
 
     @Autowired
     DonéesProDao donéesProDao;
+    @Autowired
+    EtablissementService etablissementService;
+    @Autowired
+    private EtablissementDao etablissementDao;
 
     public DonéesPro findByUser(User user) {
         return donéesProDao.findByUser(user);
@@ -36,15 +42,18 @@ public class DonéesProService {
 
     public int addDonesPro(DonéesPro donne, HttpSession session) {
         User currentUser = userDao.findByEmail((String) session.getAttribute("session"));
-        System.out.println(session.getAttribute("session"));
+
         try {
             if (currentUser.getDonne() != null) {
                 currentUser.setDonne(donne);
-                donéesProDao.save(donne);
+                donne.setEtablissement(donne.getEtablissement());
+
                 return -1;
 
             } else if (currentUser.getDonne() == null) {
                 donne.setUser(currentUser);
+                etablissementService.save(donne.getEtablissement());
+                donne.setEtablissement(donne.getEtablissement());
                 donéesProDao.save(donne);
                 return 1;
             } else {

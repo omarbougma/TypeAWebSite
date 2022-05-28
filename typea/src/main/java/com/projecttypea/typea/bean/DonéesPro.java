@@ -22,7 +22,16 @@ public class DonéesPro {
 
     private String ced;
 
-    private String etablissement;
+    public Etablissement getEtablissement() {
+        return etablissement;
+    }
+
+    public void setEtablissement(Etablissement etablissement) {
+        this.etablissement = etablissement;
+    }
+
+    @OneToOne
+    private Etablissement etablissement;
 
     private String entiteRecherche;
 
@@ -71,13 +80,7 @@ public class DonéesPro {
         this.ced = ced;
     }
 
-    public String getEtablissement() {
-        return etablissement;
-    }
 
-    public void setEtablissement(String etablissement) {
-        this.etablissement = etablissement;
-    }
 
     public String getEntiteRecherche() {
         return entiteRecherche;
