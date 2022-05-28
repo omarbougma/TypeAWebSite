@@ -40,23 +40,17 @@ public class DonéesProService {
         return donéesProDao.findAll();
     }
 
-
-
     public int addDonesPro(DonéesPro donne, HttpSession session) {
         User currentUser = userDao.findByEmail((String) session.getAttribute("session"));
-
+        System.out.println(session.getAttribute("session"));
         try {
             if (currentUser.getDonne() != null) {
                 currentUser.setDonne(donne);
                 donne.setEtablissement(donne.getEtablissement());
-
+                donéesProDao.save(donne);
                 return -1;
 
             } else if (currentUser.getDonne() == null) {
-                donne.setUser(currentUser);
-                etablissementService.save(donne.getEtablissement());
-                donne.setEtablissement(donne.getEtablissement());
-                donéesProDao.save(donne);
                 return 1;
             } else {
                 return -3;
@@ -64,6 +58,13 @@ public class DonéesProService {
         } catch (Exception e) {
             return -2;
         }
+    }
+
+    public int save(DonéesPro donne, HttpSession session) {
+        User currentUser = userDao.findByEmail((String) session.getAttribute("session"));
+        donne.setUser(currentUser);
+        donéesProDao.save(donne);
+        return 1;
     }
 
     /*

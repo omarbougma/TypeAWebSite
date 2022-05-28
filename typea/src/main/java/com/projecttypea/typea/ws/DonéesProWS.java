@@ -50,6 +50,11 @@ public class DonéesProWS {
         return donéesProService.addDonesPro(donne, session);
     }
 
+    @PutMapping("/user/updatedonnepro")
+    public int save(@RequestBody DonéesPro donne, HttpSession session) {
+        return donéesProService.save(donne, session);
+    }
+
     @GetMapping("/admin/getdonne/{id}")
     public DonéesPro findByUserId(@PathVariable Long id) {
         return donéesProService.findByUserId(id);
