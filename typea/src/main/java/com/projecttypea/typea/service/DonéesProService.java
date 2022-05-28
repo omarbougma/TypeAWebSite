@@ -40,6 +40,8 @@ public class DonéesProService {
         return donéesProDao.findAll();
     }
 
+
+
     public int addDonesPro(DonéesPro donne, HttpSession session) {
         User currentUser = userDao.findByEmail((String) session.getAttribute("session"));
 
