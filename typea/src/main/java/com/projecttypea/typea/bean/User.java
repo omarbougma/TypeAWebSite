@@ -64,6 +64,10 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Manifestation> manifEstation;
 
+    @JsonManagedReference(value = "nvmontants")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<NouveauMontant> nvmontants;
+
     @JsonManagedReference(value = "missionStage")
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<MissionStage> missionStage;

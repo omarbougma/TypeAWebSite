@@ -51,7 +51,7 @@ public class ManifestationService {
             if (currentUser.getDonne() != null) {
                 addManifestation(manif, session);
                 Long manifId = manif.getId();
-                soutienService.addSoutienManifestation(manifId, manif.getSoutien());
+                soutienService.addSoutienManifestation(manifId, manif.getSoutien(),session);
                 return manif.getId();
             } else {
                 return Long.valueOf(-2);
@@ -65,6 +65,7 @@ public class ManifestationService {
         User currentUser = userDao.findByEmail((String) session.getAttribute("session"));
         manif.setUser(currentUser);
         manif.setDemandeType("Manifestation");
+        manif.getSoutien().setEtat(1);
         manif.setState(DemandesState.IDLE);
         manifestationDao.save(manif);
         return 1;
@@ -106,6 +107,7 @@ public class ManifestationService {
                 || currentManif.getState() == DemandesState.REFUSED) {
             return -1;
         } else {
+            currentManif.getSoutien().setEtat(0);
             currentManif.setState(DemandesState.APPROVED);
             manifestationDao.save(currentManif);
             demandeService.sendSimpleMail(toMail, body, subject);
@@ -119,6 +121,7 @@ public class ManifestationService {
                 || currentManif.getState() == DemandesState.REFUSED) {
             return -1;
         } else {
+            currentManif.getSoutien().setEtat(-1);
             currentManif.setState(DemandesState.REFUSED);
             manifestationDao.save(currentManif);
             return 1;

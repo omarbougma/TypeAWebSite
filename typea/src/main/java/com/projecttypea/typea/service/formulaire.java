@@ -48,7 +48,7 @@ public class formulaire {
         parameters.put("niveau", donéesPro.getNiveau());
         parameters.put("grade", donéesPro.getGrade());
         parameters.put("ced", donéesPro.getCed());
-        parameters.put("etablissement", donéesPro.getEtablissement());
+        parameters.put("etablissement", donéesPro.getEtablissement().getNom());
         parameters.put("entitérecherche", donéesPro.getEntiteRecherche());
         parameters.put("respoentité", donéesPro.getRespoEntite());
 
@@ -102,7 +102,7 @@ public class formulaire {
             parameters.put("niveau", donéesPro.getNiveau());
             parameters.put("grade", donéesPro.getGrade());
             parameters.put("ced", donéesPro.getCed());
-            parameters.put("etablissement", donéesPro.getEtablissement());
+            parameters.put("etablissement", donéesPro.getEtablissement().getNom());
             parameters.put("entitérecherche", donéesPro.getEntiteRecherche());
             parameters.put("respoentité", donéesPro.getRespoEntite());
 
@@ -166,7 +166,7 @@ public class formulaire {
         parameters.put("niveau", donéesPro.getNiveau());
         parameters.put("grade", donéesPro.getGrade());
         parameters.put("ced", donéesPro.getCed());
-        parameters.put("etablissement", donéesPro.getEtablissement());
+        parameters.put("etablissement", donéesPro.getEtablissement().getNom());
         parameters.put("entitérecherche", donéesPro.getEntiteRecherche());
         parameters.put("respoentité", donéesPro.getRespoEntite());
 
@@ -194,7 +194,7 @@ public class formulaire {
     }
 
     public String exportReportMission(long id) throws FileNotFoundException, JRException {
-        try {
+
 
             MissionStage mission = missionStageService.getById(id);
             User user = userService.getById(mission.getUser().getId());
@@ -224,7 +224,7 @@ public class formulaire {
             parameters.put("niveau", donéesPro.getNiveau());
             parameters.put("grade", donéesPro.getGrade());
             parameters.put("ced", donéesPro.getCed());
-            parameters.put("etablissement", donéesPro.getEtablissement());
+            parameters.put("etablissement", donéesPro.getEtablissement().getNom());
             parameters.put("entitérecherche", donéesPro.getEntiteRecherche());
             parameters.put("respoentité", donéesPro.getRespoEntite());
 
@@ -248,9 +248,7 @@ public class formulaire {
             JasperExportManager.exportReportToPdfFile(jasperPrint, path);
 
             return path;
-        } catch (Exception e) {
-            return "erreur";
-        }
+
     }
 
     public String exportLettremanif(long id) throws FileNotFoundException, JRException {

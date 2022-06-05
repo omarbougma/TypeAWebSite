@@ -1,16 +1,13 @@
 package com.projecttypea.typea.bean;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
@@ -20,6 +17,15 @@ public class Soutien {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+private int etat;
+
+    public int getEtat() {
+        return etat;
+    }
+
+    public void setEtat(int etat) {
+        this.etat = etat;
+    }
 
     @NotBlank
     private String isBenfTypeA;
@@ -62,6 +68,7 @@ public class Soutien {
     /* @NotEmpty(message = "Montant autre peut pas etre vide") */
     private int mAutre;
     private String devise;
+
 
     public String getDevise() {
         return devise;
