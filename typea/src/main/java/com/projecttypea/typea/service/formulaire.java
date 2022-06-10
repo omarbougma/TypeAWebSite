@@ -22,7 +22,7 @@ public class formulaire {
 
         Manifestation manifestation = getById(id);
         User user = userService.getById(manifestation.getUser().getId());
-        DonéesPro donéesPro = donéesProService.findByUser(user);
+        DoneesPro doneesPro = doneesProService.findByUser(user);
 
         Soutien soutien = soutienService.getById(manifestation.getSoutien().getId());
         File file = ResourceUtils.getFile("classpath:formulaire.jrxml");
@@ -45,12 +45,12 @@ public class formulaire {
         parameters.put("dateretour", manifestation.getDateRetour());
         parameters.put("ville", manifestation.getVille());
 
-        parameters.put("niveau", donéesPro.getNiveau());
-        parameters.put("grade", donéesPro.getGrade());
-        parameters.put("ced", donéesPro.getCed());
-        parameters.put("etablissement", donéesPro.getEtablissement().getNom());
-        parameters.put("entitérecherche", donéesPro.getEntiteRecherche());
-        parameters.put("respoentité", donéesPro.getRespoEntite());
+        parameters.put("niveau", doneesPro.getNiveau());
+        parameters.put("grade", doneesPro.getGrade());
+        parameters.put("ced", doneesPro.getCed());
+        parameters.put("etablissement", doneesPro.getEtablissement().getNom());
+        parameters.put("entitérecherche", doneesPro.getEntiteRecherche());
+        parameters.put("respoentité", doneesPro.getRespoEntite());
 
         parameters.put("nature", soutien.getNature());
         parameters.put("mtitretransport", soutien.getmTitreTransport());
@@ -75,7 +75,7 @@ public class formulaire {
         try {
             Manifestation manifestation = getById(id);
             User user = userService.getById(manifestation.getUser().getId());
-            DonéesPro donéesPro = donéesProService.findByUser(user);
+            DoneesPro doneesPro = doneesProService.findByUser(user);
             NouveauMontant nouveauMontant = nouveauMontantService.findByManifestationId(id);
 
             Soutien soutien = soutienService.getById(manifestation.getSoutien().getId());
@@ -99,12 +99,12 @@ public class formulaire {
             parameters.put("dateretour", manifestation.getDateRetour());
             parameters.put("ville", manifestation.getVille());
 
-            parameters.put("niveau", donéesPro.getNiveau());
-            parameters.put("grade", donéesPro.getGrade());
-            parameters.put("ced", donéesPro.getCed());
-            parameters.put("etablissement", donéesPro.getEtablissement().getNom());
-            parameters.put("entitérecherche", donéesPro.getEntiteRecherche());
-            parameters.put("respoentité", donéesPro.getRespoEntite());
+            parameters.put("niveau", doneesPro.getNiveau());
+            parameters.put("grade", doneesPro.getGrade());
+            parameters.put("ced", doneesPro.getCed());
+            parameters.put("etablissement", doneesPro.getEtablissement().getNom());
+            parameters.put("entitérecherche", doneesPro.getEntiteRecherche());
+            parameters.put("respoentité", doneesPro.getRespoEntite());
 
             parameters.put("nature", soutien.getNature());
             parameters.put("mtitretransport", soutien.getmTitreTransport());
@@ -140,7 +140,7 @@ public class formulaire {
 
         MissionStage mission = missionStageService.getById(id);
         User user = userService.getById(mission.getUser().getId());
-        DonéesPro donéesPro = donéesProService.findByUser(user);
+        DoneesPro doneesPro = doneesProService.findByUser(user);
 
         NouveauMontant nouveauMontant = nouveauMontantService.findByMissionstageId(id);
         Soutien soutien = soutienService.getById(mission.getSoutien().getId());
@@ -163,12 +163,12 @@ public class formulaire {
         parameters.put("dateretour", mission.getDateRetour());
         parameters.put("ville", mission.getVille());
 
-        parameters.put("niveau", donéesPro.getNiveau());
-        parameters.put("grade", donéesPro.getGrade());
-        parameters.put("ced", donéesPro.getCed());
-        parameters.put("etablissement", donéesPro.getEtablissement().getNom());
-        parameters.put("entitérecherche", donéesPro.getEntiteRecherche());
-        parameters.put("respoentité", donéesPro.getRespoEntite());
+        parameters.put("niveau", doneesPro.getNiveau());
+        parameters.put("grade", doneesPro.getGrade());
+        parameters.put("ced", doneesPro.getCed());
+        parameters.put("etablissement", doneesPro.getEtablissement().getNom());
+        parameters.put("entitérecherche", doneesPro.getEntiteRecherche());
+        parameters.put("respoentité", doneesPro.getRespoEntite());
 
         parameters.put("nature", soutien.getNature());
         parameters.put("mtitretransport", soutien.getmTitreTransport());
@@ -198,7 +198,7 @@ public class formulaire {
 
             MissionStage mission = missionStageService.getById(id);
             User user = userService.getById(mission.getUser().getId());
-            DonéesPro donéesPro = donéesProService.findByUser(user);
+            DoneesPro doneesPro = doneesProService.findByUser(user);
             Cadre cadre = cadreService.findByMissionstage(mission);
 
             Soutien soutien = soutienService.getById(mission.getSoutien().getId());
@@ -221,12 +221,12 @@ public class formulaire {
             parameters.put("dateretour", mission.getDateRetour());
             parameters.put("ville", mission.getVille());
 
-            parameters.put("niveau", donéesPro.getNiveau());
-            parameters.put("grade", donéesPro.getGrade());
-            parameters.put("ced", donéesPro.getCed());
-            parameters.put("etablissement", donéesPro.getEtablissement().getNom());
-            parameters.put("entitérecherche", donéesPro.getEntiteRecherche());
-            parameters.put("respoentité", donéesPro.getRespoEntite());
+            parameters.put("niveau", doneesPro.getNiveau());
+            parameters.put("grade", doneesPro.getGrade());
+            parameters.put("ced", doneesPro.getCed());
+            parameters.put("etablissement", doneesPro.getEtablissement().getNom());
+            parameters.put("entitérecherche", doneesPro.getEntiteRecherche());
+            parameters.put("respoentité", doneesPro.getRespoEntite());
 
             parameters.put("nature", soutien.getNature());
             parameters.put("mtitretransport", soutien.getmTitreTransport());
@@ -321,7 +321,7 @@ public class formulaire {
     @Autowired
     private ManifestationDao manifestationDao;
     @Autowired
-    private DonéesProService donéesProService;
+    private DoneesProService doneesProService;
     @Autowired
     private UserService userService;
     @Autowired

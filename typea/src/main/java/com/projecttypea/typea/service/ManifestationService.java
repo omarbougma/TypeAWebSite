@@ -1,12 +1,11 @@
 package com.projecttypea.typea.service;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 
-import com.projecttypea.typea.bean.DonéesPro;
+import com.projecttypea.typea.bean.DoneesPro;
 import com.projecttypea.typea.bean.Manifestation;
 import com.projecttypea.typea.bean.Soutien;
 import com.projecttypea.typea.bean.User;
@@ -14,7 +13,6 @@ import com.projecttypea.typea.dao.ManifestationDao;
 import com.projecttypea.typea.dao.UserDao;
 import com.projecttypea.typea.security.enums.DemandesState;
 
-import org.hibernate.annotations.Any;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -133,10 +131,10 @@ public class ManifestationService {
         return currentUser;
     }
 
-    public DonéesPro getCurrentDonne(Long manifId) {
+    public DoneesPro getCurrentDonne(Long manifId) {
         Manifestation currentManifestation = getById(manifId);
         User currentUser = currentManifestation.getUser();
-        DonéesPro currentDonnePro = currentUser.getDonne();
+        DoneesPro currentDonnePro = currentUser.getDonne();
         return currentDonnePro;
     }
 

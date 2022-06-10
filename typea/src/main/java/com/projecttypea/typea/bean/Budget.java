@@ -1,11 +1,9 @@
 package com.projecttypea.typea.bean;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.context.annotation.Bean;
 
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -54,4 +52,5 @@ public class Budget {
 
     public Budget() {
     }
+
 }
