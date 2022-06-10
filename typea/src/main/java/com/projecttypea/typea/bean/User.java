@@ -58,7 +58,7 @@ public class User {
 
     @JsonManagedReference(value = "donne")
     @OneToOne(mappedBy = "user")
-    private DonéesPro donne;
+    private DoneesPro donne;
 
     @JsonManagedReference(value = "manifeStation")
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
@@ -76,11 +76,11 @@ public class User {
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Token token;
 
-    public DonéesPro getDonne() {
+    public DoneesPro getDonne() {
         return donne;
     }
 
-    public void setDonne(DonéesPro donne) {
+    public void setDonne(DoneesPro donne) {
         donne = this.donne;
     }
 

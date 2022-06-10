@@ -14,7 +14,7 @@ public interface NouveauMontantDao extends JpaRepository<NouveauMontant, Long> {
 
     NouveauMontant findByManifestationId(Long id);
     NouveauMontant findByMissionstageId(Long id);
-    @Query(value = "SELECT SUM(nv.newMontant) FROM NouveauMontant  nv,Etablissement e,DonéesPro d, User  u WHERE  nv.user.id = u.id AND d.user.id = u.id AND d.etablissement.id = e.id  AND e.nom like :etab AND nv.etat=0 AND  nv.year = :date")
+    @Query(value = "SELECT SUM(nv.newMontant) FROM NouveauMontant  nv,Etablissement e,DoneesPro d, User  u WHERE  nv.user.id = u.id AND d.user.id = u.id AND d.etablissement.id = e.id  AND e.nom like :etab AND nv.etat=0 AND  nv.year = :date")
     String montant_par_etab(@Param("etab") String etab ,@Param("date") int date);
 
     @Query(value = "SELECT SUM(nv.newMontant) FROM NouveauMontant  nv, User  u WHERE  nv.user.id = u.id  AND nv.month like :month AND nv.etat=0 AND nv.year = :date ")

@@ -6,7 +6,7 @@ import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 
-import com.projecttypea.typea.bean.DonéesPro;
+import com.projecttypea.typea.bean.DoneesPro;
 import com.projecttypea.typea.bean.Manifestation;
 import com.projecttypea.typea.bean.Soutien;
 import com.projecttypea.typea.bean.User;
@@ -70,7 +70,7 @@ public class ManifestationWS {
     }
 
     @GetMapping("/admin/getdonnebymanif/{manifId}")
-    public DonéesPro getCurrentDonne(@PathVariable Long manifId) {
+    public DoneesPro getCurrentDonne(@PathVariable Long manifId) {
         return manifestationService.getCurrentDonne(manifId);
     }
 

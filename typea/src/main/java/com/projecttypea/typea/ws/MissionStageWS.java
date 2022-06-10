@@ -7,11 +7,7 @@ import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 
-import com.projecttypea.typea.bean.Cadre;
-import com.projecttypea.typea.bean.DonéesPro;
-import com.projecttypea.typea.bean.MissionStage;
-import com.projecttypea.typea.bean.Soutien;
-import com.projecttypea.typea.bean.User;
+import com.projecttypea.typea.bean.*;
 import com.projecttypea.typea.security.enums.DemandesState;
 import com.projecttypea.typea.service.MissionStageService;
 
@@ -78,7 +74,7 @@ public class MissionStageWS {
     }
 
     @GetMapping("/admin/userdonne/{mStageId}")
-    public DonéesPro getCurrentDonne(@PathVariable Long mStageId) {
+    public DoneesPro getCurrentDonne(@PathVariable Long mStageId) {
         return missionStageService.getCurrentDonne(mStageId);
     }
 

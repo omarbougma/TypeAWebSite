@@ -5,13 +5,10 @@ import com.projecttypea.typea.service.BudgetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.List;
 
 @RestController
 public class BudgetWs {
-
-
     @GetMapping("/user/findall")
     public List<Budget> findAll() {
         return budgetService.findAll();
@@ -42,4 +39,5 @@ public class BudgetWs {
 
     @Autowired
     BudgetService budgetService;
+
 }

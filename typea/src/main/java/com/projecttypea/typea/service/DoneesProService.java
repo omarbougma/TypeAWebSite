@@ -4,10 +4,9 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
-import com.projecttypea.typea.bean.DonéesPro;
-import com.projecttypea.typea.bean.Etablissement;
+import com.projecttypea.typea.bean.DoneesPro;
 import com.projecttypea.typea.bean.User;
-import com.projecttypea.typea.dao.DonéesProDao;
+import com.projecttypea.typea.dao.DoneesProDao;
 import com.projecttypea.typea.dao.EtablissementDao;
 import com.projecttypea.typea.dao.UserDao;
 
@@ -15,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class DonéesProService {
+public class DoneesProService {
 
     @Autowired
     UserDao userDao;
@@ -23,7 +22,7 @@ public class DonéesProService {
     UserService userService;
 
     @Autowired
-    DonéesProDao donéesProDao;
+    DoneesProDao doneesProDao;
     @Autowired
     EtablissementService etablissementService;
     @Autowired
@@ -31,19 +30,19 @@ public class DonéesProService {
 
 
 
-    public List<DonéesPro> findAll() {
-        return donéesProDao.findAll();
+    public List<DoneesPro> findAll() {
+        return doneesProDao.findAll();
     }
 
-    public DonéesPro findByUser(User user) {
-        return donéesProDao.findByUser(user);
+    public DoneesPro findByUser(User user) {
+        return doneesProDao.findByUser(user);
     }
 
-    public DonéesPro findByUserId(Long id) {
-        return donéesProDao.findByUserId(id);
+    public DoneesPro findByUserId(Long id) {
+        return doneesProDao.findByUserId(id);
     }
 
-    public int addDonesPro(DonéesPro donne, HttpSession session) {
+    public int addDonesPro(DoneesPro donne, HttpSession session) {
         User currentUser = userDao.findByEmail((String) session.getAttribute("session"));
         System.out.println(session.getAttribute("session"));
 
@@ -56,26 +55,26 @@ public class DonéesProService {
                 etablissementService.save(donne.getEtablissement());
                 donne.setEtablissement(donne.getEtablissement());
                 donne.setUser(currentUser);
-                donéesProDao.save(donne);
+                doneesProDao.save(donne);
 
                 return -1;
             } else {
                 return -3;
             }
         }
-public int savee(DonéesPro donéesPro)
+public int savee(DoneesPro doneesPro)
 {
-    donéesProDao.save(donéesPro);
+    doneesProDao.save(doneesPro);
     return 1;
 }
 
 
-    public int save(DonéesPro donne, HttpSession session) {
+    public int save(DoneesPro donne, HttpSession session) {
         User currentUser = userDao.findByEmail((String) session.getAttribute("session"));
         donne.setUser(currentUser);
        etablissementDao.save(donne.getEtablissement());
        donne.setEtablissement(donne.getEtablissement());
-        donéesProDao.save(donne);
+        doneesProDao.save(donne);
         return 1;
     }
 
@@ -97,7 +96,7 @@ public int savee(DonéesPro donéesPro)
      * }
      */
     public void deleteById(Long id) {
-        donéesProDao.deleteById(id);
+        doneesProDao.deleteById(id);
     }
 
 }
