@@ -74,6 +74,10 @@ public class UserService {
         }
     }
 
+    public long count() {
+        return userDao.count();
+    }
+
     public int loginUser(User user, HttpSession session) {
         try {
             String mail = user.getEmail();

@@ -41,7 +41,7 @@ public class MissionStageService {
     CadreService cadreService;
 
     public Long ajoutMissionStage(MissionStage mStage, HttpSession session) {
-        try {
+
             User currentUser = userDao.findByEmail((String) (session.getAttribute("session")));
             if (currentUser.getDonne() != null) {
                 addMissionStage(mStage, session);
@@ -53,9 +53,7 @@ public class MissionStageService {
                 return Long.valueOf(-2);
             }
 
-        } catch (Exception e) {
-            return Long.valueOf(-1);
-        }
+
     }
 
     public Optional<MissionStage> findById(Long id) {
@@ -73,7 +71,6 @@ public class MissionStageService {
     public int addMissionStage(MissionStage mission, HttpSession session) {
         User currentUser = userDao.findByEmail((String) session.getAttribute("session"));
         mission.setState(DemandesState.IDLE);
-        mission.getSoutien().setEtat(1);
         mission.setUser(currentUser);
         missionStageDao.save(mission);
         return 1;
@@ -135,7 +132,7 @@ public class MissionStageService {
                 || currentMissionStage.getState() == DemandesState.REFUSED) {
             return -1;
         } else {
-            currentMissionStage.getSoutien().setEtat(-1);
+            currentMissionStage.getNvMnt().setEtat(-1);
             currentMissionStage.setState(DemandesState.REFUSED);
             missionStageDao.save(currentMissionStage);
             return 1;
@@ -148,7 +145,7 @@ public class MissionStageService {
                 || currentMissionStage.getState() == DemandesState.REFUSED) {
             return -1;
         } else {
-            currentMissionStage.getSoutien().setEtat(0);
+            currentMissionStage.getNvMnt().setEtat(1);
             currentMissionStage.setState(DemandesState.APPROVED);
             missionStageDao.save(currentMissionStage);
             demandeService.sendSimpleMail(toMail, body, subject);

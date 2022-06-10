@@ -21,6 +21,15 @@ public class DonéesPro {
     private String grade;
 
     private String ced;
+    private String labo;
+
+    public String getLabo() {
+        return labo;
+    }
+
+    public void setLabo(String labo) {
+        this.labo = labo;
+    }
 
     public Etablissement getEtablissement() {
         return etablissement;

@@ -17,15 +17,7 @@ public class Soutien {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-private int etat;
 
-    public int getEtat() {
-        return etat;
-    }
-
-    public void setEtat(int etat) {
-        this.etat = etat;
-    }
 
     @NotBlank
     private String isBenfTypeA;
