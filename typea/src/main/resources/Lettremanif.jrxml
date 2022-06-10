@@ -5,7 +5,10 @@
 	<parameter name="datedebut" class="java.time.LocalDate"/>
 	<parameter name="datefin" class="java.time.LocalDate"/>
 	<parameter name="ville" class="java.lang.String"/>
+	<parameter name="gender" class="java.lang.String"/>
 	<parameter name="montant" class="java.lang.Number"/>
+	<parameter name="nom" class="java.lang.String"/>
+	<parameter name="penom" class="java.lang.String"/>
 	<detail>
 		<band height="802" splitType="Stretch">
 			<image>
@@ -27,7 +30,7 @@
 				</textElement>
 				<text><![CDATA[Le Président
 A
-Madame
+
 S/C de
 Madame la Directrice de l’Ecole Nationale
 De Commerce et de Gestion
@@ -47,7 +50,7 @@ Réf. 	: Votre B.E. N°
                 ]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="350" y="420" width="80" height="20" uuid="1066d227-b9b8-4181-b971-cf43b97cd18c"/>
+				<reportElement x="330" y="420" width="100" height="20" uuid="1066d227-b9b8-4181-b971-cf43b97cd18c"/>
 				<textElement>
 					<font size="13" isBold="true"/>
 				</textElement>
@@ -62,7 +65,7 @@ Réf. 	: Votre B.E. N°
                 ]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="-10" y="460" width="100" height="20" uuid="a2ee1cff-a371-40e6-be92-7af4599ef984"/>
+				<reportElement x="0" y="460" width="90" height="20" uuid="a2ee1cff-a371-40e6-be92-7af4599ef984"/>
 				<textElement>
 					<font size="14" isBold="true"/>
 				</textElement>
@@ -107,7 +110,7 @@ Réf. 	: Votre B.E. N°
                 ]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="210" y="490" width="80" height="21" uuid="22ac4994-6633-4541-ad43-2eeaaf544901"/>
+				<reportElement x="190" y="490" width="80" height="21" uuid="22ac4994-6633-4541-ad43-2eeaaf544901"/>
 				<textElement>
 					<font size="14" isBold="true"/>
 				</textElement>
@@ -145,19 +148,11 @@ Veuillez agréer, Madame, l'expression de mes meilleures salutations.
                 ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="300" y="490" width="275" height="30" uuid="6ed77132-4e11-4063-931c-b3389385e30e"/>
+				<reportElement x="270" y="490" width="305" height="30" uuid="6ed77132-4e11-4063-931c-b3389385e30e"/>
 				<textElement>
 					<font size="14"/>
 				</textElement>
 				<text><![CDATA[Dirhams vous a été attribuée pour couvrir
-                ]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="0" y="380" width="125" height="37" uuid="5d2947b2-0f2c-4f18-92ac-531ee9b002ee"/>
-				<textElement>
-					<font size="16" isBold="false"/>
-				</textElement>
-				<text><![CDATA[ Madame,
                 ]]></text>
 			</staticText>
 			<line>
@@ -171,6 +166,34 @@ Tél : (+ 212) 05 24 43 48 14/   05 24 43 77 41– Fax :(+ 212) 0524434494
      Email : presidence@uca.ma    -   Site web : www.uca.ma
 ]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="0" y="180" width="80" height="26" uuid="922cc575-6909-499d-97b9-b8d9de8a39cd"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{gender}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="179" width="90" height="28" uuid="a8e9f16f-e880-41c9-9c73-1eb12fb69228"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{nom}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="170" y="181" width="90" height="26" uuid="c6ddd05c-205c-4dee-a9e5-e98c9f15534e"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{penom}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="380" width="80" height="26" uuid="dcbac47e-53e8-4598-a3b0-97b59aa672bc"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{gender}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 </jasperReport>

@@ -6,6 +6,9 @@
 	<parameter name="datefin" class="java.time.LocalDate"/>
 	<parameter name="ville" class="java.lang.String"/>
 	<parameter name="montant" class="java.lang.Number"/>
+	<parameter name="nom" class="java.lang.String"/>
+	<parameter name="penom" class="java.lang.String"/>
+	<parameter name="gender" class="java.lang.String"/>
 	<detail>
 		<band height="802" splitType="Stretch">
 			<image>
@@ -47,7 +50,7 @@ Réf. 	: Votre B.E. N°
                 ]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="340" y="420" width="100" height="20" uuid="1066d227-b9b8-4181-b971-cf43b97cd18c"/>
+				<reportElement x="330" y="420" width="110" height="20" uuid="1066d227-b9b8-4181-b971-cf43b97cd18c"/>
 				<textElement>
 					<font size="13" isBold="true"/>
 				</textElement>
@@ -62,7 +65,7 @@ Réf. 	: Votre B.E. N°
                 ]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="0" y="460" width="90" height="20" uuid="a2ee1cff-a371-40e6-be92-7af4599ef984"/>
+				<reportElement x="10" y="460" width="75" height="20" uuid="a2ee1cff-a371-40e6-be92-7af4599ef984"/>
 				<textElement>
 					<font size="14" isBold="true"/>
 				</textElement>
@@ -107,7 +110,7 @@ Réf. 	: Votre B.E. N°
                 ]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="210" y="490" width="80" height="21" uuid="22ac4994-6633-4541-ad43-2eeaaf544901"/>
+				<reportElement x="190" y="490" width="90" height="30" uuid="22ac4994-6633-4541-ad43-2eeaaf544901"/>
 				<textElement>
 					<font size="14" isBold="true"/>
 				</textElement>
@@ -145,19 +148,11 @@ Veuillez agréer, Madame, l'expression de mes meilleures salutations.
                 ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="300" y="490" width="275" height="30" uuid="6ed77132-4e11-4063-931c-b3389385e30e"/>
+				<reportElement x="280" y="490" width="295" height="30" uuid="6ed77132-4e11-4063-931c-b3389385e30e"/>
 				<textElement>
 					<font size="14"/>
 				</textElement>
 				<text><![CDATA[Dirhams vous a été attribuée pour couvrir
-                ]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="0" y="380" width="125" height="37" uuid="5d2947b2-0f2c-4f18-92ac-531ee9b002ee"/>
-				<textElement>
-					<font size="16" isBold="false"/>
-				</textElement>
-				<text><![CDATA[ Madame,
                 ]]></text>
 			</staticText>
 			<line>
@@ -172,11 +167,32 @@ Tél : (+ 212) 05 24 43 48 14/   05 24 43 77 41– Fax :(+ 212) 0524434494
 ]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="0" y="180" width="150" height="20" uuid="24d06f67-5932-46a2-bfa8-bcf0f1392aac"/>
+				<reportElement x="0" y="180" width="75" height="26" uuid="c1b4e348-1be8-4a59-8903-5920abb2ae8e"/>
 				<textElement>
-					<font size="14" isBold="false"/>
+					<font size="14" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Text Field"]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{gender}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="85" y="179" width="95" height="28" uuid="87ba3066-6ec5-43b2-a962-3e732361fcd3"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{nom}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="180" width="100" height="26" uuid="657d88c2-7b25-420e-9f5a-89da6c05b543"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{penom}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="380" width="80" height="26" uuid="95e189d4-599a-4dc9-918e-3bc9cfa2c0d0"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{gender}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

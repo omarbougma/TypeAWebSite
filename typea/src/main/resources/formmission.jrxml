@@ -130,7 +130,7 @@
 				]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="168" y="687" width="168" height="20" uuid="8abb635b-b5d2-4ea7-9026-f93de2e05543"/>
+				<reportElement x="2" y="690" width="157" height="20" uuid="8abb635b-b5d2-4ea7-9026-f93de2e05543"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
@@ -138,21 +138,21 @@
 				]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="370" y="750" width="207" height="30" uuid="a0929356-1162-40e7-be75-fd32e2e702e3"/>
+				<reportElement x="180" y="750" width="207" height="30" uuid="a0929356-1162-40e7-be75-fd32e2e702e3"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[signature de Chef d’établissement ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="190" y="750" width="160" height="30" uuid="11e5b514-f8ed-456b-8393-ca526c91b9b5"/>
+				<reportElement x="390" y="750" width="160" height="30" uuid="11e5b514-f8ed-456b-8393-ca526c91b9b5"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[signature de la présidence]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="-8" y="750" width="185" height="30" uuid="22e30c6d-9253-4d8a-91c3-37a5873c6e70"/>
+				<reportElement x="180" y="690" width="185" height="30" uuid="22e30c6d-9253-4d8a-91c3-37a5873c6e70"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
@@ -208,7 +208,7 @@
 				]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="440" y="660" width="102" height="27" uuid="d9527251-6ba9-4cec-b49d-27cff2286769"/>
+				<reportElement x="436" y="657" width="102" height="27" uuid="d9527251-6ba9-4cec-b49d-27cff2286769"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
@@ -318,7 +318,7 @@
 				]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="120" y="180" width="100" height="30" uuid="d42aa8e1-c2b2-46a8-be7e-6e59b102a187"/>
+				<reportElement x="121" y="180" width="139" height="30" uuid="d42aa8e1-c2b2-46a8-be7e-6e59b102a187"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
@@ -515,33 +515,47 @@
 				<textFieldExpression><![CDATA[$P{devise}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="496" y="548" width="46" height="22" uuid="63b23a70-255d-41c9-b2a5-fdb932c33830"/>
+				<reportElement x="493" y="544" width="46" height="22" uuid="63b23a70-255d-41c9-b2a5-fdb932c33830"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{devise}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="501" y="574" width="40" height="22" uuid="7ec57261-5466-40a2-bd11-2862dd605ee2"/>
+				<reportElement x="493" y="572" width="46" height="22" uuid="7ec57261-5466-40a2-bd11-2862dd605ee2"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{devise}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="186" y="550" width="40" height="22" uuid="d8e682ad-3780-4aa5-999e-23f5bc4b4ef7"/>
+				<reportElement x="180" y="550" width="40" height="22" uuid="d8e682ad-3780-4aa5-999e-23f5bc4b4ef7"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{devise}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="186" y="580" width="40" height="22" uuid="499a7141-02e0-440b-98d4-0f74cab6b178"/>
+				<reportElement x="180" y="580" width="40" height="22" uuid="499a7141-02e0-440b-98d4-0f74cab6b178"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{devise}]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement x="390" y="690" width="160" height="30" uuid="7b929405-5ce0-49e1-babe-cbaaf08d4810"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[signature chef laboratoir]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="750" width="164" height="30" uuid="26c20dfe-df2e-4592-8e5d-c21eaff7ad8d"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Signature responsable ced]]></text>
+			</staticText>
 		</band>
 	</detail>
 </jasperReport>
