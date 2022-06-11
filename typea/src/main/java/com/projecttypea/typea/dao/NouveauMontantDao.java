@@ -20,6 +20,9 @@ public interface NouveauMontantDao extends JpaRepository<NouveauMontant, Long> {
     @Query(value = "SELECT SUM(nv.newMontant) FROM NouveauMontant  nv, User  u WHERE  nv.user.id = u.id  AND nv.month like :month AND nv.etat=0 AND nv.year = :date ")
     String montant_par_mois(@Param("month") String month ,@Param("date") int date );
 
+    @Query(value = "SELECT SUM(nv.newMontant) FROM NouveauMontant  nv,DoneesPro d, User  u WHERE  nv.user.id = u.id AND d.user.id = u.id  AND d.labo like  :labo AND nv.etat=0 AND  nv.year = :date")
+   String montant_par_labo(@Param("labo") String labo ,@Param("date") int date);
+
 
 
 }

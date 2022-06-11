@@ -152,4 +152,9 @@ public class NouveauMontantService {
         return montant_mois;
 
     }
+
+
+    public String montant_par_labo(String labo, int date) {
+        return nouveauMontantDao.montant_par_labo(labo, date);
+    }
 }

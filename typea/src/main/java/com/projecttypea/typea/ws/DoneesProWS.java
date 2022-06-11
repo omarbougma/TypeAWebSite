@@ -33,6 +33,7 @@ public class DoneesProWS {
         doneesProService.deleteById(id);
     }
 
+
     @GetMapping("/admin/donnéespro")
     public List<DoneesPro> findAll() {
         return doneesProService.findAll();

@@ -1,10 +1,13 @@
 package com.projecttypea.typea.service;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
 import com.projecttypea.typea.bean.DoneesPro;
+import com.projecttypea.typea.bean.Montant_par_labo;
 import com.projecttypea.typea.bean.User;
 import com.projecttypea.typea.dao.DoneesProDao;
 import com.projecttypea.typea.dao.EtablissementDao;
@@ -27,6 +30,11 @@ public class DoneesProService {
     EtablissementService etablissementService;
     @Autowired
     private EtablissementDao etablissementDao;
+    @Autowired
+    private  NouveauMontantService nouveauMontantService;
+    @Autowired
+    private  Montant_par_laboService montant_par_laboService;
+
 
 
 
@@ -56,12 +64,16 @@ public class DoneesProService {
                 donne.setEtablissement(donne.getEtablissement());
                 donne.setUser(currentUser);
                 doneesProDao.save(donne);
+                findlabos();
+
 
                 return -1;
             } else {
                 return -3;
             }
         }
+
+
 public int savee(DoneesPro doneesPro)
 {
     doneesProDao.save(doneesPro);
@@ -74,7 +86,8 @@ public int savee(DoneesPro doneesPro)
         donne.setUser(currentUser);
        etablissementDao.save(donne.getEtablissement());
        donne.setEtablissement(donne.getEtablissement());
-        doneesProDao.save(donne);
+       doneesProDao.save(donne);
+
         return 1;
     }
 
@@ -96,7 +109,24 @@ public int savee(DoneesPro doneesPro)
      * }
      */
     public void deleteById(Long id) {
+
         doneesProDao.deleteById(id);
+    }
+    public  void findlabos(){
+        Montant_par_labo element = new Montant_par_labo() ;
+        findAll().forEach(donne -> {
+            element.setLabo(donne.getLabo());
+            if(nouveauMontantService.montant_par_labo(donne.getLabo(), LocalDate.now().getYear()) == null){
+                element.setMontant(0);
+                montant_par_laboService.save(element);
+            }else
+            {
+                element.setMontant(Integer.parseInt(nouveauMontantService.montant_par_labo(donne.getLabo(), LocalDate.now().getYear())));
+                montant_par_laboService.save(element);
+            }
+
+
+        });
     }
 
 }
