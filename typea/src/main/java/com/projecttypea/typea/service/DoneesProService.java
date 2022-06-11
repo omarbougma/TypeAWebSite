@@ -1,17 +1,24 @@
 package com.projecttypea.typea.service;
 
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
+import com.projecttypea.typea.bean.Documents;
 import com.projecttypea.typea.bean.DoneesPro;
 import com.projecttypea.typea.bean.User;
+import com.projecttypea.typea.dao.DocumentsDao;
 import com.projecttypea.typea.dao.DoneesProDao;
 import com.projecttypea.typea.dao.EtablissementDao;
 import com.projecttypea.typea.dao.UserDao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class DoneesProService {
@@ -28,7 +35,8 @@ public class DoneesProService {
     @Autowired
     private EtablissementDao etablissementDao;
 
-
+    @Autowired
+    private DocumentsDao documentsDao;
 
     public List<DoneesPro> findAll() {
         return doneesProDao.findAll();
@@ -44,37 +52,65 @@ public class DoneesProService {
 
     public int addDonesPro(DoneesPro donne, HttpSession session) {
         User currentUser = userDao.findByEmail((String) session.getAttribute("session"));
-        System.out.println(session.getAttribute("session"));
+        if (currentUser.getDonne() != null) {
 
-            if (currentUser.getDonne() != null) {
+            return 1;
 
-                return 1;
+        } else if (currentUser.getDonne() == null) {
+            currentUser.setDonne(donne);
+            donne.setUser(currentUser);
+            doneesProDao.save(donne);
 
-            } else if (currentUser.getDonne() == null) {
-                currentUser.setDonne(donne);
-                etablissementService.save(donne.getEtablissement());
-                donne.setEtablissement(donne.getEtablissement());
-                donne.setUser(currentUser);
-                doneesProDao.save(donne);
-
-                return -1;
-            } else {
-                return -3;
-            }
+            return -1;
+        } else {
+            return -3;
         }
-public int savee(DoneesPro doneesPro)
-{
-    doneesProDao.save(doneesPro);
-    return 1;
-}
+    }
 
+    public int addDonneProFile(Long donneId, MultipartFile file) throws IOException {
+        if (file != null) {
+            String documentName = file.getOriginalFilename();
+            Documents documents = new Documents(documentName, file.getContentType(), file.getBytes());
+            DoneesPro doneesPro = doneesProDao.getById(donneId);
+            documents.setDonnepro(doneesPro);
+            documents.setFileName(documentName);
+            documents.setName(UUID.randomUUID().toString());
+            documentsDao.save(documents);
+        }
+        return 1;
+    }
+
+    public int savee(DoneesPro doneesPro) {
+        doneesProDao.save(doneesPro);
+        return 1;
+    }
 
     public int save(DoneesPro donne, HttpSession session) {
         User currentUser = userDao.findByEmail((String) session.getAttribute("session"));
+        DoneesPro savedDonne = findByUser(currentUser);
+        if (donne.getCed() != null) {
+            savedDonne.setCed(donne.getCed());
+        }
+        if (donne.getEntiteRecherche() != null) {
+            savedDonne.setEntiteRecherche(donne.getEntiteRecherche());
+        }
+        if (donne.getGrade() != null) {
+            savedDonne.setGrade(donne.getGrade());
+        }
+        if (donne.getNiveau() != null) {
+            savedDonne.setNiveau(donne.getNiveau());
+        }
+        if (donne.getRespoEntite() != null) {
+            savedDonne.setRespoEntite(donne.getRespoEntite());
+        }
+        if (donne.getLabo() != null) {
+            savedDonne.setLabo(donne.getLabo());
+        }
+        if (donne.getFile() != null) {
+            savedDonne.setFile(donne.getFile());
+        }
+        doneesProDao.save(savedDonne);
         donne.setUser(currentUser);
-       etablissementDao.save(donne.getEtablissement());
-       donne.setEtablissement(donne.getEtablissement());
-        doneesProDao.save(donne);
         return 1;
     }
 
@@ -99,4 +135,16 @@ public int savee(DoneesPro doneesPro)
         doneesProDao.deleteById(id);
     }
 
+    public List<Documents> findAllDocumentsById(Long donneId) {
+        return documentsDao.findAllBydonneproId(donneId);
+
+    }
+
+    public Map<String, String> findLastDoneeDoc(Long donneId) {
+        List<Documents> alldocs = findAllDocumentsById(donneId);
+        Documents lastDoc = alldocs.get(alldocs.size() - 1);
+        HashMap<String, String> map = new HashMap<>();
+        map.put("fichier", "http://localhost:8000/admin/retrievedoc/" + lastDoc.getName());
+        return map;
+    }
 }

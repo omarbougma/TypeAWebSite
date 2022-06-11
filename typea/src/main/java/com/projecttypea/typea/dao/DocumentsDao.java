@@ -12,4 +12,5 @@ public interface DocumentsDao extends JpaRepository<Documents, Long> {
 
     Documents findByName(String name);
 
+    List<Documents> findAllBydonneproId(Long donneId);
 }

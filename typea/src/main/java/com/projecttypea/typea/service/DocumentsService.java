@@ -8,11 +8,13 @@ import java.util.Map;
 import java.util.UUID;
 
 import com.projecttypea.typea.bean.Documents;
+import com.projecttypea.typea.bean.DoneesPro;
 import com.projecttypea.typea.bean.Manifestation;
 import com.projecttypea.typea.bean.MissionStage;
 import com.projecttypea.typea.dao.DocumentsDao;
 import com.projecttypea.typea.dao.ManifestationDao;
 import com.projecttypea.typea.dao.MissionStageDao;
+import com.projecttypea.typea.dao.DoneesProDao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,6 +30,9 @@ public class DocumentsService {
 
     @Autowired
     ManifestationDao manifestationDao;
+
+    @Autowired
+    DoneesProDao donneproDao;
 
     public void deleteById(Long id) {
         documentsDao.deleteById(id);
