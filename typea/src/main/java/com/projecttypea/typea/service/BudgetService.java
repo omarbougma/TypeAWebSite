@@ -33,7 +33,7 @@ public class BudgetService {
     }
 
     public int save(Budget budget) {
-        Budget currbudget = findByDate(budget.getDate());
+        Budget currbudget = findByDate(LocalDate.now().getYear());
         if (currbudget == null) {
             if (budget.getDate() != LocalDate.now().getYear()) {
                 return -1;
@@ -42,10 +42,8 @@ public class BudgetService {
                 return 1;
             }
         }else {
-            Long id = currbudget.getId();
-            delete(currbudget);
-            budget.setId(id);
-            budgetDao.save(budget);
+            currbudget.setmontant(budget.getmontant());
+            budgetDao.save(currbudget);
 
             return -2;
         }

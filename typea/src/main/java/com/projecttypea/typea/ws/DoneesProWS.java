@@ -31,6 +31,12 @@ public class DoneesProWS {
      * }
      */
 
+    @Transactional
+    @DeleteMapping("/deletedonnes/{id}")
+    public void deleteById(@PathVariable Long id) {
+        doneesProService.deleteById(id);
+    }
+
     @GetMapping("/admin/donnéespro")
     public List<DoneesPro> findAll() {
         return doneesProService.findAll();

@@ -265,10 +265,6 @@
 				<reportElement x="399" y="30" width="57" height="22" uuid="da1c834c-e3cf-454b-beb3-4f6182cfcb2c"/>
 				<textFieldExpression><![CDATA[$P{id}]]></textFieldExpression>
 			</textField>
-			<image>
-				<reportElement x="209" y="-20" width="98" height="100" uuid="6cee59e3-5577-43c6-8686-a46604f57da0"/>
-				<imageExpression><![CDATA["C:/Users/User/IdeaProjects/frontend/src/assets/images/img_2.png"]]></imageExpression>
-			</image>
 			<staticText>
 				<reportElement x="0" y="0" width="210" height="50" uuid="55eb167d-d618-4e63-bb1d-82d06aa5d084"/>
 				<textElement>
@@ -556,6 +552,10 @@
 				</textElement>
 				<text><![CDATA[Signature responsable ced]]></text>
 			</staticText>
+			<image>
+				<reportElement x="158" y="-20" width="197" height="210" uuid="f8aeeb68-25f1-478d-9a17-c93f2d20cda9"/>
+				<imageExpression><![CDATA["https://www.dates-concours.ma/wp-content/uploads/2019/06/Universite%CC%81-Cadi-Ayyad-600x283.png?p=6231"]]></imageExpression>
+			</image>
 		</band>
 	</detail>
 </jasperReport>

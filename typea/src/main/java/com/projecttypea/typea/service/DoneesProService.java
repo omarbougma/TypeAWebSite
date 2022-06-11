@@ -2,6 +2,8 @@ package com.projecttypea.typea.service;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -10,12 +12,12 @@ import javax.servlet.http.HttpSession;
 
 import com.projecttypea.typea.bean.Documents;
 import com.projecttypea.typea.bean.DoneesPro;
+import com.projecttypea.typea.bean.Montant_par_labo;
 import com.projecttypea.typea.bean.User;
 import com.projecttypea.typea.dao.DocumentsDao;
 import com.projecttypea.typea.dao.DoneesProDao;
 import com.projecttypea.typea.dao.EtablissementDao;
 import com.projecttypea.typea.dao.UserDao;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -34,6 +36,10 @@ public class DoneesProService {
     EtablissementService etablissementService;
     @Autowired
     private EtablissementDao etablissementDao;
+    @Autowired
+    private NouveauMontantService nouveauMontantService;
+    @Autowired
+    private Montant_par_laboService montant_par_laboService;
 
     @Autowired
     private DocumentsDao documentsDao;
@@ -132,7 +138,24 @@ public class DoneesProService {
      * }
      */
     public void deleteById(Long id) {
+
         doneesProDao.deleteById(id);
+    }
+
+    public void findlabos() {
+        Montant_par_labo element = new Montant_par_labo();
+        findAll().forEach(donne -> {
+            element.setLabo(donne.getLabo());
+            if (nouveauMontantService.montant_par_labo(donne.getLabo(), LocalDate.now().getYear()) == null) {
+                element.setMontant(0);
+                montant_par_laboService.save(element);
+            } else {
+                element.setMontant(Integer
+                        .parseInt(nouveauMontantService.montant_par_labo(donne.getLabo(), LocalDate.now().getYear())));
+                montant_par_laboService.save(element);
+            }
+
+        });
     }
 
     public List<Documents> findAllDocumentsById(Long donneId) {
