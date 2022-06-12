@@ -255,6 +255,7 @@ public class formulaire {
         Manifestation manifestation = manifestationDao.getById(id);
         NouveauMontant nouveauMontant = nouveauMontantService.findByManifestationId(id);
         User user= userService.getById(manifestation.getUser().getId());
+        Etablissement etab = etablissementService.findByNom(user.getDonne().getEtablissement().getNom());
         File file = ResourceUtils.getFile("classpath:Lettremanif.jrxml");
         JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
         JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(Collections.singleton(manifestation));
@@ -273,6 +274,22 @@ public class formulaire {
         parameters.put("nom",user.getNom());
         parameters.put("penom",user.getPrenom());
 
+      if(etab.getGender().equals("male"))
+      {
+          parameters.put("genderdir", "Monsieur");
+          parameters.put("la/le", "le");
+          parameters.put("directeur", "Directeur");
+
+      }else{
+          parameters.put("genderdir", "Madame");
+          parameters.put("la/le", "la");
+          parameters.put("directeur", "Directrice");
+
+
+      }
+
+        parameters.put("etab", etab.getNom());
+
 
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
 
@@ -287,6 +304,7 @@ public class formulaire {
         MissionStage mission = missionStageService.getById(id);
         NouveauMontant nouveauMontant = nouveauMontantService.findByMissionstageId(id);
         User user= userService.getById(mission.getUser().getId());
+        Etablissement etab = etablissementService.findByNom(user.getDonne().getEtablissement().getNom());
         File file = ResourceUtils.getFile("classpath:Lettremission.jrxml");
         JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
         JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(Collections.singleton(mission));
@@ -304,6 +322,22 @@ public class formulaire {
         }
         parameters.put("nom",user.getNom());
         parameters.put("penom",user.getPrenom());
+        if(etab.getGender().equals("male"))
+        {
+            parameters.put("genderdir", "Monsieur");
+            parameters.put("la/le", "le");
+            parameters.put("directeur", "Directeur");
+
+        }else{
+            parameters.put("genderdir", "Madame");
+            parameters.put("la/le", "la");
+            parameters.put("directeur", "Directrice");
+
+
+        }
+
+        parameters.put("etab", etab.getNom());
+
 
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
 
@@ -332,4 +366,6 @@ public class formulaire {
     private CadreService cadreService;
     @Autowired
     private NouveauMontantService nouveauMontantService;
+    @Autowired
+    private  EtablissementService etablissementService;
 }

@@ -12,6 +12,16 @@ public class Etablissement {
     private Long  id;
     private String nom ;
 
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    private String gender ;
+
     public Long getId() {
         return id;
     }
@@ -28,15 +38,15 @@ public class Etablissement {
         this.nom = nom;
     }
 
-    public String getNomdirecteur() {
-        return nomdirecteur;
+    public String getDirecteur() {
+        return directeur;
     }
 
-    public void setNomdirecteur(String nomdirecteur) {
-        this.nomdirecteur = nomdirecteur;
+    public void setDirecteur(String directeur) {
+        this.directeur = directeur;
     }
 
-    private String nomdirecteur ;
+    private String directeur ;
     public Etablissement() {
     }
 

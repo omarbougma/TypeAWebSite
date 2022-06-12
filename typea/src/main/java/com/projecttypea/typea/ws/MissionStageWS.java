@@ -12,12 +12,7 @@ import com.projecttypea.typea.security.enums.DemandesState;
 import com.projecttypea.typea.service.MissionStageService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 
@@ -83,9 +78,15 @@ public class MissionStageWS {
         return missionStageService.mStageRefused(missionId);
     }
 
+<<<<<<< HEAD
     @PostMapping("/admin/acceptstage/{missionId}")
     public int mStageAccepted(Long missionId, MailMessages params) {
         return missionStageService.mStageAccepted(missionId, params);
+=======
+
+    public int mStageAccepted(Long missionId, String toMail, String body, String subject) {
+        return missionStageService.mStageAccepted(missionId, toMail, body, subject);
+>>>>>>> be7fbef065056fbdf7251cc241c4b5fc7321122e
     }
 
     @GetMapping("/admin/getcadrebystage/{mStageId}")

@@ -19,8 +19,12 @@ public class EtablissementService {
         return etablissementDao.findByNom(nom);
     }
 
-    public int save(Etablissement entity) {
-        etablissementDao.save(entity);
+    public int save(String nom , String nomdirecteur,String gender) {
+    Etablissement etab = new Etablissement();
+    etab.setNom(nom);
+    etab.setDirecteur(nomdirecteur);
+    etab.setGender(gender);
+        etablissementDao.save(etab);
         return 1 ;
     }
 }
