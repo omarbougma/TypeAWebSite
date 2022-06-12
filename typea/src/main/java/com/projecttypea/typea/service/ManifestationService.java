@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.servlet.http.HttpSession;
 
 import com.projecttypea.typea.bean.DoneesPro;
+import com.projecttypea.typea.bean.MailMessages;
 import com.projecttypea.typea.bean.Manifestation;
 import com.projecttypea.typea.bean.Soutien;
 import com.projecttypea.typea.bean.User;
@@ -31,6 +32,9 @@ public class ManifestationService {
     @Autowired
     DemandeService demandeService;
 
+    @Autowired
+    MailMessagesService mailMssgsService;
+
     public Manifestation getById(Long id) {
         return manifestationDao.getById(id);
     }
@@ -49,7 +53,7 @@ public class ManifestationService {
             if (currentUser.getDonne() != null) {
                 addManifestation(manif, session);
                 Long manifId = manif.getId();
-                soutienService.addSoutienManifestation(manifId, manif.getSoutien(),session);
+                soutienService.addSoutienManifestation(manifId, manif.getSoutien(), session);
                 return manif.getId();
             } else {
                 return Long.valueOf(-2);
@@ -98,7 +102,7 @@ public class ManifestationService {
         return manifestationDao.findAllByUserEmail(email);
     }
 
-    public int manifAccepted(Long manifId, String toMail, String body, String subject) {
+    public int manifAccepted(Long manifId, MailMessages params) {
         Manifestation currentManif = manifestationDao.getById(manifId);
         if (currentManif.getState() == DemandesState.APPROVED
                 || currentManif.getState() == DemandesState.REFUSED) {
@@ -107,7 +111,7 @@ public class ManifestationService {
             currentManif.getNvMnt().setEtat(1);
             currentManif.setState(DemandesState.APPROVED);
             manifestationDao.save(currentManif);
-            demandeService.sendSimpleMail(toMail, body, subject);
+            mailMssgsService.sendSimpleMail(params);
             return 1;
         }
     }

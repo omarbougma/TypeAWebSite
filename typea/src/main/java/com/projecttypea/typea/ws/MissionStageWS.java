@@ -83,8 +83,9 @@ public class MissionStageWS {
         return missionStageService.mStageRefused(missionId);
     }
 
-    public int mStageAccepted(Long missionId, String toMail, String body, String subject) {
-        return missionStageService.mStageAccepted(missionId, toMail, body, subject);
+    @PostMapping("/admin/acceptstage/{missionId}")
+    public int mStageAccepted(Long missionId, MailMessages params) {
+        return missionStageService.mStageAccepted(missionId, params);
     }
 
     @GetMapping("/admin/getcadrebystage/{mStageId}")

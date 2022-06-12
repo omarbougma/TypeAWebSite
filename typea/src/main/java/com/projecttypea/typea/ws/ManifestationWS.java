@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import com.projecttypea.typea.bean.DoneesPro;
+import com.projecttypea.typea.bean.MailMessages;
 import com.projecttypea.typea.bean.Manifestation;
 import com.projecttypea.typea.bean.Soutien;
 import com.projecttypea.typea.bean.User;
@@ -79,8 +80,9 @@ public class ManifestationWS {
         return manifestationService.getSoutienByMStage(manifId);
     }
 
-    public int manifAccepted(Long manifId, String toMail, String body, String subject) {
-        return manifestationService.manifAccepted(manifId, toMail, body, subject);
+    @PostMapping("/admin/acceptmanif/{manifId}")
+    public int manifAccepted(Long manifId, MailMessages params) {
+        return manifestationService.manifAccepted(manifId, params);
     }
 
     @GetMapping("/admin/refusemanif/{manifId}")

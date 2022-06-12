@@ -36,19 +36,21 @@ public class MissionStageService {
     @Autowired
     CadreService cadreService;
 
+    @Autowired
+    MailMessagesService mailMssgsService;
+
     public Long ajoutMissionStage(MissionStage mStage, HttpSession session) {
 
-            User currentUser = userDao.findByEmail((String) (session.getAttribute("session")));
-            if (currentUser.getDonne() != null) {
-                addMissionStage(mStage, session);
-                Long mStageId = mStage.getId();
-                soutienService.addSoutienMission(mStageId, mStage.getSoutien(),session);
-                cadreService.addCadreMission(mStageId, mStage.getCadre());
-                return mStageId;
-            } else {
-                return Long.valueOf(-2);
-            }
-
+        User currentUser = userDao.findByEmail((String) (session.getAttribute("session")));
+        if (currentUser.getDonne() != null) {
+            addMissionStage(mStage, session);
+            Long mStageId = mStage.getId();
+            soutienService.addSoutienMission(mStageId, mStage.getSoutien(), session);
+            cadreService.addCadreMission(mStageId, mStage.getCadre());
+            return mStageId;
+        } else {
+            return Long.valueOf(-2);
+        }
 
     }
 
@@ -135,7 +137,7 @@ public class MissionStageService {
         }
     }
 
-    public int mStageAccepted(Long missionId, String toMail, String body, String subject) {
+    public int mStageAccepted(Long missionId, MailMessages params) {
         MissionStage currentMissionStage = missionStageDao.getById(missionId);
         if (currentMissionStage.getState() == DemandesState.APPROVED
                 || currentMissionStage.getState() == DemandesState.REFUSED) {
@@ -144,7 +146,7 @@ public class MissionStageService {
             currentMissionStage.getNvMnt().setEtat(1);
             currentMissionStage.setState(DemandesState.APPROVED);
             missionStageDao.save(currentMissionStage);
-            demandeService.sendSimpleMail(toMail, body, subject);
+            mailMssgsService.sendSimpleMail(params);
             return 1;
         }
     }
