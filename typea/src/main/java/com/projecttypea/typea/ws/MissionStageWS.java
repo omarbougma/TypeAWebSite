@@ -78,15 +78,10 @@ public class MissionStageWS {
         return missionStageService.mStageRefused(missionId);
     }
 
-<<<<<<< HEAD
-    @PostMapping("/admin/acceptstage/{missionId}")
-    public int mStageAccepted(Long missionId, MailMessages params) {
-        return missionStageService.mStageAccepted(missionId, params);
-=======
 
-    public int mStageAccepted(Long missionId, String toMail, String body, String subject) {
-        return missionStageService.mStageAccepted(missionId, toMail, body, subject);
->>>>>>> be7fbef065056fbdf7251cc241c4b5fc7321122e
+    @PostMapping("/admin/acceptstage/{missionId}")
+    public int mStageAccepted(@PathVariable Long missionId, @RequestBody MailMessages params) {
+        return missionStageService.mStageAccepted(missionId, params);
     }
 
     @GetMapping("/admin/getcadrebystage/{mStageId}")
