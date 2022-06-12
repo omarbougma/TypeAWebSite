@@ -23,14 +23,6 @@ public class DoneesProWS {
     @Autowired
     DoneesProService doneesProService;
 
-    /*
-     * @PutMapping("/user/updatedonnes/{id}")
-     * public int updateCadre(@PathVariable Long id, @RequestBody DonéesPro
-     * donnePro) {
-     * return donéesProService.updateDonesPro(id, donnePro);
-     * }
-     */
-
     @Transactional
     @DeleteMapping("/deletedonnes/{id}")
     public void deleteById(@PathVariable Long id) {

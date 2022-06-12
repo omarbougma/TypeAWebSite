@@ -34,9 +34,13 @@ public class UserWS {
     public int loginUser(@RequestBody User user, HttpSession session) {
         return userService.loginUser(user, session);
     }
-@GetMapping("/admin/countusers")
+    @GetMapping("/admin/countusers")
     public long count() {
         return userService.count();
+    }
+    @GetMapping("/admin/usersrap")
+    public List<User> user_rapport() {
+        return userService.user_rapport();
     }
 
     @GetMapping("/allusers/logout")

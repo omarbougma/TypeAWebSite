@@ -15,5 +15,5 @@ public interface DoneesProDao extends JpaRepository<DoneesPro, Long> {
 
     DoneesPro findByUser(User user);
 
-    List<Documents> findAllDocumentsById(Long donneId);
+
 }

@@ -9,6 +9,10 @@
 	<parameter name="nom" class="java.lang.String"/>
 	<parameter name="penom" class="java.lang.String"/>
 	<parameter name="gender" class="java.lang.String"/>
+	<parameter name="genderdir" class="java.lang.String"/>
+	<parameter name="la/le" class="java.lang.String"/>
+	<parameter name="directeur" class="java.lang.String"/>
+	<parameter name="etab" class="java.lang.String"/>
 	<detail>
 		<band height="802" splitType="Stretch">
 			<staticText>
@@ -20,7 +24,7 @@
                 ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="150" width="560" height="230" uuid="6eb46cfc-f24d-4c75-b674-7f295712303e"/>
+				<reportElement x="0" y="150" width="560" height="110" uuid="6eb46cfc-f24d-4c75-b674-7f295712303e"/>
 				<textElement>
 					<font size="14"/>
 				</textElement>
@@ -28,12 +32,8 @@
 A
 
 S/C de
-Madame la Directrice de l’Ecole Nationale
-De Commerce et de Gestion
-Marrakech
+                                                                                    
 
-Objet : Votre demande de soutien pour participation à une manifestation scientifique
-Réf. 	: Votre B.E. N°
 
                 ]]></text>
 			</staticText>
@@ -191,9 +191,52 @@ Tél : (+ 212) 05 24 43 48 14/   05 24 43 77 41– Fax :(+ 212) 0524434494
 				<textFieldExpression><![CDATA[$P{gender}]]></textFieldExpression>
 			</textField>
 			<image>
-				<reportElement x="-60" y="-10" width="218" height="210" uuid="827da9b0-8604-4f59-b618-805b3b866d6b"/>
+				<reportElement x="-59" y="-10" width="218" height="210" uuid="827da9b0-8604-4f59-b618-805b3b866d6b"/>
 				<imageExpression><![CDATA["https://www.dates-concours.ma/wp-content/uploads/2019/06/Universite%CC%81-Cadi-Ayyad-600x283.png?p=6231"]]></imageExpression>
 			</image>
+			<textField>
+				<reportElement x="0" y="220" width="70" height="30" uuid="645eb2d0-f4fd-4090-856f-2f4af4042b62"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{genderdir}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="90" y="220" width="69" height="30" uuid="5351b9ce-dd57-49ff-9175-f52705f20826"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{directeur}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="70" y="220" width="20" height="30" uuid="d5291702-78f9-41c1-8619-02899139c761"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{la/le}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="260" width="561" height="91" uuid="e8b9272b-b7c1-4983-b2fe-b5efec31dd92"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Objet : Votre demande de soutien pour participation à une manifestation scientifique
+Réf. 	: Votre B.E. N°]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="160" y="220" width="20" height="30" uuid="015623d1-0123-4110-a26d-ee9abf6b72e6"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[de]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="180" y="220" width="90" height="30" uuid="fdfe694f-a022-4a5b-9714-22c5b4a5db62"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{etab}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 </jasperReport>

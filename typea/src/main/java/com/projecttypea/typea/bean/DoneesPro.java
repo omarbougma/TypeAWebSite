@@ -64,7 +64,7 @@ public class DoneesPro {
     private User user;
 
     @JsonManagedReference(value = "Ddocument")
-    @OneToMany(mappedBy = "missionstage", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "donnepro", cascade = CascadeType.ALL)
     private List<Documents> file;
 
     public long getId() {

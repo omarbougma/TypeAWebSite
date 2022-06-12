@@ -65,8 +65,9 @@ public class DoneesProService {
         } else if (currentUser.getDonne() == null) {
             currentUser.setDonne(donne);
             donne.setUser(currentUser);
+            donne.setEtablissement(etablissementService.findByNom(donne.getEtablissement().getNom()));
             doneesProDao.save(donne);
-
+           findlabos();
             return -1;
         } else {
             return -3;
@@ -82,6 +83,7 @@ public class DoneesProService {
             documents.setFileName(documentName);
             documents.setName(UUID.randomUUID().toString());
             documentsDao.save(documents);
+
         }
         return 1;
     }

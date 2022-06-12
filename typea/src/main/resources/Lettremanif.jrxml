@@ -9,6 +9,10 @@
 	<parameter name="montant" class="java.lang.Number"/>
 	<parameter name="nom" class="java.lang.String"/>
 	<parameter name="penom" class="java.lang.String"/>
+	<parameter name="genderdir" class="java.lang.String"/>
+	<parameter name="la/le" class="java.lang.String"/>
+	<parameter name="directeur" class="java.lang.String"/>
+	<parameter name="etab" class="java.lang.String"/>
 	<detail>
 		<band height="802" splitType="Stretch">
 			<staticText>
@@ -17,24 +21,6 @@
 					<font size="14"/>
 				</textElement>
 				<text><![CDATA[Royaume du Maroc                      Université Cadi Ayyad - Marrakech                La présidence
-                ]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="0" y="150" width="560" height="230" uuid="6eb46cfc-f24d-4c75-b674-7f295712303e"/>
-				<textElement>
-					<font size="14"/>
-				</textElement>
-				<text><![CDATA[Le Président
-A
-
-S/C de
-Madame la Directrice de l’Ecole Nationale
-De Commerce et de Gestion
-Marrakech
-
-Objet 	: Votre demande de soutien pour participation à une manifestation scientifique
-Réf. 	: Votre B.E. N°
-
                 ]]></text>
 			</staticText>
 			<staticText>
@@ -163,27 +149,6 @@ Tél : (+ 212) 05 24 43 48 14/   05 24 43 77 41– Fax :(+ 212) 0524434494
 ]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="0" y="180" width="80" height="26" uuid="922cc575-6909-499d-97b9-b8d9de8a39cd"/>
-				<textElement>
-					<font size="14" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{gender}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="80" y="179" width="90" height="28" uuid="a8e9f16f-e880-41c9-9c73-1eb12fb69228"/>
-				<textElement>
-					<font size="14" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{nom}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="170" y="181" width="90" height="26" uuid="c6ddd05c-205c-4dee-a9e5-e98c9f15534e"/>
-				<textElement>
-					<font size="14" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{penom}]]></textFieldExpression>
-			</textField>
-			<textField>
 				<reportElement x="0" y="380" width="80" height="26" uuid="dcbac47e-53e8-4598-a3b0-97b59aa672bc"/>
 				<textElement>
 					<font size="14" isBold="true"/>
@@ -194,6 +159,84 @@ Tél : (+ 212) 05 24 43 48 14/   05 24 43 77 41– Fax :(+ 212) 0524434494
 				<reportElement x="-70" y="-10" width="220" height="220" uuid="d76a6180-3b9f-44d4-b27d-da1b402d5eb8"/>
 				<imageExpression><![CDATA["https://www.dates-concours.ma/wp-content/uploads/2019/06/Universite%CC%81-Cadi-Ayyad-600x283.png?p=6231"]]></imageExpression>
 			</image>
+			<staticText>
+				<reportElement x="0" y="150" width="560" height="110" uuid="92006c57-3a44-4f24-8908-01ae584316d5"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Le Président
+A
+
+S/C de
+                                                                                    
+
+
+                ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="180" width="75" height="26" uuid="ecf7db4d-048b-4deb-8ae0-2825495572ea"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{gender}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="85" y="179" width="95" height="28" uuid="ea595e23-ae1d-430d-be75-43c565f58391"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{nom}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="180" width="100" height="26" uuid="7c3abc6a-b128-4da7-81c6-1e8b820acd57"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{penom}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="260" width="561" height="60" uuid="67f572f8-7b4d-44e5-8ebf-25f470b561bd"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Objet : Votre demande de soutien pour participation à une manifestation scientifique
+Réf. 	: Votre B.E. N°]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="220" width="70" height="30" uuid="622b71a6-ae98-4de0-8b67-0be0eed6f0d9"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{genderdir}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="90" y="220" width="69" height="30" uuid="ce8a764c-ac48-41bf-b768-a49776ae1ba0"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{directeur}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="70" y="220" width="20" height="30" uuid="deb494d8-e403-49a6-b34b-ff979775e87c"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{la/le}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="160" y="220" width="20" height="30" uuid="9082b051-9484-4215-b410-5034498067ed"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[de]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="180" y="220" width="90" height="30" uuid="2980922a-2b34-46d6-9907-5c216e9aa51f"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{etab}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 </jasperReport>

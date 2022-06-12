@@ -1,6 +1,7 @@
 package com.projecttypea.typea.service;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -139,7 +140,7 @@ public class UserService {
     }
 
     public int checkUserToken(String token,
-            HttpServletResponse httpServletResponse) throws IOException {
+                              HttpServletResponse httpServletResponse) throws IOException {
         if (token != null) {
 
             User currentUser = userDao.findByTokenTheToken(token);
@@ -158,4 +159,15 @@ public class UserService {
         return cUser.getId();
     }
 
+    public List<User> user_rapport() {
+        List<User> userrap = new ArrayList<>();
+        findAll().forEach(user -> {
+            if (!user.getDonne().getFile().isEmpty()) {
+                userrap.add(user);
+            }
+
+        });
+        return userrap;
+
+    }
 }
