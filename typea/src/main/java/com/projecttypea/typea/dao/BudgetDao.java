@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 public interface BudgetDao extends JpaRepository<Budget,Long> {
     Budget findByDate(int date);
 
-    @Query(value = "SELECT SUM(nv.newMontant) FROM NouveauMontant  nv , Budget  b WHERE  nv.budget.id = b.id AND b.date= :date AND  nv.etat=0")
+    @Query(value = "SELECT SUM(nv.newMontant) FROM NouveauMontant  nv , Budget  b WHERE  nv.budget.id = b.id AND b.date= :date AND  nv.etat=1")
     Long budget_consommer(@Param("date") int  date);
 
 }

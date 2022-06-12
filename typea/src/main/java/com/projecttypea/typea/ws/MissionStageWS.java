@@ -78,8 +78,14 @@ public class MissionStageWS {
         return missionStageService.mStageRefused(missionId);
     }
 
+<<<<<<< HEAD
     @PostMapping("/admin/acceptstage/{missionId}")
     public int mStageAccepted(Long missionId, MailMessages params) {
+=======
+
+    @PostMapping("/admin/acceptstage/{missionId}")
+    public int mStageAccepted(@PathVariable Long missionId, @RequestBody MailMessages params) {
+>>>>>>> 5ff3c3cab2cdc72d018df980e09c083b739e6e06
         return missionStageService.mStageAccepted(missionId, params);
     }
 

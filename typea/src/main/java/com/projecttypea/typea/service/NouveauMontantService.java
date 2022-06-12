@@ -105,7 +105,7 @@ public class NouveauMontantService {
     }
 
 
-    public List<String> grafbar(String e1, String e2, String e3, String e4, String e5, String e6, String e7, String e8, String e9, String e10, String e11, String e12, String e13, String e14, String e15, String e16) {
+    public List<String> grafbar(String e1, String e2, String e3, String e4, String e5, String e6, String e7, String e8, String e9, String e10, String e11, String e12, String e13, String e14, String e15) {
         List<String> NUMBERS = new ArrayList<>();
 
         NUMBERS.add(nouveauMontantDao.montant_par_etab(e1, LocalDate.now().getYear()));
@@ -130,7 +130,7 @@ public class NouveauMontantService {
         NUMBERS.add(nouveauMontantDao.montant_par_etab(e13, LocalDate.now().getYear()));
         NUMBERS.add(nouveauMontantDao.montant_par_etab(e14, LocalDate.now().getYear()));
         NUMBERS.add(nouveauMontantDao.montant_par_etab(e15, LocalDate.now().getYear()));
-        NUMBERS.add(nouveauMontantDao.montant_par_etab(e16, LocalDate.now().getYear()));
+
         return NUMBERS;
     }
 

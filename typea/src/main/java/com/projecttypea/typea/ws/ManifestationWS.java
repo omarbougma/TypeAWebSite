@@ -81,7 +81,7 @@ public class ManifestationWS {
     }
 
     @PostMapping("/admin/acceptmanif/{manifId}")
-    public int manifAccepted(Long manifId, MailMessages params) {
+    public int manifAccepted(@PathVariable Long manifId,@RequestBody MailMessages params) {
         return manifestationService.manifAccepted(manifId, params);
     }
 
