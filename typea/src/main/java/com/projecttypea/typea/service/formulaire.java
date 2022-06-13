@@ -10,8 +10,11 @@ import org.springframework.util.ResourceUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -347,10 +350,53 @@ public class formulaire {
         return path;
 
     }
+    public String users_rapports() throws FileNotFoundException, JRException {
+        List<User> usersList = userService.user_rapport();
+        File file = ResourceUtils.getFile("classpath:users_sans_rapports.jrxml");
+        JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
+        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(usersList);
+        Map<String, Object> parameters = new HashMap<>();
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
+        String path = home + "/Downloads/" + "Demandeurs-avec-rapports  "+ LocalDate.now() +" .pdf";
+        JasperExportManager.exportReportToPdfFile(jasperPrint, path);
 
+
+        return "done";
+    }
+    public String users_sans_rapports() throws FileNotFoundException, JRException {
+        List<User> usersList = userService.user_sans_rapport();
+        File file = ResourceUtils.getFile("classpath:users_sans_rapports.jrxml");
+        JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
+        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(usersList);
+        Map<String, Object> parameters = new HashMap<>();
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
+        String path = home + "/Downloads/" + "Demandeurs-sans-rapports  "+ LocalDate.now() +" .pdf";
+        JasperExportManager.exportReportToPdfFile(jasperPrint, path);
+
+
+        return "done";
+    }
+    public String liste_users() throws FileNotFoundException, JRException {
+        List<User> usersList = userService.findAll();
+        File file = ResourceUtils.getFile("classpath:liste_users.jrxml");
+        JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
+        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(usersList);
+        Map<String, Object> parameters = new HashMap<>();
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
+        ;
+        String path = home + "/Downloads/" + "liste Demandeurs "+ LocalDate.now() +" .pdf";
+        JasperExportManager.exportReportToPdfFile(jasperPrint, path);
+
+
+        return "done";
+    }
     public Manifestation getById(Long aLong) {
         return manifestationDao.getById(aLong);
     }
+
+
+
+
 
     @Autowired
     private ManifestationDao manifestationDao;
