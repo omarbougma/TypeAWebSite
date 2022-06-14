@@ -57,13 +57,12 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter impl
         return new InMemoryUserDetailsManager(
                 admin);
     }
-
     /*
      * @Override
      * public void addInterceptors(InterceptorRegistry registry) {
      * List<String> patterns = new ArrayList<String>();
-     * patterns.add("/userapi/user/**");
-     * patterns.add("/userapi/admin/**");
+     * patterns.add("/user/**");
+     * patterns.add("/admin/**");
      * registry.addInterceptor(new Interceptor()).addPathPatterns(patterns);
      * }
      */
