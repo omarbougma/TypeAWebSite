@@ -42,6 +42,10 @@ public class UserWS {
     public List<User> user_rapport() {
         return userService.user_rapport();
     }
+    @GetMapping("/admin/users_sans_rap")
+    public List<User> user_sans_rapport() {
+        return userService.user_sans_rapport();
+    }
 
     @GetMapping("/allusers/logout")
     public int logoutUser(HttpSession session) {

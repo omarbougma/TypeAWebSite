@@ -85,7 +85,39 @@ public class FORMULAIREWS {
                 .headers(headers)
                 .body(path);
     }
-
+    @GetMapping("/admin/users_rapport")
+    public ResponseEntity<String> users_rapports()
+            throws FileNotFoundException, JRException {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "text/plain");
+        String path = formulairee.users_rapports();
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .headers(headers)
+                .body(path);
+    }
+    @GetMapping("/admin/users_sans_rapport")
+    public ResponseEntity<String> users_sans_rapports()
+            throws FileNotFoundException, JRException {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "text/plain");
+        String path = formulairee.users_sans_rapports();
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .headers(headers)
+                .body(path);
+    }
+    @GetMapping("/admin/liste_users")
+    public ResponseEntity<String> liste_users()
+            throws FileNotFoundException, JRException {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "text/plain");
+        String path = formulairee.liste_users();
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .headers(headers)
+                .body(path);
+    }
     @Autowired
     private formulaire formulairee;
 
