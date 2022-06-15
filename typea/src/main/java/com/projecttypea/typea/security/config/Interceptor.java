@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.hibernate.SessionException;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 public class Interceptor implements HandlerInterceptor {
@@ -12,11 +13,10 @@ public class Interceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
         HttpSession session = request.getSession();
-        if (session.getAttribute("session") != null) {
-            return true;
-        } else {
-            return false;
+        if (session.getAttribute("session") == null) {
+            throw new SessionException(null);
         }
+        return true;
     }
 
 }
