@@ -67,7 +67,7 @@ public class DoneesProService {
             donne.setUser(currentUser);
             donne.setEtablissement(etablissementService.findByNom(donne.getEtablissement().getNom()));
             doneesProDao.save(donne);
-           findlabos();
+            findlabos();
             return -1;
         } else {
             return -3;
@@ -169,7 +169,7 @@ public class DoneesProService {
         List<Documents> alldocs = findAllDocumentsById(donneId);
         Documents lastDoc = alldocs.get(alldocs.size() - 1);
         HashMap<String, String> map = new HashMap<>();
-        map.put("fichier", "http://localhost:8000/admin/retrievedoc/" + lastDoc.getName());
+        map.put("fichier", "http://172.19.177.32:8080/admin/retrievedoc/" + lastDoc.getName());
         return map;
     }
 }

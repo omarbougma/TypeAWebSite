@@ -134,22 +134,22 @@ public class DocumentsService {
         System.out.println(docs.size());
         HashMap<String, String> map = new HashMap<>();
         if (docs.size() > 0) {
-            map.put("filecin", "http://localhost:8000/admin/retrievedoc/" + docs.get(0).getName());
+            map.put("filecin", "http://172.19.177.32:8080/admin/retrievedoc/" + docs.get(0).getName());
         }
         if (docs.size() > 1) {
-            map.put("fileA", "http://localhost:8000/admin/retrievedoc/" + docs.get(1).getName());
+            map.put("fileA", "http://172.19.177.32:8080/admin/retrievedoc/" + docs.get(1).getName());
         }
         if (docs.size() > 2) {
-            map.put("fileB", "http://localhost:8000/admin/retrievedoc/" + docs.get(2).getName());
+            map.put("fileB", "http://172.19.177.32:8080/admin/retrievedoc/" + docs.get(2).getName());
         }
         if (docs.size() > 3) {
-            map.put("fileC", "http://localhost:8000/admin/retrievedoc/" + docs.get(3).getName());
+            map.put("fileC", "http://172.19.177.32:8080/admin/retrievedoc/" + docs.get(3).getName());
         }
         if (docs.size() > 4) {
-            map.put("fileD", "http://localhost:8000/admin/retrievedoc/" + docs.get(4).getName());
+            map.put("fileD", "http://172.19.177.32:8080/admin/retrievedoc/" + docs.get(4).getName());
         }
         if (docs.size() > 5) {
-            map.put("fileE", "http://localhost:8000/admin/retrievedoc/" + docs.get(5).getName());
+            map.put("fileE", "http://172.19.177.32:8080/admin/retrievedoc/" + docs.get(5).getName());
         }
         return map;
     }
@@ -160,22 +160,22 @@ public class DocumentsService {
         docs = currentManif.getDocuments();
         HashMap<String, String> map = new HashMap<>();
         if (docs.size() > 0) {
-            map.put("filecin", "http://localhost:8000/admin/retrievedoc/" + docs.get(0).getName());
+            map.put("filecin", "http://172.19.177.32:8080/admin/retrievedoc/" + docs.get(0).getName());
         }
         if (docs.size() > 1) {
-            map.put("fileA", "http://localhost:8000/admin/retrievedoc/" + docs.get(1).getName());
+            map.put("fileA", "http://172.19.177.32:8080/admin/retrievedoc/" + docs.get(1).getName());
         }
         if (docs.size() > 2) {
-            map.put("fileB", "http://localhost:8000/admin/retrievedoc/" + docs.get(2).getName());
+            map.put("fileB", "http://172.19.177.32:8080/admin/retrievedoc/" + docs.get(2).getName());
         }
         if (docs.size() > 3) {
-            map.put("fileC", "http://localhost:8000/admin/retrievedoc/" + docs.get(3).getName());
+            map.put("fileC", "http://172.19.177.32:8080/admin/retrievedoc/" + docs.get(3).getName());
         }
         if (docs.size() > 4) {
-            map.put("fileD", "http://localhost:8000/admin/retrievedoc/" + docs.get(4).getName());
+            map.put("fileD", "http://172.19.177.32:8080/admin/retrievedoc/" + docs.get(4).getName());
         }
         if (docs.size() > 5) {
-            map.put("fileE", "http://localhost:8000/admin/retrievedoc/" + docs.get(5).getName());
+            map.put("fileE", "http://172.19.177.32:8080/admin/retrievedoc/" + docs.get(5).getName());
         }
         return map;
     }
