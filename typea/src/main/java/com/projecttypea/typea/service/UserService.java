@@ -148,7 +148,7 @@ public class UserService {
             currentUser.setEnable(true);
             userDao.save(currentUser);
 
-            httpServletResponse.sendRedirect("http://172.19.177.32:4200/login");
+            httpServletResponse.sendRedirect("http://172.19.177.32:80/login");
             return 1;
         } else {
             return -1;
