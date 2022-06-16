@@ -105,50 +105,50 @@ public class NouveauMontantService {
     }
 
 
-    public List<String> grafbar(String e1, String e2, String e3, String e4, String e5, String e6, String e7, String e8, String e9, String e10, String e11, String e12, String e13, String e14, String e15) {
+    public List<String> grafbar(String e1, String e2, String e3, String e4, String e5, String e6, String e7, String e8, String e9, String e10, String e11, String e12, String e13, String e14, String e15, int date) {
         List<String> NUMBERS = new ArrayList<>();
 
-        NUMBERS.add(nouveauMontantDao.montant_par_etab(e1, LocalDate.now().getYear()));
+        NUMBERS.add(nouveauMontantDao.montant_par_etab(e1, date));
 
-        NUMBERS.add(nouveauMontantDao.montant_par_etab(e2, LocalDate.now().getYear()));
+        NUMBERS.add(nouveauMontantDao.montant_par_etab(e2, date));
 
-        NUMBERS.add(nouveauMontantDao.montant_par_etab(e3, LocalDate.now().getYear()));
+        NUMBERS.add(nouveauMontantDao.montant_par_etab(e3, date));
 
-        NUMBERS.add(nouveauMontantDao.montant_par_etab(e4, LocalDate.now().getYear()));
+        NUMBERS.add(nouveauMontantDao.montant_par_etab(e4, date));
 
-        NUMBERS.add(nouveauMontantDao.montant_par_etab(e5, LocalDate.now().getYear()));
+        NUMBERS.add(nouveauMontantDao.montant_par_etab(e5, date));
 
-        NUMBERS.add(nouveauMontantDao.montant_par_etab(e6, LocalDate.now().getYear()));
+        NUMBERS.add(nouveauMontantDao.montant_par_etab(e6, date));
 
-        NUMBERS.add(nouveauMontantDao.montant_par_etab(e7, LocalDate.now().getYear()));
+        NUMBERS.add(nouveauMontantDao.montant_par_etab(e7, date));
 
-        NUMBERS.add(nouveauMontantDao.montant_par_etab(e8, LocalDate.now().getYear()));
-        NUMBERS.add(nouveauMontantDao.montant_par_etab(e9, LocalDate.now().getYear()));
-        NUMBERS.add(nouveauMontantDao.montant_par_etab(e10, LocalDate.now().getYear()));
-        NUMBERS.add(nouveauMontantDao.montant_par_etab(e11, LocalDate.now().getYear()));
-        NUMBERS.add(nouveauMontantDao.montant_par_etab(e12, LocalDate.now().getYear()));
-        NUMBERS.add(nouveauMontantDao.montant_par_etab(e13, LocalDate.now().getYear()));
-        NUMBERS.add(nouveauMontantDao.montant_par_etab(e14, LocalDate.now().getYear()));
-        NUMBERS.add(nouveauMontantDao.montant_par_etab(e15, LocalDate.now().getYear()));
+        NUMBERS.add(nouveauMontantDao.montant_par_etab(e8, date));
+        NUMBERS.add(nouveauMontantDao.montant_par_etab(e9, date));
+        NUMBERS.add(nouveauMontantDao.montant_par_etab(e10, date));
+        NUMBERS.add(nouveauMontantDao.montant_par_etab(e11, date));
+        NUMBERS.add(nouveauMontantDao.montant_par_etab(e12, date));
+        NUMBERS.add(nouveauMontantDao.montant_par_etab(e13, date));
+        NUMBERS.add(nouveauMontantDao.montant_par_etab(e14, date));
+        NUMBERS.add(nouveauMontantDao.montant_par_etab(e15, date));
 
         return NUMBERS;
     }
 
 
-    public List<String> graph_monsuel(String e1, String e2, String e3, String e4, String e5, String e6, String e7, String e8, String e9, String e10, String e11, String e12) {
+    public List<String> graph_monsuel(String e1, String e2, String e3, String e4, String e5, String e6, String e7, String e8, String e9, String e10, String e11, String e12,int date) {
         List<String> montant_mois = new ArrayList<>();
-        montant_mois.add(nouveauMontantDao.montant_par_mois(e1, LocalDate.now().getYear()));
-        montant_mois.add(nouveauMontantDao.montant_par_mois(e2, LocalDate.now().getYear()));
-        montant_mois.add(nouveauMontantDao.montant_par_mois(e3, LocalDate.now().getYear()));
-        montant_mois.add(nouveauMontantDao.montant_par_mois(e4, LocalDate.now().getYear()));
-        montant_mois.add(nouveauMontantDao.montant_par_mois(e5, LocalDate.now().getYear()));
-        montant_mois.add(nouveauMontantDao.montant_par_mois(e6, LocalDate.now().getYear()));
-        montant_mois.add(nouveauMontantDao.montant_par_mois(e7, LocalDate.now().getYear()));
-        montant_mois.add(nouveauMontantDao.montant_par_mois(e8, LocalDate.now().getYear()));
-        montant_mois.add(nouveauMontantDao.montant_par_mois(e9, LocalDate.now().getYear()));
-        montant_mois.add(nouveauMontantDao.montant_par_mois(e10, LocalDate.now().getYear()));
-        montant_mois.add(nouveauMontantDao.montant_par_mois(e11, LocalDate.now().getYear()));
-        montant_mois.add(nouveauMontantDao.montant_par_mois(e12, LocalDate.now().getYear()));
+        montant_mois.add(nouveauMontantDao.montant_par_mois(e1, date));
+        montant_mois.add(nouveauMontantDao.montant_par_mois(e2, date));
+        montant_mois.add(nouveauMontantDao.montant_par_mois(e3, date));
+        montant_mois.add(nouveauMontantDao.montant_par_mois(e4, date));
+        montant_mois.add(nouveauMontantDao.montant_par_mois(e5, date));
+        montant_mois.add(nouveauMontantDao.montant_par_mois(e6, date));
+        montant_mois.add(nouveauMontantDao.montant_par_mois(e7, date));
+        montant_mois.add(nouveauMontantDao.montant_par_mois(e8, date));
+        montant_mois.add(nouveauMontantDao.montant_par_mois(e9, date));
+        montant_mois.add(nouveauMontantDao.montant_par_mois(e10, date));
+        montant_mois.add(nouveauMontantDao.montant_par_mois(e11, date));
+        montant_mois.add(nouveauMontantDao.montant_par_mois(e12, date));
         return montant_mois;
 
     }

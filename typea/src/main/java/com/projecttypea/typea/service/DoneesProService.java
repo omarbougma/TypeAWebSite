@@ -148,6 +148,7 @@ public class DoneesProService {
         Montant_par_labo element = new Montant_par_labo();
         findAll().forEach(donne -> {
             element.setLabo(donne.getLabo());
+            element.setYear(LocalDate.now().getYear());
             if (nouveauMontantService.montant_par_labo(donne.getLabo(), LocalDate.now().getYear()) == null) {
                 element.setMontant(0);
                 montant_par_laboService.save(element);

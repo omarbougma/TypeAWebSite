@@ -14,6 +14,16 @@ public class Montant_par_labo {
     private int montant;
     private String labo;
 
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    private int  year ;
+
     public Montant_par_labo() {
     }
 

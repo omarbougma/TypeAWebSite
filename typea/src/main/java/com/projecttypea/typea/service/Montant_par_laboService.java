@@ -18,6 +18,10 @@ public class Montant_par_laboService {
         return montant_par_laboDAO.findByLabo(labo);
     }
 
+    public List<Montant_par_labo> findByYear(int year) {
+        return montant_par_laboDAO.findByYear(year);
+    }
+
     public int save(Montant_par_labo entity){
         Montant_par_labo currentlabo = findByLabo(entity.getLabo());
 if (currentlabo != null) {

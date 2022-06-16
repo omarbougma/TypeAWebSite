@@ -42,6 +42,7 @@ public class BudgetService {
                 return 1;
             }
         }else {
+
             currbudget.setmontant(budget.getmontant());
             budgetDao.save(currbudget);
 

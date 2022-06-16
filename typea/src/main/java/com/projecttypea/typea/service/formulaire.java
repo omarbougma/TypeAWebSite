@@ -292,11 +292,8 @@ public class formulaire {
       }
 
         parameters.put("etab", etab.getNom());
-
-
-        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
-
-        String path = home + "/Downloads/" + manifestation.getId() + "lettre manifestation.pdf";
+      JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
+      String path = home + "/Downloads/" + manifestation.getId() + "lettre manifestation.pdf";
         JasperExportManager.exportReportToPdfFile(jasperPrint, path);
 
         return path;

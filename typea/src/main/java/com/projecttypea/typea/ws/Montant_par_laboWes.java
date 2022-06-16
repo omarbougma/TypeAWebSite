@@ -3,10 +3,7 @@ package com.projecttypea.typea.ws;
 import com.projecttypea.typea.bean.Montant_par_labo;
 import com.projecttypea.typea.service.Montant_par_laboService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,5 +18,9 @@ public class Montant_par_laboWes {
     @GetMapping("/admin/getmontant_par_labo")
     public List<Montant_par_labo> findAll() {
         return montant_par_laboService.findAll();
+    }
+    @GetMapping("/admin/getmontant_par_labo/{year}")
+    public List<Montant_par_labo> findByYear(@PathVariable int year) {
+        return montant_par_laboService.findByYear(year);
     }
 }
