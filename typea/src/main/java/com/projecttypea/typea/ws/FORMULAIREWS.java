@@ -18,107 +18,114 @@ import java.io.FileNotFoundException;
 
 public class FORMULAIREWS {
 
-    @GetMapping("/user/raport/{id}")
-    public ResponseEntity<String> generateReport(@PathVariable long id) throws FileNotFoundException, JRException {
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Type", "text/plain");
-        String path = formulairee.exportReport(id);
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .headers(headers)
-                .body(path);
-    }
+        @GetMapping("/user/raport/{id}")
+        public ResponseEntity<byte[]> generateReport(@PathVariable long id) throws FileNotFoundException, JRException {
+                HttpHeaders headers = new HttpHeaders();
+                headers.add("Content-Type", "text/plain");
+                byte[] path = formulairee.exportReport(id);
+                return ResponseEntity
+                                .status(HttpStatus.OK)
+                                .headers(headers)
+                                .body(path);
+        }
 
-    @GetMapping("/admin/raportlettremission/{id}")
-    public ResponseEntity<String> exportLettremission(@PathVariable long id) throws FileNotFoundException, JRException {
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Type", "text/plain");
-        String path = formulairee.exportLettremission(id);
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .headers(headers)
-                .body(path);
-    }
+        @GetMapping("/admin/raportlettremission/{id}")
+        public ResponseEntity<byte[]> exportLettremission(@PathVariable long id)
+                        throws FileNotFoundException, JRException {
+                HttpHeaders headers = new HttpHeaders();
+                headers.add("Content-Type", "text/plain");
+                byte[] path = formulairee.exportLettremission(id);
+                return ResponseEntity
+                                .status(HttpStatus.OK)
+                                .headers(headers)
+                                .body(path);
+        }
 
-    @GetMapping("/user/raportmission/{id}")
-    public ResponseEntity<String> exportReportMission(@PathVariable long id) throws FileNotFoundException, JRException {
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Type", "text/plain");
-        String path = formulairee.exportReportMission(id);
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .headers(headers)
-                .body(path);
-    }
+        @GetMapping("/user/raportmission/{id}")
+        public ResponseEntity<byte[]> exportReportMission(@PathVariable long id)
+                        throws FileNotFoundException, JRException {
+                HttpHeaders headers = new HttpHeaders();
+                headers.add("Content-Type", "text/plain");
+                byte[] path = formulairee.exportReportMission(id);
+                return ResponseEntity
+                                .status(HttpStatus.OK)
+                                .headers(headers)
+                                .body(path);
+        }
 
-    @GetMapping("/admin/raportlettremanif/{id}")
-    public ResponseEntity<String> exportLettremanif(@PathVariable long id) throws FileNotFoundException, JRException {
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Type", "text/plain");
-        String path = formulairee.exportLettremanif(id);
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .headers(headers)
-                .body(path);
-    }
+        @GetMapping("/admin/raportlettremanif/{id}")
+        public ResponseEntity<byte[]> exportLettremanif(@PathVariable long id)
+                        throws FileNotFoundException, JRException {
+                HttpHeaders headers = new HttpHeaders();
+                headers.add("Content-Type", "text/plain");
+                byte[] path = formulairee.exportLettremanif(id);
+                return ResponseEntity
+                                .status(HttpStatus.OK)
+                                .headers(headers)
+                                .body(path);
+        }
 
-    @GetMapping("/admin/raportNVmontantmanif/{id}")
-    public ResponseEntity<String> exportNvmontantmanif(@PathVariable long id)
-            throws FileNotFoundException, JRException {
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Type", "text/plain");
-        String path = formulairee.exportNvmontantmanif(id);
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .headers(headers)
-                .body(path);
-    }
+        @GetMapping("/admin/raportNVmontantmanif/{id}")
+        public ResponseEntity<byte[]> exportNvmontantmanif(@PathVariable long id)
+                        throws FileNotFoundException, JRException {
+                HttpHeaders headers = new HttpHeaders();
+                headers.add("Content-Type", "text/plain");
+                byte[] path = formulairee.exportNvmontantmanif(id);
+                return ResponseEntity
+                                .status(HttpStatus.OK)
+                                .headers(headers)
+                                .body(path);
+        }
 
-    @GetMapping("/admin/raportNvmontantmis/{id}")
-    public ResponseEntity<String> exportNvmontantmission(@PathVariable long id)
-            throws FileNotFoundException, JRException {
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Type", "text/plain");
-        String path = formulairee.exportNvmontantmission(id);
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .headers(headers)
-                .body(path);
-    }
-    @GetMapping("/admin/users_rapport")
-    public ResponseEntity<String> users_rapports()
-            throws FileNotFoundException, JRException {
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Type", "text/plain");
-        String path = formulairee.users_rapports();
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .headers(headers)
-                .body(path);
-    }
-    @GetMapping("/admin/users_sans_rapport")
-    public ResponseEntity<String> users_sans_rapports()
-            throws FileNotFoundException, JRException {
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Type", "text/plain");
-        String path = formulairee.users_sans_rapports();
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .headers(headers)
-                .body(path);
-    }
-    @GetMapping("/admin/liste_users")
-    public ResponseEntity<String> liste_users()
-            throws FileNotFoundException, JRException {
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Type", "text/plain");
-        String path = formulairee.liste_users();
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .headers(headers)
-                .body(path);
-    }
-    @Autowired
-    private formulaire formulairee;
+        @GetMapping("/admin/raportNvmontantmis/{id}")
+        public ResponseEntity<byte[]> exportNvmontantmission(@PathVariable long id)
+                        throws FileNotFoundException, JRException {
+                HttpHeaders headers = new HttpHeaders();
+                headers.add("Content-Type", "text/plain");
+                byte[] path = formulairee.exportNvmontantmission(id);
+                return ResponseEntity
+                                .status(HttpStatus.OK)
+                                .headers(headers)
+                                .body(path);
+        }
+
+        @GetMapping("/admin/users_rapport")
+        public ResponseEntity<byte[]> users_rapports()
+                        throws FileNotFoundException, JRException {
+                HttpHeaders headers = new HttpHeaders();
+                headers.add("Content-Type", "text/plain");
+                byte[] path = formulairee.users_rapports();
+                return ResponseEntity
+                                .status(HttpStatus.OK)
+                                .headers(headers)
+                                .body(path);
+        }
+
+        @GetMapping("/admin/users_sans_rapport")
+        public ResponseEntity<byte[]> users_sans_rapports()
+                        throws FileNotFoundException, JRException {
+                HttpHeaders headers = new HttpHeaders();
+                headers.add("Content-Type", "text/plain");
+                byte[] path = formulairee.users_sans_rapports();
+                return ResponseEntity
+                                .status(HttpStatus.OK)
+                                .headers(headers)
+                                .body(path);
+        }
+
+        @GetMapping("/admin/liste_users")
+        public ResponseEntity<byte[]> liste_users()
+                        throws FileNotFoundException, JRException {
+                HttpHeaders headers = new HttpHeaders();
+                headers.add("Content-Type", "text/plain");
+                byte[] path = formulairee.liste_users();
+                return ResponseEntity
+                                .status(HttpStatus.OK)
+                                .headers(headers)
+                                .body(path);
+        }
+
+        @Autowired
+        private formulaire formulairee;
 
 }

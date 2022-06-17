@@ -171,6 +171,7 @@ public class UserService {
         return userrap;
 
     }
+
     public List<User> user_sans_rapport() {
         List<User> userrap = new ArrayList<>();
         findAll().forEach(user -> {
