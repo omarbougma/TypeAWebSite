@@ -2,6 +2,7 @@ package com.projecttypea.typea.service;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import javax.mail.util.ByteArrayDataSource;
 
 import com.projecttypea.typea.bean.MailMessages;
 import com.projecttypea.typea.dao.MailMessageDao;
@@ -31,9 +32,8 @@ public class MailMessagesService {
             helper.setTo(mailMessages.getToEmail());
             helper.setSubject(mailMessages.getSubject());
             helper.setText(mailMessages.getBody());
-            System.out.println(mailMessages.getPathToAttachement());
-            FileSystemResource file = new FileSystemResource(mailMessages.getPathToAttachement());
-            helper.addAttachment(file.getFilename(), file);
+            ByteArrayDataSource file = new ByteArrayDataSource(mailMessages.getPathToAttachement(), "application/pdf");
+            helper.addAttachment(file.getName(), file);
             emailSender.send(mssg);
             mailMessageDao.save(mailMessages);
             return 1;
