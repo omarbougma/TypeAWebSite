@@ -19,7 +19,7 @@ public class Montant_par_laboWes {
     public List<Montant_par_labo> findAll() {
         return montant_par_laboService.findAll();
     }
-    @GetMapping("/admin/getmontant_par_labo/{year}")
+    @GetMapping("/admin/getmontant_par_labo_par_year/{year}")
     public List<Montant_par_labo> findByYear(@PathVariable int year) {
         return montant_par_laboService.findByYear(year);
     }
