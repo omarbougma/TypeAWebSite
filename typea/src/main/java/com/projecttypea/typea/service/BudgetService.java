@@ -19,8 +19,8 @@ public class BudgetService {
         return budgetDao.findByDate(date);
 
     }
-    public  int budget_annuelle(int date){
-        int montant =budgetDao.findByDate(date).getmontant();
+    public  double budget_annuelle(int date){
+       double montant =budgetDao.findByDate(date).getmontant();
         return  montant;
     }
 

@@ -59,9 +59,7 @@ public class DoneesProService {
     public int addDonesPro(DoneesPro donne, HttpSession session) {
         User currentUser = userDao.findByEmail((String) session.getAttribute("session"));
         if (currentUser.getDonne() != null) {
-
             return 1;
-
         } else if (currentUser.getDonne() == null) {
             currentUser.setDonne(donne);
             donne.setUser(currentUser);
