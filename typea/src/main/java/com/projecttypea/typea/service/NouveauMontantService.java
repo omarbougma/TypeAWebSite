@@ -31,6 +31,10 @@ public class NouveauMontantService {
     UserService userService;
     @Autowired
     BudgetService budgetService;
+    @Autowired
+    DoneesProService doneesProService;
+    @Autowired
+    Montant_par_laboService montant_par_laboService;
 
 
     public NouveauMontant findByMissionstageId(Long id) {
@@ -57,6 +61,7 @@ public class NouveauMontantService {
             }
             if (currentMS.getState() == DemandesState.APPROVED) {
                 nvMontant.setEtat(1);
+
             }
             if (currentMS.getState() == DemandesState.REFUSED) {
                 nvMontant.setEtat(-1);
@@ -66,9 +71,12 @@ public class NouveauMontantService {
             nvMontant.setUser(currentuser);
             nvMontant.setMissionStage(currentMS);
             nvMontant.setNewMontant(newmontant);
-
             nvMontant.setMonth(String.valueOf(LocalDate.now().getMonth()));
             nouveauMontantDao.save(nvMontant);
+            //CORRIGER DES MONTANTS PAR LABORATOIRES
+            Montant_par_labo ml = montant_par_laboService.findByLabo(nvMontant.getUser().getDonne().getLabo());
+            ml.setMontant(Integer.parseInt(montant_par_labo(ml.getLabo(),ml.getYear())));
+             montant_par_laboService.save(ml);
             return 1;
         }
     }
@@ -97,8 +105,11 @@ public class NouveauMontantService {
             nvMontant.setManifestation(currentM);
             nvMontant.setNewMontant(newmontant);
             nvMontant.setMonth(String.valueOf(LocalDate.now().getMonth()));
-
             nouveauMontantDao.save(nvMontant);
+            //CORRIGER DES MONTANTS PAR LABORATOIRES
+            Montant_par_labo ml = montant_par_laboService.findByLabo(nvMontant.getUser().getDonne().getLabo());
+            ml.setMontant(Integer.parseInt(montant_par_labo(ml.getLabo(),ml.getYear())));
+            montant_par_laboService.save(ml);
 
             return 1;
         }

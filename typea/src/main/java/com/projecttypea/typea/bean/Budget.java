@@ -12,7 +12,7 @@ public class Budget {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private int date;
-    private int montant;
+    private double montant;
 
     public List<NouveauMontant> getNvmontantss() {
         return nvmontantss;
@@ -42,11 +42,11 @@ public class Budget {
     }
 
 
-    public int getmontant() {
+    public double getmontant() {
         return montant;
     }
 
-    public void setmontant(int montant) {
+    public void setmontant(double montant) {
         this.montant = montant;
     }
 
