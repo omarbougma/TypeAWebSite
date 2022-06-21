@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.19.0.final using JasperReports Library version 6.19.0-646c68931cebf1a58bc65c4359d1f0ca223c5e94  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Leaf_Grey" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a1f690a3-5977-4467-85f8-6b0bcd5b7210">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4_13" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="92395f41-f030-4c9e-98e9-c34b1161cf6f">
 	<style name="Title" fontName="Arial" fontSize="26" isBold="true"/>
 	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
 	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
@@ -16,8 +16,10 @@
 		<band height="85" splitType="Stretch">
 			<staticText>
 				<reportElement style="Title" x="0" y="13" width="433" height="33" uuid="6f9c1004-6140-4588-9c4f-d75824835765"/>
-				<textElement verticalAlignment="Middle"/>
-				<text><![CDATA[Liste demandeurs avec rapports]]></text>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif"/>
+				</textElement>
+				<text><![CDATA[Liste demandeurs avec rapport]]></text>
 			</staticText>
 			<image>
 				<reportElement x="400" y="-10" width="217" height="95" uuid="dbda606b-0c55-43e8-b200-37338cbec840"/>
@@ -40,24 +42,36 @@
 				<reportElement style="Column header" x="0" y="19" width="138" height="15" uuid="dbbfe902-a18d-489e-8cf6-a6b026ba8a4f">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8b9923ac-87cf-41ca-bccd-ab5717c7f698"/>
 				</reportElement>
+				<textElement>
+					<font fontName="SansSerif" size="12"/>
+				</textElement>
 				<text><![CDATA[Nom]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="138" y="19" width="138" height="15" uuid="c29e0c16-1235-495a-bbc6-03023f37d234">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8c6e42a9-7ff6-4b2e-b1bb-e7eebb6daa32"/>
 				</reportElement>
+				<textElement>
+					<font fontName="SansSerif"/>
+				</textElement>
 				<text><![CDATA[Prenom]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="276" y="19" width="174" height="15" uuid="4be9766a-125f-47b8-af60-d00adbcaead2">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8e89ffe9-0b51-4b55-a698-b77e92601a6c"/>
 				</reportElement>
+				<textElement>
+					<font fontName="SansSerif"/>
+				</textElement>
 				<text><![CDATA[Email]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="450" y="19" width="102" height="15" uuid="2c2f7678-a5f7-4e71-ba4a-0af5d273366d">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="61ef1c87-242c-468a-8705-6540a8efbf9d"/>
 				</reportElement>
+				<textElement>
+					<font fontName="SansSerif"/>
+				</textElement>
 				<text><![CDATA[Telephone]]></text>
 			</staticText>
 		</band>
