@@ -29,7 +29,7 @@ public class formulaire {
 
         Soutien soutien = soutienService.getById(manifestation.getSoutien().getId());
         JasperReport jasperReport = JasperCompileManager
-                .compileReport(getClass().getResourceAsStream("/formulaire.jrxml"));
+                .compileReport(getClass().getResourceAsStream("/classes/formulaire.jrxml"));
         JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(
                 Collections.singleton(manifestation));
         Map<String, Object> parameters = new HashMap<>();
@@ -79,7 +79,7 @@ public class formulaire {
 
         Soutien soutien = soutienService.getById(manifestation.getSoutien().getId());
         JasperReport jasperReport = JasperCompileManager
-                .compileReport(getClass().getResourceAsStream("/Nvmontantmanif.jrxml"));
+                .compileReport(getClass().getResourceAsStream("/classes/Nvmontantmanif.jrxml"));
         JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(
                 Collections.singleton(manifestation));
         Map<String, Object> parameters = new HashMap<>();
@@ -136,7 +136,7 @@ public class formulaire {
         NouveauMontant nouveauMontant = nouveauMontantService.findByMissionstageId(id);
         Soutien soutien = soutienService.getById(mission.getSoutien().getId());
         JasperReport jasperReport = JasperCompileManager
-                .compileReport(getClass().getResourceAsStream("/Nvmontantmis.jrxml"));
+                .compileReport(getClass().getResourceAsStream("/classes/Nvmontantmis.jrxml"));
         JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(Collections.singleton(mission));
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("nom", user.getNom());
@@ -190,7 +190,7 @@ public class formulaire {
 
         Soutien soutien = soutienService.getById(mission.getSoutien().getId());
         JasperReport jasperReport = JasperCompileManager
-                .compileReport(getClass().getResourceAsStream("/formmission.jrxml"));
+                .compileReport(getClass().getResourceAsStream("/classes/formmission.jrxml"));
         JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(Collections.singleton(mission));
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("nom", user.getNom());
@@ -240,7 +240,7 @@ public class formulaire {
         User user = userService.getById(manifestation.getUser().getId());
         Etablissement etab = etablissementService.findByNom(user.getDonne().getEtablissement().getNom());
         JasperReport jasperReport = JasperCompileManager
-                .compileReport(getClass().getResourceAsStream("/Lettremanif.jrxml"));
+                .compileReport(getClass().getResourceAsStream("/classes/Lettremanif.jrxml"));
         JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(Collections.singleton(manifestation));
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("titremanifestation", manifestation.getTitreManifestation());
@@ -282,7 +282,7 @@ public class formulaire {
         User user = userService.getById(mission.getUser().getId());
         Etablissement etab = etablissementService.findByNom(user.getDonne().getEtablissement().getNom());
         JasperReport jasperReport = JasperCompileManager
-                .compileReport(getClass().getResourceAsStream("/Lettremission.jrxml"));
+                .compileReport(getClass().getResourceAsStream("/classes/Lettremission.jrxml"));
         JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(Collections.singleton(mission));
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("titremanifestation", mission.getObjetMission());
@@ -320,7 +320,7 @@ public class formulaire {
     public byte[] users_rapports() throws FileNotFoundException, JRException {
         List<User> usersList = userService.user_rapport();
         JasperReport jasperReport = JasperCompileManager
-                .compileReport(getClass().getResourceAsStream("/users_sans_rapports.jrxml"));
+                .compileReport(getClass().getResourceAsStream("/classes/users_sans_rapports.jrxml"));
         JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(usersList);
         Map<String, Object> parameters = new HashMap<>();
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
@@ -330,7 +330,7 @@ public class formulaire {
     public byte[] users_sans_rapports() throws FileNotFoundException, JRException {
         List<User> usersList = userService.user_sans_rapport();
         JasperReport jasperReport = JasperCompileManager
-                .compileReport(getClass().getResourceAsStream("/users_sans_rapports.jrxml"));
+                .compileReport(getClass().getResourceAsStream("/classes/users_sans_rapports.jrxml"));
         JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(usersList);
         Map<String, Object> parameters = new HashMap<>();
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
@@ -340,7 +340,7 @@ public class formulaire {
     public byte[] liste_users() throws FileNotFoundException, JRException {
         List<User> usersList = userService.findAll();
         JasperReport jasperReport = JasperCompileManager
-                .compileReport(getClass().getResourceAsStream("/liste_users.jrxml"));
+                .compileReport(getClass().getResourceAsStream("/classes/liste_users.jrxml"));
         JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(usersList);
         Map<String, Object> parameters = new HashMap<>();
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);

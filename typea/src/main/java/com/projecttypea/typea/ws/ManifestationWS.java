@@ -1,5 +1,6 @@
 package com.projecttypea.typea.ws;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -13,6 +14,8 @@ import com.projecttypea.typea.bean.Soutien;
 import com.projecttypea.typea.bean.User;
 import com.projecttypea.typea.security.enums.DemandesState;
 import com.projecttypea.typea.service.ManifestationService;
+
+import net.sf.jasperreports.engine.JRException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -81,7 +84,8 @@ public class ManifestationWS {
     }
 
     @PostMapping("/admin/acceptmanif/{manifId}")
-    public int manifAccepted(@PathVariable Long manifId,@RequestBody MailMessages params) {
+    public int manifAccepted(@PathVariable Long manifId, @RequestBody MailMessages params)
+            throws IOException, JRException {
         return manifestationService.manifAccepted(manifId, params);
     }
 

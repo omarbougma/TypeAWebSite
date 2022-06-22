@@ -19,12 +19,15 @@ import org.springframework.stereotype.Service;
 public class MailMessagesService {
 
     @Autowired
+    formulaire form;
+
+    @Autowired
     MailMessageDao mailMessageDao;
 
     @Autowired
     JavaMailSender emailSender;
 
-    public int sendMail(MailMessages mailMessages) {
+    public int sendMail(MailMessages mailMessages, byte[] mail) {
         MimeMessage mssg = emailSender.createMimeMessage();
         try {
             MimeMessageHelper helper = new MimeMessageHelper(mssg, true);
@@ -32,7 +35,7 @@ public class MailMessagesService {
             helper.setTo(mailMessages.getToEmail());
             helper.setSubject(mailMessages.getSubject());
             helper.setText(mailMessages.getBody());
-            ByteArrayDataSource file = new ByteArrayDataSource(mailMessages.getPathToAttachement(), "application/pdf");
+            ByteArrayDataSource file = new ByteArrayDataSource(mail, "application/pdf");
             helper.addAttachment(file.getName(), file);
             emailSender.send(mssg);
             mailMessageDao.save(mailMessages);
