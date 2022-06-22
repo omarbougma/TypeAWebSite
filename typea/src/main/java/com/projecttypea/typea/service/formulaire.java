@@ -281,8 +281,7 @@ public class formulaire {
         NouveauMontant nouveauMontant = nouveauMontantService.findByMissionstageId(id);
         User user = userService.getById(mission.getUser().getId());
         Etablissement etab = etablissementService.findByNom(user.getDonne().getEtablissement().getNom());
-        JasperReport jasperReport = JasperCompileManager
-                .compileReport(getClass().getResourceAsStream("/classes/Lettremission.jrxml"));
+        JasperReport jasperReport = JasperCompileManager.compileReport(getClass().getResourceAsStream("/classes/Lettremission.jrxml"));
         JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(Collections.singleton(mission));
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("titremanifestation", mission.getObjetMission());
@@ -319,8 +318,7 @@ public class formulaire {
 
     public byte[] users_rapports() throws FileNotFoundException, JRException {
         List<User> usersList = userService.user_rapport();
-        JasperReport jasperReport = JasperCompileManager
-                .compileReport(getClass().getResourceAsStream("/classes/users_sans_rapports.jrxml"));
+        JasperReport jasperReport = JasperCompileManager.compileReport(getClass().getResourceAsStream("/classes/users_sans_rapports.jrxml"));
         JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(usersList);
         Map<String, Object> parameters = new HashMap<>();
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
@@ -329,8 +327,7 @@ public class formulaire {
 
     public byte[] users_sans_rapports() throws FileNotFoundException, JRException {
         List<User> usersList = userService.user_sans_rapport();
-        JasperReport jasperReport = JasperCompileManager
-                .compileReport(getClass().getResourceAsStream("/classes/users_sans_rapports.jrxml"));
+        JasperReport jasperReport = JasperCompileManager.compileReport(getClass().getResourceAsStream("/classes/users_sans_rapports.jrxml"));
         JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(usersList);
         Map<String, Object> parameters = new HashMap<>();
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
