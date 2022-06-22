@@ -75,7 +75,14 @@ public class NouveauMontantService {
             nouveauMontantDao.save(nvMontant);
             //CORRIGER DES MONTANTS PAR LABORATOIRES
             Montant_par_labo ml = montant_par_laboService.findByLabo(nvMontant.getUser().getDonne().getLabo());
-            ml.setMontant(Integer.parseInt(montant_par_labo(ml.getLabo(),ml.getYear())));
+
+            if(montant_par_labo(ml.getLabo(),ml.getYear())== null){
+                System.out.print("null");
+                ml.setMontant(0);
+            }else {
+                System.out.print("not null");
+                ml.setMontant(Integer.parseInt(montant_par_labo(ml.getLabo(), ml.getYear())));
+            }
              montant_par_laboService.save(ml);
             return 1;
         }
@@ -108,7 +115,14 @@ public class NouveauMontantService {
             nouveauMontantDao.save(nvMontant);
             //CORRIGER DES MONTANTS PAR LABORATOIRES
             Montant_par_labo ml = montant_par_laboService.findByLabo(nvMontant.getUser().getDonne().getLabo());
-            ml.setMontant(Integer.parseInt(montant_par_labo(ml.getLabo(),ml.getYear())));
+
+            if(montant_par_labo(ml.getLabo(),ml.getYear())== null){
+                System.out.print("null");
+                ml.setMontant(0);
+            }else {
+                System.out.print("not null");
+                ml.setMontant(Integer.parseInt(montant_par_labo(ml.getLabo(), ml.getYear())));
+            }
             montant_par_laboService.save(ml);
 
             return 1;
