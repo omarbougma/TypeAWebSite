@@ -1,5 +1,6 @@
 package com.projecttypea.typea.ws;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,6 +11,8 @@ import javax.validation.Valid;
 import com.projecttypea.typea.bean.*;
 import com.projecttypea.typea.security.enums.DemandesState;
 import com.projecttypea.typea.service.MissionStageService;
+
+import net.sf.jasperreports.engine.JRException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -79,7 +82,8 @@ public class MissionStageWS {
     }
 
     @PostMapping("/admin/acceptstage/{missionId}")
-    public int mStageAccepted(@PathVariable Long missionId, @RequestBody MailMessages params) {
+    public int mStageAccepted(@PathVariable Long missionId, @RequestBody MailMessages params)
+            throws IOException, JRException {
         return missionStageService.mStageAccepted(missionId, params);
     }
 

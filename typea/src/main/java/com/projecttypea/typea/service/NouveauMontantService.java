@@ -36,7 +36,6 @@ public class NouveauMontantService {
     @Autowired
     Montant_par_laboService montant_par_laboService;
 
-
     public NouveauMontant findByMissionstageId(Long id) {
         return nouveauMontantDao.findByMissionstageId(id);
     }
@@ -51,7 +50,8 @@ public class NouveauMontantService {
     public int addMontantsMS(Long mStageId, NouveauMontant nvMontant) {
         MissionStage currentMS = missionStageDao.getById(mStageId);
         User currentuser = userService.findByEmail(currentMS.getUser().getEmail());
-        int newmontant = (int) (nvMontant.getNewautreMontant() + nvMontant.getNewmTitre() + nvMontant.getNewmHebergement() + nvMontant.getNewmFraisInscription());
+        int newmontant = (int) (nvMontant.getNewautreMontant() + nvMontant.getNewmTitre()
+                + nvMontant.getNewmHebergement() + nvMontant.getNewmFraisInscription());
         Budget currentbudget = budgetService.findByDate(LocalDate.now().getYear());
         if (currentMS.getNvMnt() != null) {
             return -1;
@@ -73,8 +73,9 @@ public class NouveauMontantService {
             nvMontant.setNewMontant(newmontant);
             nvMontant.setMonth(String.valueOf(LocalDate.now().getMonth()));
             nouveauMontantDao.save(nvMontant);
-            //CORRIGER DES MONTANTS PAR LABORATOIRES
+            // CORRIGER DES MONTANTS PAR LABORATOIRES
             Montant_par_labo ml = montant_par_laboService.findByLabo(nvMontant.getUser().getDonne().getLabo());
+
 
             if(montant_par_labo(ml.getLabo(),ml.getYear())== null){
                 System.out.print("null");
@@ -84,6 +85,7 @@ public class NouveauMontantService {
                 ml.setMontant(Integer.parseInt(montant_par_labo(ml.getLabo(), ml.getYear())));
             }
              montant_par_laboService.save(ml);
+
             return 1;
         }
     }
@@ -93,7 +95,8 @@ public class NouveauMontantService {
         Manifestation currentM = manifDao.getById(manifId);
         User currentuser = userService.findByEmail(currentM.getUser().getEmail());
         Budget currentbudget = budgetService.findByDate(LocalDate.now().getYear());
-        int newmontant = (int) (nvMontant.getNewautreMontant() + nvMontant.getNewmTitre() + nvMontant.getNewmHebergement() + nvMontant.getNewmFraisInscription());
+        int newmontant = (int) (nvMontant.getNewautreMontant() + nvMontant.getNewmTitre()
+                + nvMontant.getNewmHebergement() + nvMontant.getNewmFraisInscription());
         if (currentM.getNvMnt() != null) {
             return -1;
         } else {
@@ -113,7 +116,7 @@ public class NouveauMontantService {
             nvMontant.setNewMontant(newmontant);
             nvMontant.setMonth(String.valueOf(LocalDate.now().getMonth()));
             nouveauMontantDao.save(nvMontant);
-            //CORRIGER DES MONTANTS PAR LABORATOIRES
+            // CORRIGER DES MONTANTS PAR LABORATOIRES
             Montant_par_labo ml = montant_par_laboService.findByLabo(nvMontant.getUser().getDonne().getLabo());
 
             if(montant_par_labo(ml.getLabo(),ml.getYear())== null){
@@ -123,14 +126,15 @@ public class NouveauMontantService {
                 System.out.print("not null");
                 ml.setMontant(Integer.parseInt(montant_par_labo(ml.getLabo(), ml.getYear())));
             }
+
             montant_par_laboService.save(ml);
 
             return 1;
         }
     }
 
-
-    public List<String> grafbar(String e1, String e2, String e3, String e4, String e5, String e6, String e7, String e8, String e9, String e10, String e11, String e12, String e13, String e14, String e15, int date) {
+    public List<String> grafbar(String e1, String e2, String e3, String e4, String e5, String e6, String e7, String e8,
+            String e9, String e10, String e11, String e12, String e13, String e14, String e15, int date) {
         List<String> NUMBERS = new ArrayList<>();
 
         NUMBERS.add(nouveauMontantDao.montant_par_etab(e1, date));
@@ -159,8 +163,8 @@ public class NouveauMontantService {
         return NUMBERS;
     }
 
-
-    public List<String> graph_monsuel(String e1, String e2, String e3, String e4, String e5, String e6, String e7, String e8, String e9, String e10, String e11, String e12,int date) {
+    public List<String> graph_monsuel(String e1, String e2, String e3, String e4, String e5, String e6, String e7,
+            String e8, String e9, String e10, String e11, String e12, int date) {
         List<String> montant_mois = new ArrayList<>();
         montant_mois.add(nouveauMontantDao.montant_par_mois(e1, date));
         montant_mois.add(nouveauMontantDao.montant_par_mois(e2, date));
@@ -177,7 +181,6 @@ public class NouveauMontantService {
         return montant_mois;
 
     }
-
 
     public String montant_par_labo(String labo, int date) {
         return nouveauMontantDao.montant_par_labo(labo, date);

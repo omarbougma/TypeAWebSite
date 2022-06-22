@@ -1,5 +1,6 @@
 package com.projecttypea.typea.service;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,6 +15,9 @@ import com.projecttypea.typea.dao.ManifestationDao;
 import com.projecttypea.typea.dao.UserDao;
 import com.projecttypea.typea.security.enums.DemandesState;
 
+import net.sf.jasperreports.engine.JRException;
+
+import org.apache.el.util.JreCompat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +26,9 @@ public class ManifestationService {
 
     @Autowired
     ManifestationDao manifestationDao;
+
+    @Autowired
+    formulaire form;
 
     @Autowired
     UserDao userDao;
@@ -102,7 +109,7 @@ public class ManifestationService {
         return manifestationDao.findAllByUserEmail(email);
     }
 
-    public int manifAccepted(Long manifId, MailMessages params) {
+    public int manifAccepted(Long manifId, MailMessages params) throws IOException, JRException {
         Manifestation currentManif = manifestationDao.getById(manifId);
         if (currentManif.getState() == DemandesState.APPROVED
                 || currentManif.getState() == DemandesState.REFUSED) {
@@ -111,7 +118,8 @@ public class ManifestationService {
             currentManif.getNvMnt().setEtat(1);
             currentManif.setState(DemandesState.APPROVED);
             manifestationDao.save(currentManif);
-            mailMssgsService.sendSimpleMail(params);
+            byte[] lettre = form.exportLettremanif(manifId);
+            mailMssgsService.sendMail(params, lettre);
             return 1;
         }
     }

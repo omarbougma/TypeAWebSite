@@ -124,7 +124,7 @@ public class UserService {
         SimpleMailMessage mssg = new SimpleMailMessage();
         mssg.setFrom("spring.email.from@gmail.com");
         mssg.setTo(token.getUser().getEmail());
-        mssg.setText("http://172.19.177.32:8080/user/registrationConfirm?token=" + token.getTheToken());
+        mssg.setText("http://localhost:8080/user/registrationConfirm?token=" + token.getTheToken());
         mssg.setSubject("Confirmer votre registration");
 
         emailSender.send(mssg);
@@ -148,7 +148,7 @@ public class UserService {
             currentUser.setEnable(true);
             userDao.save(currentUser);
 
-            httpServletResponse.sendRedirect("http://172.19.177.32:80/login");
+            httpServletResponse.sendRedirect("http://172.19.177.32:4200/login");
             return 1;
         } else {
             return -1;

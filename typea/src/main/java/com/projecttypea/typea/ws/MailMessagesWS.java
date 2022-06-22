@@ -13,10 +13,12 @@ public class MailMessagesWS {
     @Autowired
     MailMessagesService mailMessagesService;
 
-    @PostMapping("/admin/sendmail")
-    public int sendMail(@RequestBody MailMessages mailMessages) {
-        return mailMessagesService.sendMail(mailMessages);
-    }
+    /*
+     * @PostMapping("/admin/sendmail")
+     * public int sendMail(@RequestBody MailMessages mailMessages, byte[] lettre) {
+     * return mailMessagesService.sendMail(mailMessages, lettre);
+     * }
+     */
 
     @PostMapping("/admin/sendsimplemail")
     public void sendSimpleMail(@RequestBody MailMessages mailMessages) {

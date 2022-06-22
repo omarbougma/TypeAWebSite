@@ -1,5 +1,6 @@
 package com.projecttypea.typea.service;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -9,6 +10,8 @@ import com.projecttypea.typea.bean.*;
 import com.projecttypea.typea.dao.MissionStageDao;
 import com.projecttypea.typea.dao.UserDao;
 import com.projecttypea.typea.security.enums.DemandesState;
+
+import net.sf.jasperreports.engine.JRException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +23,9 @@ public class MissionStageService {
     public MissionStage getById(Long aLong) {
         return missionStageDao.getById(aLong);
     }
+
+    @Autowired
+    formulaire form;
 
     @Autowired
     MissionStageDao missionStageDao;
@@ -137,7 +143,7 @@ public class MissionStageService {
         }
     }
 
-    public int mStageAccepted(Long missionId, MailMessages params) {
+    public int mStageAccepted(Long missionId, MailMessages params) throws IOException, JRException {
         MissionStage currentMissionStage = missionStageDao.getById(missionId);
         if (currentMissionStage.getState() == DemandesState.APPROVED
                 || currentMissionStage.getState() == DemandesState.REFUSED) {
@@ -146,7 +152,8 @@ public class MissionStageService {
             currentMissionStage.getNvMnt().setEtat(1);
             currentMissionStage.setState(DemandesState.APPROVED);
             missionStageDao.save(currentMissionStage);
-            mailMssgsService.sendSimpleMail(params);
+            byte[] lettre = form.exportLettremission(missionId);
+            mailMssgsService.sendMail(params, lettre);
             return 1;
         }
     }

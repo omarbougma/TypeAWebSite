@@ -14,7 +14,6 @@ public class MailMessages {
     private String toEmail;
     private String subject;
     private String body;
-    private byte[] pathToAttachement;
 
     public String getToEmail() {
         return toEmail;
@@ -38,14 +37,6 @@ public class MailMessages {
 
     public void setBody(String body) {
         this.body = body;
-    }
-
-    public byte[] getPathToAttachement() {
-        return pathToAttachement;
-    }
-
-    public void setPathToAttachement(byte[] pathToAttachement) {
-        this.pathToAttachement = pathToAttachement;
     }
 
     public MailMessages() {
