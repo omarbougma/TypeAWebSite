@@ -240,7 +240,7 @@ public class formulaire {
         User user = userService.getById(manifestation.getUser().getId());
         Etablissement etab = etablissementService.findByNom(user.getDonne().getEtablissement().getNom());
         JasperReport jasperReport = JasperCompileManager
-                .compileReport(getClass().getResourceAsStream("//Lettremanif.jrxml"));
+                .compileReport(getClass().getResourceAsStream("/Lettremanif.jrxml"));
         JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(Collections.singleton(manifestation));
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("titremanifestation", manifestation.getTitreManifestation());

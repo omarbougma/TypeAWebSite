@@ -16,7 +16,9 @@
 		<band height="85" splitType="Stretch">
 			<staticText>
 				<reportElement style="Title" x="0" y="13" width="433" height="33" uuid="6f9c1004-6140-4588-9c4f-d75824835765"/>
-				<textElement verticalAlignment="Middle"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif"/>
+				</textElement>
 				<text><![CDATA[Liste demandeurs]]></text>
 			</staticText>
 			<image>
@@ -36,28 +38,46 @@
 					<pen lineWidth="0.5" lineColor="#999999"/>
 				</graphicElement>
 			</line>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1" uuid="1c962ee8-347c-4900-ad41-bf66bff6af86"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
 			<staticText>
-				<reportElement style="Column header" x="0" y="19" width="138" height="15" uuid="dbbfe902-a18d-489e-8cf6-a6b026ba8a4f">
+				<reportElement style="Column header" x="0" y="10" width="138" height="24" uuid="77c4e1b9-8f81-433a-a6b6-5186ef414a20">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8b9923ac-87cf-41ca-bccd-ab5717c7f698"/>
 				</reportElement>
+				<textElement>
+					<font fontName="SansSerif" size="12"/>
+				</textElement>
 				<text><![CDATA[Nom]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="138" y="19" width="138" height="15" uuid="c29e0c16-1235-495a-bbc6-03023f37d234">
+				<reportElement style="Column header" x="138" y="10" width="138" height="24" uuid="0130d7bc-512d-49fc-81e8-382c391ca955">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8c6e42a9-7ff6-4b2e-b1bb-e7eebb6daa32"/>
 				</reportElement>
+				<textElement>
+					<font fontName="SansSerif"/>
+				</textElement>
 				<text><![CDATA[Prenom]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="276" y="19" width="174" height="15" uuid="4be9766a-125f-47b8-af60-d00adbcaead2">
+				<reportElement style="Column header" x="276" y="10" width="174" height="24" uuid="63e474d8-4103-4aed-9919-a230bedd7d6c">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8e89ffe9-0b51-4b55-a698-b77e92601a6c"/>
 				</reportElement>
+				<textElement>
+					<font fontName="SansSerif"/>
+				</textElement>
 				<text><![CDATA[Email]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="450" y="19" width="102" height="15" uuid="2c2f7678-a5f7-4e71-ba4a-0af5d273366d">
+				<reportElement style="Column header" x="450" y="10" width="102" height="24" uuid="d902f741-8bac-422d-b14d-7f027991d8a5">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="61ef1c87-242c-468a-8705-6540a8efbf9d"/>
 				</reportElement>
+				<textElement>
+					<font fontName="SansSerif"/>
+				</textElement>
 				<text><![CDATA[Telephone]]></text>
 			</staticText>
 		</band>
